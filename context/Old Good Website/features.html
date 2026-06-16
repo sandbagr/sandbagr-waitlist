@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works — SANDBAGR</title>
+    <meta name="description" content="See how SANDBAGR's AI odds engine, pre-round markets, live P2P bets, and Golden Bet mechanic work. GPS-powered bet cards, real-time odds, one-tap Venmo settlement.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/features-patch.css?v=26">
+    <link rel="stylesheet" href="css/pages-patch.css?v=3">
+</head>
+<body>
+    <!-- Ambient background orbs -->
+    <div class="features-bg-orb orb-1"></div>
+    <div class="features-bg-orb orb-2"></div>
+    <div class="features-bg-orb orb-3"></div>
+
+    <!-- Scrollbar indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Nav placeholder -->
+    <div id="nav-placeholder"></div>
+
+    <!-- ==================== PAGE HERO ==================== -->
+    <section class="features-hero">
+        <div class="container">
+            <div class="rv">
+                <span class="label">How It Works</span>
+            </div>
+            <h1 class="rv rv-s2">From the parking lot<br>to the <span class="grad">19th hole.</span></h1>
+            <p class="hero-desc rv rv-s3">Every feature is built for <strong>one-handed use</strong> on the course. Dark theme. Big buttons. <span class="g">Zero friction.</span></p>
+        </div>
+    </section>
+
+    <div class="feat-divider"></div>
+
+    <!-- ==================== UNDER THE HOOD — the engine pipeline ==================== -->
+    <section id="engine" class="engine-hero">
+        <div class="container">
+            <div class="engine-eyebrow rv">⚡ Under the hood</div>
+            <h2 class="engine-title rv">
+                Every shot becomes a market<br>
+                <span class="grad">in three seconds.</span>
+            </h2>
+            <p class="engine-sub rv">Engine prices the bet. Your buddy fades you direct. The foursome calls the result. <span class="g">Three taps. Three seconds.</span></p>
+        </div>
+
+        <!-- ==================== ENGINE STAGE V4 — phone on top, tap-buttons under, copy below ==================== -->
+        <div class="engine-stage-wrap">
+            <div class="engine-stage es-stage-v4" id="engineStage">
+                <!-- Background mesh -->
+                <div class="es-mesh"></div>
+
+                <!-- PHONE — centered, three real flow-map screens cycle here -->
+                <div class="es-phone-frame">
+                    <div class="es-phone-notch"></div>
+                    <div class="es-phone-screen">
+
+                        <!-- STEP 1: TAP — actual bet-card screen from the flow map -->
+                        <div class="es-screen es-screen-frame" data-step="0">
+                            <iframe src="demo/sandbagr-app.html?app=bet-card"
+                                    class="es-screen-iframe"
+                                    title="Place a bet"
+                                    loading="eager"></iframe>
+                        </div>
+
+                        <!-- STEP 2: FADE — actual bet-incoming screen (buddy's POV) -->
+                        <div class="es-screen es-screen-frame" data-step="1">
+                            <iframe src="demo/sandbagr-app.html?app=bet-incoming"
+                                    class="es-screen-iframe"
+                                    title="Take the other side"
+                                    loading="eager"></iframe>
+                        </div>
+
+                        <!-- STEP 3: CALL — actual live-round screen where per-bet YES/NO voting resolves bets in the feed -->
+                        <div class="es-screen es-screen-frame" data-step="2">
+                            <iframe src="demo/sandbagr-app.html?app=live-round"
+                                    class="es-screen-iframe"
+                                    title="Live round resolution"
+                                    loading="eager"></iframe>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- TAP-BUTTONS — sit directly under the phone, visually tied to the screens above -->
+                <div class="es4-tabs" role="tablist" aria-label="Step through the engine">
+                    <button class="es-marker es4-tab" data-step="0" type="button">
+                        <span class="es4-tab-num">01</span>
+                        <span class="es4-tab-label">Tap</span>
+                        <span class="es4-tab-time">Engine prices &middot; 1s</span>
+                    </button>
+                    <button class="es-marker es4-tab" data-step="1" type="button">
+                        <span class="es4-tab-num">02</span>
+                        <span class="es4-tab-label">Fade</span>
+                        <span class="es4-tab-time">Buddy accepts &middot; 2s</span>
+                    </button>
+                    <button class="es-marker es4-tab" data-step="2" type="button">
+                        <span class="es4-tab-num">03</span>
+                        <span class="es4-tab-label">Call</span>
+                        <span class="es4-tab-time">Foursome calls it &middot; 3s</span>
+                    </button>
+                </div>
+
+                <!-- COPY — single block below tabs, fades between steps -->
+                <div class="es4-copy">
+                    <div class="es-copy-step es4-copy-step" data-step="0">
+                        <h3 class="es4-step-title">The engine prices the bet.</h3>
+                        <p class="es4-step-detail">GPS reads the phase. Handicap, lie, wind, and history feed in. A fair-price multiplier appears on a card. <strong>You tap. The offer broadcasts to the foursome in under three seconds.</strong></p>
+                    </div>
+                    <div class="es-copy-step es4-copy-step" data-step="1">
+                        <h3 class="es4-step-title">Your buddy gets the offer.</h3>
+                        <p class="es4-step-detail">His phone lights up with your bet: &ldquo;Take the other side?&rdquo; One tap accepts. P2P locked. <strong>No house. No rake. No pot. Just two players, head-to-head.</strong></p>
+                    </div>
+                    <div class="es-copy-step es4-copy-step" data-step="2">
+                        <h3 class="es4-step-title">The foursome calls the result.</h3>
+                        <p class="es4-step-detail">Shot lands. Group votes YES or NO. Majority decides. The bet auto-pays out. <strong>No arguments. No mental math. No &ldquo;I&rsquo;ll Venmo you later.&rdquo;</strong></p>
+                    </div>
+                </div>
+
+                <!-- Hidden progress fill kept for JS compatibility (initEngineStage updates it) -->
+                <div class="es-progress-fill" id="esProgressFill" aria-hidden="true" style="display:none;"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="feat-divider"></div>
+
+    <!-- ==================== WHAT THE ENGINE PRODUCES — live trading floor ==================== -->
+    <section class="engine-output" id="engine-output">
+        <div class="container">
+            <div class="output-eyebrow rv">⚡ What the engine produces</div>
+            <h2 class="output-headline rv">A market for <span class="grad">every question.</span></h2>
+            <p class="output-sub rv">The engine turns golf questions into prices. The group does the rest.</p>
+
+            <!-- Reuse the same kinetic terminal as the homepage -->
+            <div class="output-terminal-wrap rv">
+                <div class="markets-terminal">
+                    <div class="mt-header">
+                        <div class="mt-status"><span class="mt-pulse"></span> LIVE · UVA Boys League</div>
+                        <div class="mt-clock" id="mtClock">—</div>
+                    </div>
+                    <div class="mt-vol-row">
+                        <div class="mt-vol-block">
+                            <div class="mt-vol-label">VOLUME · 24h</div>
+                            <div class="mt-vol-num"><span id="mtVolume">$0</span></div>
+                        </div>
+                        <div class="mt-vol-block">
+                            <div class="mt-vol-label">TAKES</div>
+                            <div class="mt-vol-num"><span id="mtTakes">0</span></div>
+                        </div>
+                        <div class="mt-vol-block">
+                            <div class="mt-vol-label">MARKETS</div>
+                            <div class="mt-vol-num"><span>12</span></div>
+                        </div>
+                    </div>
+                    <div class="mt-list" id="mtList"><!-- rows injected by JS --></div>
+                    <div class="mt-tape" id="mtTape">
+                        <div class="mt-tape-inner" id="mtTapeInner"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cross-link to homepage live prototype -->
+            <div class="rv" style="text-align:center; margin-top:3.5rem;">
+                <p style="font-size:0.85rem; color:var(--slate, #6B7280); letter-spacing:0.04em;">Want to feel it on the phone? <a href="index.html#app" style="color:var(--green); font-weight:700; text-decoration:none; border-bottom:1px solid rgba(0,255,135,0.3);">Tap through the live prototype &rarr;</a></p>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="feat-divider"></div>
+
+    <!-- ==================== CTA SECTION ==================== -->
+    <section class="container cta-section">
+        <div class="rv" style="text-align:center; padding:3rem 0;">
+            <div style="font-family:'JetBrains Mono', monospace; font-size:0.72rem; color:var(--green); letter-spacing:0.32em; font-weight:800; margin-bottom:1.2rem;">⚡ THE BETA</div>
+            <h2 style="font-size:clamp(2.4rem, 5.5vw, 4rem); font-weight:900; letter-spacing:-0.035em; line-height:1.02; margin-bottom:2rem;">Lock your spot.<br><span class="grad">Tee up summer 2026.</span></h2>
+            <a href="waitlist.html" class="btn btn-p rv rv-s2">Lock me in</a>
+        </div>
+    </section>
+
+    <div class="feat-divider"></div>
+
+    <!-- Footer placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+
+    <!-- Interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Phase tabs
+            document.querySelectorAll('.phase-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.phase-tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.phase-content').forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    const phaseEl = document.getElementById('phase-' + this.dataset.phase);
+                    phaseEl.classList.add('active');
+                    // Animate newly visible bet cards
+                    gsap.utils.toArray('#phase-' + this.dataset.phase + ' .bet-card').forEach((card, i) => {
+                        gsap.fromTo(card, { opacity: 0, y: 25, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, delay: i * 0.1, ease: 'power3.out' });
+                    });
+                    phaseEl.querySelectorAll('[data-tilt]').forEach(el => {
+                        VanillaTilt.init(el, { max: 6, speed: 400, glare: true, 'max-glare': 0.08 });
+                    });
+                });
+            });
+
+            // GSAP ScrollTrigger
+            gsap.registerPlugin(ScrollTrigger);
+
+            // ==========================================
+            // HERO — Staggered entrance
+            // ==========================================
+            const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+            heroTl.from('.features-hero .label', { opacity: 0, y: 20, duration: 0.6 })
+                  .from('.features-hero h1', { opacity: 0, y: 30, duration: 0.8 }, '-=0.3')
+                  .from('.features-hero .hero-desc', { opacity: 0, y: 20, duration: 0.6 }, '-=0.4');
+
+            // ==========================================
+            // ENGINE HEADER reveal — pipeline itself is now
+            // driven by animations.js (scroll-pinned, sequential).
+            // ==========================================
+            gsap.fromTo('.engine-eyebrow', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, scrollTrigger: { trigger: '#engine', start: 'top 80%', once: true } });
+            gsap.fromTo('.engine-title', { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 0.8, delay: 0.1, scrollTrigger: { trigger: '#engine', start: 'top 80%', once: true } });
+            gsap.fromTo('.engine-sub', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, delay: 0.2, scrollTrigger: { trigger: '#engine', start: 'top 80%', once: true } });
+
+            // ==========================================
+            // THREE MECHANICS — Scroll-triggered per-block
+            // ==========================================
+            const feats = gsap.utils.toArray('.feat');
+            feats.forEach((feat, i) => {
+                const content = feat.querySelector('.feat-content');
+                const vis = feat.querySelector('.feat-vis');
+                const isEven = i % 2 === 1;
+
+                if (content) {
+                    gsap.fromTo(content,
+                        { opacity: 0, x: isEven ? 50 : -50 },
+                        { opacity: 1, x: 0, duration: 0.8, ease: 'power3.out',
+                          scrollTrigger: { trigger: feat, start: 'top 78%', once: true }
+                        }
+                    );
+                }
+
+                if (vis) {
+                    gsap.fromTo(vis,
+                        { opacity: 0, x: isEven ? -50 : 50, scale: 0.95 },
+                        { opacity: 1, x: 0, scale: 1, duration: 0.8, delay: 0.15, ease: 'power3.out',
+                          scrollTrigger: { trigger: feat, start: 'top 78%', once: true }
+                        }
+                    );
+                }
+
+                feat.querySelectorAll('.gb-step').forEach((step, si) => {
+                    gsap.fromTo(step,
+                        { opacity: 0, x: 20 },
+                        { opacity: 1, x: 0, duration: 0.5, delay: 0.3 + si * 0.12, ease: 'power2.out',
+                          scrollTrigger: { trigger: feat, start: 'top 75%', once: true }
+                        }
+                    );
+                });
+
+                const potFill = feat.querySelector('.gb-pot-fill-inner');
+                if (potFill) {
+                    const w = potFill.style.width;
+                    potFill.style.width = '0%';
+                    gsap.to(potFill, { width: w, duration: 1.2, delay: 0.8, ease: 'power2.out',
+                        scrollTrigger: { trigger: feat, start: 'top 75%', once: true }
+                    });
+                }
+
+                feat.querySelectorAll('.sf-item').forEach((item, si) => {
+                    gsap.fromTo(item,
+                        { opacity: 0, x: -20 },
+                        { opacity: 1, x: 0, duration: 0.5, delay: 0.3 + si * 0.15, ease: 'power2.out',
+                          scrollTrigger: { trigger: feat, start: 'top 75%', once: true }
+                        }
+                    );
+                });
+            });
+
+            // ==========================================
+            // PRICING — Entrance
+            // ==========================================
+            gsap.utils.toArray('.pricing-card').forEach((card, i) => {
+                gsap.fromTo(card, { opacity: 0, y: 35, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, delay: i * 0.15, ease: 'power3.out', scrollTrigger: { trigger: card, start: 'top 85%', once: true } });
+            });
+
+            // ==========================================
+            // CTA — Entrance
+            // ==========================================
+            gsap.fromTo('.cta-section h2', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, scrollTrigger: { trigger: '.cta-section', start: 'top 85%', once: true } });
+            gsap.fromTo('.cta-section .btn', { opacity: 0, y: 20, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, delay: 0.2, ease: 'back.out(1.5)', scrollTrigger: { trigger: '.cta-section', start: 'top 85%', once: true } });
+
+            // ==========================================
+            // ODDS BAR FILL — Animate when scrolled into view
+            // ==========================================
+            const oddsFills = document.querySelectorAll('.odds-fill[data-w]');
+            if (oddsFills.length) {
+                oddsFills.forEach(bar => {
+                    bar.style.width = '0%';
+                });
+                ScrollTrigger.create({
+                    trigger: '.odds-card',
+                    start: 'top 80%',
+                    once: true,
+                    onEnter: () => {
+                        oddsFills.forEach((bar, i) => {
+                            setTimeout(() => {
+                                bar.style.transition = 'width 1s cubic-bezier(0.16, 1, 0.3, 1)';
+                                bar.style.width = bar.dataset.w + '%';
+                            }, 400 + i * 150);
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script src="js/main.js?v=18"></script>
+    <script src="js/animations.js?v=5"></script>
+</body>
+</html>

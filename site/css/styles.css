@@ -1,0 +1,542 @@
+/* ============================================================================
+   SANDBAGR — Waitlist Landing
+   Dark, cinematic. Money Green #00FF87 on Jet Black #0A0A0A. Apple-level restraint.
+   One idea, one line of big type, one visual per section. Mobile-first.
+   ============================================================================ */
+
+:root {
+  --black: #0A0A0A;
+  --black-2: #101010;
+  --charcoal: #161616;
+  --charcoal-2: #1E1E1E;
+  --line: rgba(255, 255, 255, 0.08);
+  --green: #00FF87;
+  --green-dim: rgba(0, 255, 135, 0.10);
+  --green-line: rgba(0, 255, 135, 0.22);
+  --white: #FFFFFF;
+  --grey: #B4BAC4;      /* readable body grey (was too dim) */
+  --grey-2: #777E89;    /* muted, still legible */
+  --gold: #FFD700;
+  --red: #FF453A;
+  --glow: 0 0 50px rgba(0, 255, 135, 0.35), 0 0 120px rgba(0, 255, 135, 0.12);
+  --glow-soft: 0 0 24px rgba(0, 255, 135, 0.18);
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--font);
+  background: var(--black);
+  color: var(--white);
+  line-height: 1.55;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection { background: var(--green); color: var(--black); }
+::-webkit-scrollbar { width: 7px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--green); border-radius: 4px; }
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+.g { color: var(--green); }
+
+.wrap {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+.eyebrow.g { color: var(--green); }
+
+/* Big statement type — the backbone of the page */
+.big-line {
+  font-size: clamp(2rem, 7vw, 4.25rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.big-line.dim { color: var(--grey-2); }
+
+/* ---------------------------------------------------------------- scroll bar */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+  background: var(--green); z-index: 200;
+  box-shadow: 0 0 10px rgba(0, 255, 135, 0.6);
+  transition: width 0.08s linear;
+}
+
+/* ---------------------------------------------------------------- brand header */
+.brand-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 150;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 24px;
+  background: rgba(10, 10, 10, 0.72);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  transform: translateY(-100%);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.brand-header.is-active { transform: translateY(0); }
+.bh-brand { display: flex; align-items: center; gap: 10px; }
+.bh-mark {
+  width: 30px; height: 30px; border-radius: 27%;
+  background: #000; border: 1px solid var(--green-line);
+  box-shadow: 0 0 14px rgba(0,255,135,0.22);
+}
+.bh-wordmark { font-weight: 900; letter-spacing: -0.02em; font-size: 1.1rem; }
+.bh-wordmark .g { text-shadow: var(--glow-soft); }
+.bh-cta {
+  font-size: 0.82rem; font-weight: 700; color: var(--black);
+  background: var(--green); padding: 8px 16px; border-radius: 8px;
+  box-shadow: var(--glow-soft); transition: transform 0.15s ease;
+}
+.bh-cta:active { transform: scale(0.96); }
+
+/* ============================================================================
+   1 · HERO
+   ============================================================================ */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  padding: 80px 24px 40px;
+  overflow: hidden;
+}
+.hero-glow {
+  position: absolute; top: 38%; left: 50%; transform: translate(-50%, -50%);
+  width: 680px; height: 680px; max-width: 120vw; pointer-events: none;
+  background: radial-gradient(circle, rgba(0,255,135,0.16) 0%, rgba(0,255,135,0.04) 35%, transparent 65%);
+  filter: blur(20px); z-index: 0;
+}
+.hero-inner {
+  position: relative; z-index: 1; width: 100%; max-width: 560px;
+  transition: transform 1.1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.hero-mark {
+  display: block; width: clamp(132px, 32vw, 184px); height: auto; margin: 0 auto 20px;
+  border-radius: 25%;
+  background: #000;
+  border: 1px solid var(--green-line);
+  box-shadow: 0 0 40px rgba(0,255,135,0.28), 0 18px 50px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(255,255,255,0.03);
+}
+.hero-wordmark {
+  font-size: clamp(2.3rem, 11.5vw, 6rem);
+  font-weight: 900; letter-spacing: -0.045em; line-height: 1;
+  white-space: nowrap;
+}
+.hero-wordmark .g, .footer-wordmark .g { color: var(--green); text-shadow: var(--glow); }
+
+/* ---- INTRO: on load you see the full logo lockup — icon + name + slogan —
+   centered. Everything else slides in the first time you scroll (JS adds .lit). ---- */
+.hero:not(.lit) .hero-inner { transform: translateY(24vh); }
+.hero-headline, .hero .capture, .hero .capture-err, .hero .device-hero {
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.hero:not(.lit) .hero-headline,
+.hero:not(.lit) .capture,
+.hero:not(.lit) .capture-err,
+.hero:not(.lit) .device-hero {
+  opacity: 0; transform: translateY(22px); pointer-events: none;
+}
+/* staggered entrance once lit */
+.hero.lit .hero-headline { transition-delay: 0.04s; }
+.hero.lit .capture       { transition-delay: 0.16s; }
+.hero.lit .device-hero   { transition-delay: 0.32s; }
+/* explicit "scroll" prompt shown only during the intro — fixed to the viewport
+   bottom (the hero is taller than the screen, so absolute would fall below the fold) */
+.hero .scroll-hint {
+  position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 120;
+  display: flex; flex-direction: column; align-items: center; gap: 7px;
+  opacity: 0.92; transition: opacity 0.5s ease;
+  animation: scrollBob 1.8s ease-in-out infinite;
+}
+.scroll-hint-label {
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--grey);
+}
+.scroll-hint-arrow { font-size: 1.5rem; line-height: 1; color: var(--green); text-shadow: var(--glow-soft); }
+.hero.lit .scroll-hint { opacity: 0; pointer-events: none; }
+@keyframes scrollBob { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 8px); } }
+
+.hero-tagline {
+  margin-top: 10px;
+  font-size: clamp(0.92rem, 3.8vw, 1.12rem);
+  font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255,255,255,0.82);
+}
+
+.hero-headline {
+  margin: 34px auto 0;
+  max-width: 18ch;
+  font-size: clamp(1.55rem, 5.6vw, 2.15rem);
+  font-weight: 800; letter-spacing: -0.02em; line-height: 1.15;
+}
+
+/* ------------------------------------------- email capture (hero + final CTA) */
+/* honeypot — off-screen, not display:none (bots skip display:none) */
+.hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+
+.capture {
+  display: flex; flex-direction: column; gap: 10px;
+  margin: 30px auto 0; max-width: 440px;
+}
+.capture-row { display: flex; gap: 8px; }
+.capture-input {
+  flex: 1; min-width: 0; outline: none;
+  background: var(--charcoal); border: 1px solid var(--line); border-radius: 12px;
+  color: var(--white); font-family: var(--font); font-size: 1.05rem;
+  padding: 14px 15px;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.capture-input:focus { border-color: var(--green-line); box-shadow: var(--glow-soft); }
+.capture-input::placeholder { color: var(--grey-2); }
+.capture-btn {
+  width: 100%; white-space: nowrap;
+  background: var(--green); color: var(--black);
+  font-family: var(--font); font-weight: 800; font-size: 1rem;
+  border: none; border-radius: 12px; padding: 15px; cursor: pointer;
+  box-shadow: var(--glow-soft); transition: transform 0.15s ease, filter 0.15s ease;
+}
+.capture-btn:hover { filter: brightness(1.06); }
+.capture-btn:active { transform: scale(0.97); }
+.capture-btn[disabled] { opacity: 0.6; cursor: default; }
+.capture-err {
+  min-height: 1.1em; margin-top: 8px; font-size: 0.82rem; color: var(--red);
+  text-align: center;
+}
+
+/* ============================================================================
+   DEVICE — the real app embedded in an iframe. No fake chrome; the prototype
+   renders its own phone, we just frame it with a soft "lit from within" glow.
+   ============================================================================ */
+.device {
+  position: relative; width: 100%;
+  max-width: 300px; margin: 0 auto;
+  aspect-ratio: 300 / 640;
+}
+.device-hero { margin-top: 56px; }
+.device-glow {
+  position: absolute; inset: -6% -12%; z-index: 0; pointer-events: none;
+  background: radial-gradient(58% 52% at 50% 40%, rgba(0,255,135,0.20), rgba(0,255,135,0.04) 55%, transparent 72%);
+  filter: blur(16px);
+}
+.device-screen {
+  position: relative; z-index: 1;
+  width: 100%; height: 100%;
+  border: none; background: transparent;
+  border-radius: 30px;
+  /* a still preview, not an interactive app */
+  pointer-events: none;
+  /* subtle floor shadow grounds the device */
+  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.5));
+}
+
+/* placeholder screen — stands in for the real app shot, on-brand and clean */
+.device-ph {
+  position: relative; z-index: 1; width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+  padding: 30px;
+  background: linear-gradient(180deg, #131313, #090909);
+  border: 1px solid var(--line);
+  border-radius: 38px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 30px 60px rgba(0,0,0,0.5);
+}
+.ph-mark { font-weight: 900; font-size: 1.15rem; letter-spacing: -0.02em; }
+.ph-mark .g { color: var(--green); text-shadow: var(--glow-soft); }
+.ph-skeleton { width: 78%; display: flex; flex-direction: column; gap: 11px; margin: 4px 0; }
+.ph-skeleton i {
+  height: 12px; border-radius: 7px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.05), rgba(255,255,255,0.09), rgba(255,255,255,0.05));
+  background-size: 200% 100%;
+  animation: phShimmer 1.6s ease-in-out infinite;
+}
+.ph-skeleton i:nth-child(2) { width: 86%; animation-delay: 0.2s; }
+.ph-skeleton i:nth-child(3) { width: 64%; animation-delay: 0.4s; }
+@keyframes phShimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+.ph-label { font-size: 1.05rem; font-weight: 800; letter-spacing: -0.01em; color: #EDEFF2; }
+.ph-soon {
+  font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--green); border: 1px solid var(--green-line); border-radius: 20px; padding: 4px 12px;
+}
+
+/* ============================================================================
+   Section rhythm
+   ============================================================================ */
+section { position: relative; }
+.problem, .turn, .flow, .league, .formats, .line { padding: clamp(86px, 15vh, 150px) 0; }
+
+/* ============================================================================
+   2 · THE PROBLEM — headline first, then the chat builds, then the bridge.
+   Generous vertical spacing so each beat enters the viewport on its own.
+   ============================================================================ */
+.problem-inner { display: flex; flex-direction: column; }
+.problem-headline { max-width: 18ch; }
+.problem-subline { margin-top: clamp(36px, 8vh, 96px); max-width: 16ch; }
+
+.chat-mock {
+  margin: clamp(52px, 11vh, 124px) 0 0; max-width: 440px; width: 100%;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.chat-bubble {
+  max-width: 82%; padding: 12px 16px; border-radius: 18px;
+  font-size: 1.02rem; line-height: 1.4;
+}
+.chat-bubble.them { align-self: flex-start; background: var(--charcoal-2); border-bottom-left-radius: 5px; }
+.chat-bubble.me { align-self: flex-end; background: rgba(0,255,135,0.14); border: 1px solid var(--green-line); border-bottom-right-radius: 5px; }
+
+/* bold bridge line into the product section */
+.problem-bridge {
+  margin: clamp(96px, 19vh, 230px) auto 0; max-width: 15ch; text-align: center;
+  font-size: clamp(2.2rem, 8.5vw, 4.5rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.04;
+}
+.problem-bridge .g { text-shadow: var(--glow); }
+
+/* ============================================================================
+   3 · THE TURN — type only, lots of air
+   ============================================================================ */
+.turn { text-align: center; }
+.turn-text { margin: 0 auto; }
+.turn-text .big-line { white-space: nowrap; }
+.turn-text .big-line + .big-line { margin-top: 4px; }
+
+/* ============================================================================
+   4 · THE FLOW — three app layers
+   ============================================================================ */
+.flow-title {
+  margin-top: 14px; max-width: 16ch;
+  font-size: clamp(1.9rem, 6vw, 3.25rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.08;
+}
+.layers { margin-top: 64px; display: flex; flex-direction: column; gap: clamp(72px, 12vh, 128px); }
+.layer {
+  display: grid; grid-template-columns: 1fr; gap: 36px; justify-items: center; text-align: center;
+  max-width: 1080px; margin: 0 auto; padding: 0 24px; width: 100%;
+}
+.layer-copy { max-width: 30ch; }
+.layer-num {
+  font-family: var(--mono); font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--green);
+}
+.layer-copy h3 {
+  margin-top: 14px;
+  font-size: clamp(1.7rem, 5.2vw, 2.25rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.12;
+}
+
+/* compelling bullets — not paragraphs */
+.bullets { margin-top: 18px; list-style: none; display: flex; flex-direction: column; gap: 11px; text-align: left; }
+.bullets li {
+  position: relative; padding-left: 24px;
+  color: var(--grey); font-size: 1.1rem; line-height: 1.55;
+}
+.bullets li::before {
+  content: ""; position: absolute; left: 2px; top: 0.62em;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--green); box-shadow: 0 0 8px rgba(0,255,135,0.7);
+}
+.bullets-lg li { font-size: 1.2rem; color: #C9CED6; }
+
+/* ============================================================================
+   5 · GROUPS / THE LEAGUE — type only, centered
+   ============================================================================ */
+.league { text-align: center; }
+.league-inner { max-width: 640px; margin: 0 auto; }
+.league-title {
+  margin-top: 14px;
+  font-size: clamp(2rem, 6.5vw, 3.4rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.06;
+}
+.league-title .g { text-shadow: var(--glow); }
+.league-bullets { display: inline-flex; margin-top: 26px; }
+
+/* ============================================================================
+   6 · FIVE FORMATS — sleek, no boxes
+   ============================================================================ */
+.formats { text-align: center; }
+.formats-title {
+  font-size: clamp(1.7rem, 5.2vw, 2.6rem); font-weight: 900; letter-spacing: -0.025em; line-height: 1.12;
+}
+.formats-title .dim2 { color: var(--grey-2); }
+.format-list {
+  margin-top: 38px; display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 14px 30px;
+}
+.fmt {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: clamp(1.1rem, 3.4vw, 1.5rem); font-weight: 800; letter-spacing: -0.01em;
+  color: #EDEFF2;
+}
+.fmt i {
+  width: 9px; height: 9px; border-radius: 50%; background: var(--c);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--c) 70%, transparent);
+}
+
+/* ============================================================================
+   6 · THE LINE — waitlist + referral
+   ============================================================================ */
+.line { text-align: center; }
+.line-title {
+  margin-top: 14px;
+  font-size: clamp(2.2rem, 8vw, 4rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.05;
+}
+.line-title .g { text-shadow: var(--glow); }
+.line-sub { margin: 16px auto 0; max-width: 32ch; color: var(--grey); font-size: 1.18rem; }
+
+.queue-card {
+  margin: 40px auto 0; max-width: 480px;
+  background: linear-gradient(180deg, var(--charcoal), var(--black-2));
+  border: 1px solid var(--line); border-radius: 24px;
+  padding: 32px 24px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+.qc-trust {
+  margin-top: 16px; font-size: 0.95rem; color: var(--grey);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.live-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--green);
+  box-shadow: 0 0 0 0 rgba(0,255,135,0.6); animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(0,255,135,0.55); }
+  70% { box-shadow: 0 0 0 9px rgba(0,255,135,0); }
+  100% { box-shadow: 0 0 0 0 rgba(0,255,135,0); }
+}
+
+/* ---- STATE B: position reveal ---- */
+.mascot-in { display: flex; justify-content: center; margin-bottom: 4px; }
+.mascot-img { width: 132px; height: auto; animation: bob 3s ease-in-out infinite; filter: drop-shadow(0 8px 30px rgba(0,255,135,0.25)); }
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+.qc-youre-in { font-size: 1.5rem; font-weight: 900; letter-spacing: -0.02em; }
+.qc-pos-label { margin-top: 14px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--grey); }
+.qc-pos-num {
+  font-family: var(--mono); font-weight: 800; line-height: 1;
+  font-size: clamp(3.4rem, 16vw, 5rem); color: var(--green); text-shadow: var(--glow);
+}
+.qc-pos-move { margin-top: 6px; font-size: 0.9rem; font-weight: 700; color: var(--green); }
+
+.qc-invite { margin-top: 26px; padding-top: 24px; border-top: 1px solid var(--line); }
+.qc-invite-h { font-size: 1.18rem; font-weight: 800; }
+
+.invite-form { display: flex; gap: 8px; margin: 16px 0 0; }
+.invite-form .capture-input {
+  background: var(--black); border: 1px solid var(--line); border-radius: 11px;
+}
+.invite-form .capture-input:focus { border-color: var(--green-line); }
+.invite-send {
+  flex-shrink: 0; background: transparent; color: var(--green);
+  border: 1px solid var(--green-line); border-radius: 11px;
+  font-family: var(--font); font-weight: 700; font-size: 0.95rem;
+  padding: 0 18px; cursor: pointer; transition: background 0.15s ease;
+}
+.invite-send:hover { background: var(--green-dim); }
+.invite-sent { margin-top: 10px; font-size: 0.92rem; color: var(--green); }
+
+.ref-link-row { display: flex; gap: 8px; margin-top: 12px; }
+.ref-link {
+  flex: 1; min-width: 0; background: var(--black); border: 1px solid var(--line);
+  border-radius: 11px; padding: 13px 14px; color: var(--grey); font-size: 0.9rem;
+  font-family: var(--mono); outline: none;
+}
+.ref-copy {
+  flex-shrink: 0; background: var(--green); color: var(--black);
+  border: none; border-radius: 11px; font-family: var(--font); font-weight: 800;
+  padding: 0 20px; cursor: pointer; transition: transform 0.15s ease;
+}
+.ref-copy:active { transform: scale(0.96); }
+.ref-copy.copied { background: var(--charcoal-2); color: var(--green); }
+
+.share-row { display: flex; gap: 8px; margin-top: 12px; }
+.share-btn {
+  flex: 1; text-align: center; cursor: pointer;
+  background: var(--charcoal); border: 1px solid var(--line); border-radius: 11px;
+  padding: 13px 6px; font-size: 0.92rem; font-weight: 600; color: var(--white);
+  font-family: var(--font); transition: border-color 0.15s ease, background 0.15s ease;
+}
+.share-btn:hover { border-color: var(--green-line); background: var(--charcoal-2); }
+
+/* ---- your crew: who joined on your link, auto-updating ---- */
+.crew { margin-top: 22px; text-align: left; }
+.crew-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.crew-title { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--grey); }
+.crew-count {
+  font-family: var(--mono); font-weight: 800; font-size: 0.95rem; color: var(--black);
+  background: var(--green); border-radius: 20px; padding: 2px 11px; min-width: 28px; text-align: center;
+  box-shadow: var(--glow-soft);
+}
+.crew-list { display: flex; flex-direction: column; gap: 8px; }
+.crew-empty { font-size: 0.98rem; color: var(--grey-2); line-height: 1.5; padding: 4px 0; }
+.crew-row {
+  display: flex; align-items: center; gap: 11px;
+  background: var(--black); border: 1px solid var(--line); border-radius: 12px; padding: 10px 13px;
+}
+.crew-av {
+  flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%;
+  display: grid; place-items: center; font-weight: 800; font-size: 0.82rem;
+  color: var(--green); background: var(--green-dim); border: 1px solid var(--green-line);
+}
+.crew-name { flex: 1; font-size: 1.02rem; font-weight: 600; color: #EDEFF2; }
+.crew-tag { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); }
+.crew-foot { margin-top: 16px; font-size: 0.92rem; color: var(--grey); }
+
+/* ============================================================================
+   7 · FOOTER
+   ============================================================================ */
+.footer { border-top: 1px solid var(--line); padding: 64px 0 40px; background: var(--black-2); }
+.footer-grid { display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; align-items: center; }
+.footer-wordmark { font-size: 1.5rem; font-weight: 900; letter-spacing: -0.02em; }
+.footer-tag { margin-top: 6px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--grey); }
+.footer-links { display: flex; gap: 22px; margin-top: 18px; font-size: 1.02rem; font-weight: 600; }
+.footer-links a { color: var(--grey); transition: color 0.15s ease; }
+.footer-links a:hover { color: var(--green); }
+.footer-qr { text-align: center; }
+.footer-qr img { width: 104px; height: 104px; border-radius: 12px; border: 1px solid var(--line); background: #fff; padding: 6px; }
+.footer-qr span { display: block; margin-top: 8px; font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey-2); }
+.compliance {
+  max-width: 1080px; margin: 48px auto 0; padding: 0 24px;
+  font-size: 0.84rem; line-height: 1.75; color: var(--grey-2); text-align: center;
+}
+
+
+/* ============================================================================
+   Scroll-reveal
+   ============================================================================ */
+.rv { opacity: 0; transform: translateY(28px); }
+
+/* ============================================================================
+   Responsive — bump to two-up where there's room
+   ============================================================================ */
+@media (min-width: 600px) {
+  .device { max-width: 320px; }
+}
+@media (min-width: 820px) {
+  /* layers alternate sides, copy beside the device */
+  .layer {
+    grid-template-columns: 300px 1fr; gap: 72px;
+    justify-items: stretch; text-align: left; align-items: center;
+  }
+  .layer.reverse { grid-template-columns: 1fr 300px; }
+  .layer.reverse .device { order: 2; }
+  .layer.reverse .layer-copy { order: 1; }
+  .layer-copy { max-width: 36ch; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto; }
+  .rv { opacity: 1 !important; transform: none !important; }
+}

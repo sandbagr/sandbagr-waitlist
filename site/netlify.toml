@@ -1,0 +1,19 @@
+# Netlify config for the SANDBAGR waitlist (static site).
+# Security headers live in ./_headers. This file forces canonical HTTPS + www→apex.
+
+[build]
+  publish = "."
+
+# Force the apex domain over HTTPS (Netlify also auto-provisions the TLS cert).
+[[redirects]]
+  from = "https://www.sandbagrapp.com/*"
+  to = "https://sandbagrapp.com/:splat"
+  status = 301
+  force = true
+
+# Don't serve the backend source (it's already deployed to Google Apps Script).
+[[redirects]]
+  from = "/backend/*"
+  to = "/404.html"
+  status = 404
+  force = true

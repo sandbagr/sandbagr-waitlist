@@ -1,0 +1,8 @@
+# OS
+.DS_Store
+
+# Local Netlify state
+.netlify/
+
+# Archive
+sandbagr-site.zip

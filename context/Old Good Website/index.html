@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SANDBAGR — Talk Sh*t. Back It Up.</title>
+    <meta name="description" content="SANDBAGR is the AI-powered social golf betting app that turns every round into non-stop action. Real-time odds. Instant bets. Zero excuses.">
+    <meta property="og:title" content="SANDBAGR — Talk Sh*t. Back It Up.">
+    <meta property="og:description" content="The AI-powered social golf betting app. Your foursome just got interesting.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index-patch.css?v=26">
+    <link rel="stylesheet" href="css/pages-patch.css?v=3">
+</head>
+<body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div id="nav-placeholder"></div>
+
+    <!-- Fixed brand header — appears after initial scroll, stays for entire page -->
+    <div class="brand-header" id="brandHeader">
+        <div class="brand-header-wordmark">SANDBAGR</div>
+        <div class="brand-header-tagline">Talk sh*t. Back it up.</div>
+    </div>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <!-- Spacer pushes wordmark to center on load -->
+        <div class="hero-spacer"></div>
+        <!-- Wordmark — GSAP pins this with pinSpacing:true -->
+        <div class="hero-wordmark-pin">
+            <div class="hero-wordmark">SANDBAGR</div>
+        </div>
+        <!-- Scroll hint — fixed to bottom of screen -->
+        <div class="hero-scroll-hint">&#8595;</div>
+        <!-- Content — tagline close to wordmark, big gap before mascot -->
+        <div class="hero-zone-content">
+            <div class="hero-tagline rv">Talk sh*t. Back it up.</div>
+            <div class="hero-mascot-gap"></div>
+            <img src="assets/mascot-website-dark-bg.png" alt="The Sandbagr" class="hero-mascot rv">
+            <p class="hero-desc rv">Real-time peer-to-peer betting between friends. App holds zero. Settle on Venmo.</p>
+            <div class="hero-punches rv">
+                <span class="hero-punch">Live odds</span>
+                <span class="hero-punch-dot"></span>
+                <span class="hero-punch">P2P fades</span>
+                <span class="hero-punch-dot"></span>
+                <span class="hero-punch">Venmo settle</span>
+            </div>
+            <div class="hero-ctas rv">
+                <a href="#waitlist" class="btn btn-p">Join the Waitlist</a>
+                <a href="#app" class="btn btn-g">See the App</a>
+            </div>
+            <div class="hero-badge rv"><span class="badge-dot"></span> UVA E-Cup winner &middot; V1 shipping summer 2026</div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- ==================== APPLE-KEYNOTE LIVE PROTOTYPE HERO ==================== -->
+    <section class="proto-hero" id="app">
+        <div class="container">
+            <div class="proto-hero-eyebrow rv">⚡ Live Prototype · Tap anywhere</div>
+            <h2 class="proto-hero-title rv">This is the <span class="grad">actual app.</span></h2>
+            <p class="proto-hero-sub rv">Not a mockup. The real prototype, embedded. Every button works.</p>
+
+            <div class="proto-stage rv">
+                <div class="proto-stage-glow"></div>
+                <div class="proto-phone-hero">
+                    <iframe src="demo/sandbagr-app.html?app=returning-hub" class="proto-phone-iframe" loading="lazy" title="The Hub"></iframe>
+                </div>
+                <div class="proto-stage-caption">
+                    <div class="proto-cap-label">YOU ARE HERE</div>
+                    <div class="proto-cap-name">The Hub</div>
+                    <div class="proto-cap-hint">Tap "Start a Round" or any tab below to explore.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SATELLITE FLOW PHONES ==================== -->
+    <section class="proto-satellites">
+        <div class="container">
+            <div class="label rv">Three Layers · One App</div>
+            <div class="title rv" style="text-align:center;">Walk the <span class="grad">entire round.</span></div>
+
+            <div class="proto-trio rv">
+                <!-- 01 — Pre-Round Markets → Lowest Round Today buy panel -->
+                <div class="proto-sat"
+                     data-screen-a="pre-round-markets"
+                     data-screen-b="market-buy"
+                     data-label-a="Open &ldquo;Lowest round today&rdquo;"
+                     data-label-b="Back to markets list"
+                     data-title-a="Pre-Round Markets"
+                     data-title-b="Lowest Round Today">
+                    <div class="proto-sat-frame">
+                        <iframe src="demo/sandbagr-app.html?app=pre-round-markets" class="proto-sat-iframe" loading="lazy" title="Pre-Round Markets"></iframe>
+                    </div>
+                    <div class="proto-sat-meta">
+                        <div class="proto-sat-num">01</div>
+                        <div>
+                            <div class="proto-sat-name">Pre-Round Markets</div>
+                            <div class="proto-sat-hint">Open the night before. Trade YES / NO. Settles May 1.</div>
+                        </div>
+                    </div>
+                    <div class="proto-sat-pager">
+                        <button class="proto-sat-btn" type="button">
+                            <span class="psb-arrow">&rarr;</span>
+                            <span class="psb-label">Open &ldquo;Lowest round today&rdquo;</span>
+                        </button>
+                        <div class="proto-sat-dots" aria-hidden="true">
+                            <span class="psd active"></span>
+                            <span class="psd"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 02 — Live Round → Fairway Finder bet card -->
+                <div class="proto-sat"
+                     data-screen-a="live-round"
+                     data-screen-b="bet-card"
+                     data-label-a="Place a Fairway Finder bet"
+                     data-label-b="Back to live round"
+                     data-title-a="Live Round"
+                     data-title-b="Fairway Finder">
+                    <div class="proto-sat-frame">
+                        <iframe src="demo/sandbagr-app.html?app=live-round" class="proto-sat-iframe" loading="lazy" title="Live Round"></iframe>
+                    </div>
+                    <div class="proto-sat-meta">
+                        <div class="proto-sat-num">02</div>
+                        <div>
+                            <div class="proto-sat-name">Live Round</div>
+                            <div class="proto-sat-hint">Tap a player. Place a bet. Foursome fades from the feed.</div>
+                        </div>
+                    </div>
+                    <div class="proto-sat-pager">
+                        <button class="proto-sat-btn" type="button">
+                            <span class="psb-arrow">&rarr;</span>
+                            <span class="psb-label">Place a Fairway Finder bet</span>
+                        </button>
+                        <div class="proto-sat-dots" aria-hidden="true">
+                            <span class="psd active"></span>
+                            <span class="psd"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 03 — 19th Hole → Round Breakdown -->
+                <div class="proto-sat"
+                     data-screen-a="nineteenth-hole"
+                     data-screen-b="round-breakdown"
+                     data-label-a="See round breakdown"
+                     data-label-b="Back to settlement"
+                     data-title-a="The 19th Hole"
+                     data-title-b="Round Breakdown">
+                    <div class="proto-sat-frame">
+                        <iframe src="demo/sandbagr-app.html?app=nineteenth-hole" class="proto-sat-iframe" loading="lazy" title="The 19th Hole"></iframe>
+                    </div>
+                    <div class="proto-sat-meta">
+                        <div class="proto-sat-num">03</div>
+                        <div>
+                            <div class="proto-sat-name">The 19th Hole</div>
+                            <div class="proto-sat-hint">Net debt-minimized. Per-pair Venmo. App holds zero.</div>
+                        </div>
+                    </div>
+                    <div class="proto-sat-pager">
+                        <button class="proto-sat-btn" type="button">
+                            <span class="psb-arrow">&rarr;</span>
+                            <span class="psb-label">See round breakdown</span>
+                        </button>
+                        <div class="proto-sat-dots" aria-hidden="true">
+                            <span class="psd active"></span>
+                            <span class="psd"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ==================== PRE-ROUND MARKETS — KINETIC TRADING FLOOR ==================== -->
+    <section class="markets-stage" id="markets">
+        <div class="markets-bg-mesh"></div>
+        <div class="container">
+            <div class="markets-eyebrow rv">⚡ Pre-Round Markets · Live</div>
+            <h2 class="markets-headline rv">
+                The line moves<br>
+                <span class="grad">before you tee off.</span>
+            </h2>
+            <p class="markets-sub rv">Polymarket mechanics. Golf questions. Group prices the line. You trade the swing.</p>
+
+            <div class="markets-grid rv">
+                <!-- LEFT: phone iframe -->
+                <div class="markets-phone-wrap">
+                    <div class="markets-phone-frame">
+                        <iframe src="demo/sandbagr-app.html?app=pre-round-markets" class="proto-phone-iframe" loading="lazy" title="Pre-Round Markets"></iframe>
+                    </div>
+                </div>
+
+                <!-- RIGHT: live trading terminal -->
+                <div class="markets-terminal">
+                    <div class="mt-header">
+                        <div class="mt-status"><span class="mt-pulse"></span> LIVE · UVA Boys League</div>
+                        <div class="mt-clock" id="mtClock">—</div>
+                    </div>
+
+                    <div class="mt-vol-row">
+                        <div class="mt-vol-block">
+                            <div class="mt-vol-label">VOLUME · 24h</div>
+                            <div class="mt-vol-num"><span id="mtVolume">$0</span></div>
+                        </div>
+                        <div class="mt-vol-block">
+                            <div class="mt-vol-label">TAKES</div>
+                            <div class="mt-vol-num"><span id="mtTakes">0</span></div>
+                        </div>
+                        <div class="mt-vol-block">
+                            <div class="mt-vol-label">MARKETS</div>
+                            <div class="mt-vol-num"><span>12</span></div>
+                        </div>
+                    </div>
+
+                    <div class="mt-list" id="mtList">
+                        <!-- rows injected by JS -->
+                    </div>
+
+                    <div class="mt-tape" id="mtTape">
+                        <div class="mt-tape-inner" id="mtTapeInner"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ==================== THE LEAGUE — kinetic activity feed ==================== -->
+    <section class="league-hero">
+        <div class="container">
+            <div class="league-eyebrow rv">⚡ Built for the league</div>
+            <h2 class="league-title rv">Your crew.<br>Your league.<br><span class="grad">Your odds.</span></h2>
+            <p class="league-sub rv">A 4-digit join code. Markets that span the whole roster. A lifetime board where reputation compounds.</p>
+
+            <div class="league-stage rv">
+                <div class="league-phone-wrap">
+                    <div class="league-phone-frame">
+                        <iframe src="demo/sandbagr-app.html?app=group-detail" class="proto-phone-iframe" loading="lazy" title="Group Detail"></iframe>
+                    </div>
+                </div>
+
+                <!-- LIVE LEAGUE FEED — auto-running activity stream -->
+                <div class="league-feed">
+                    <div class="lf-header">
+                        <div class="lf-status"><span class="lf-pulse"></span> UVA BOYS · LIVE</div>
+                        <div class="lf-clock" id="lfClock">—</div>
+                    </div>
+
+                    <div class="lf-stats">
+                        <div class="lf-stat"><div class="lf-stat-num"><span id="lfMembers">24</span></div><div class="lf-stat-lbl">Members</div></div>
+                        <div class="lf-stat"><div class="lf-stat-num" style="color:#FFD700; text-shadow:0 0 14px rgba(255,215,0,0.4);"><span id="lfRounds">3</span></div><div class="lf-stat-lbl">Live rounds</div></div>
+                        <div class="lf-stat"><div class="lf-stat-num"><span id="lfTakes">487</span></div><div class="lf-stat-lbl">Takes today</div></div>
+                    </div>
+
+                    <div class="lf-list-wrap">
+                        <div class="lf-list-label">⚡ ACTIVITY</div>
+                        <div class="lf-list" id="lfList">
+                            <!-- items injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="divider"></div>
+
+    <!-- ==================== GOLDEN BET HERO MOMENT — moved after League for narrative arc ==================== -->
+    <section class="golden-hero" id="golden-bet">
+        <div class="container">
+            <div class="golden-hero-grid rv">
+                <div class="golden-hero-text">
+                    <div class="golden-hero-eyebrow">⚡ Once Per Round</div>
+                    <h2 class="golden-hero-title">Call your shot.<br><span class="gold-grad">Cash the moment.</span></h2>
+                    <p class="golden-hero-sub">One signature shot per round. Whole foursome takes or fades. Video captures the moment. Win, the feed turns gold. Miss, you eat it.</p>
+                </div>
+                <div class="golden-hero-phone">
+                    <iframe src="demo/sandbagr-app.html?app=golden-recap" class="proto-phone-iframe" loading="lazy" title="Golden Bet Recap"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ==================== PROOF — single editorial moment ==================== -->
+    <section class="proof-hero" id="proof">
+        <div class="container">
+            <div class="proof-eyebrow rv">⚡ Built from win one</div>
+            <h2 class="proof-headline rv">
+                Beat <span class="grad">40+ teams</span> at UVA's E-Cup.<br>
+                Secured <span class="grad">$140K</span> non-dilutive.<br>
+                Raised <span class="grad">zero</span>. Shipped this far on execution alone.
+            </h2>
+
+            <div class="proof-stack rv">
+                <div class="proof-row">
+                    <div class="proof-num">25M+</div>
+                    <div class="proof-cap">U.S. golfers. <span class="proof-cap-q">Zero apps built for them.</span></div>
+                </div>
+                <div class="proof-row">
+                    <div class="proof-num">$2.4B</div>
+                    <div class="proof-cap">Golf betting market. <span class="proof-cap-q">Untouched by mobile.</span></div>
+                </div>
+                <div class="proof-row">
+                    <div class="proof-num">94%</div>
+                    <div class="proof-cap">Pain confirmed. <span class="proof-cap-q">40+ interviews. 25-person focus group.</span></div>
+                </div>
+                <div class="proof-row">
+                    <div class="proof-num">59</div>
+                    <div class="proof-cap">Screens prototyped. <span class="proof-cap-q">PRD locked. Dev team assembled.</span></div>
+                </div>
+            </div>
+
+            <div class="proof-ticker rv">
+                <span class="pt-item">UVA E-CUP WINNER</span>
+                <span class="pt-dot"></span>
+                <span class="pt-item">UVA FOUNDRY MENTORED</span>
+                <span class="pt-dot"></span>
+                <span class="pt-item">i.LAB SUMMER INCUBATOR</span>
+                <span class="pt-dot"></span>
+                <span class="pt-item">SHIPPING SUMMER 2026</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ==================== WAITLIST ==================== -->
+    <section class="waitlist" id="waitlist">
+        <div class="container">
+            <div class="wl-box">
+                <div class="label rv">⚡ Early access</div>
+                <div class="title rv">Get in before your <span class="grad">foursome does.</span></div>
+                <p class="desc rv" style="margin-left:auto;margin-right:auto;text-align:center">Beta drops summer 2026. Waitlist first. Foursome second.</p>
+                <form class="wl-form rv" id="wlForm">
+                    <div class="wl-row">
+                        <input type="text" class="wl-input" name="firstName" placeholder="First name" required>
+                        <input type="email" class="wl-input" name="email" placeholder="Email address" required>
+                    </div>
+                    <button type="submit" class="wl-submit" id="wlBtn">Lock me in</button>
+                    <p class="wl-note">No spam. Just early access and the occasional trash talk.</p>
+                </form>
+                <div class="wl-success" id="wlSuccess">
+                    <h3>You're on the list.</h3>
+                    <p>We'll be in touch when the doors open.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/main.js?v=18"></script>
+    <script src="js/animations.js?v=5"></script>
+    <script>
+    /* ============================================================================
+       GSAP EYE-POPPING ANIMATIONS — Energy, drama, excitement
+       ============================================================================ */
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Hero entrance — wordmark fades in on load
+      var heroTL = gsap.timeline({ defaults: { ease: 'power3.out' }, delay: 0.3 });
+      heroTL
+        .fromTo('.hero-wordmark', { y: 80, opacity: 0, scale: 0.85 }, { y: 0, opacity: 1, scale: 1, duration: 1.4 })
+        .fromTo('.hero-scroll-hint', { opacity: 0 }, { opacity: 1, duration: 0.8 }, '-=0.2');
+
+      // Fade out scroll hint as user starts scrolling
+      gsap.to('.hero-scroll-hint', {
+        scrollTrigger: {
+          trigger: '.hero',
+          start: 'top top',
+          end: '+=150',
+          scrub: true
+        },
+        opacity: 0,
+        ease: 'none'
+      });
+
+      // Pin wordmark while content scrolls up — pinSpacing:true prevents scroll-back bugs
+      ScrollTrigger.create({
+        trigger: '.hero-wordmark-pin',
+        start: 'top 35%',
+        end: '+=55%',
+        pin: true,
+        pinSpacing: true
+      });
+
+      // Activate fixed brand header once tagline locks in — stays for rest of page
+      ScrollTrigger.create({
+        trigger: '.hero-tagline',
+        start: 'top 55%',
+        onEnter: function() { document.getElementById('brandHeader').classList.add('is-active'); },
+        onLeaveBack: function() { document.getElementById('brandHeader').classList.remove('is-active'); }
+      });
+
+      // Parallax subtle on hero bg
+      gsap.to('.hero-bg', {
+        scrollTrigger: {
+          trigger: '.hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true
+        },
+        y: 100,
+        ease: 'none'
+      });
+
+      // Mascot subtle parallax
+      gsap.to('.hero-mascot', {
+        scrollTrigger: {
+          trigger: '.hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true
+        },
+        y: 50,
+        ease: 'none'
+      });
+    });
+    </script>
+
+    <!-- ==================== SATELLITE PHONE PAGER — toggle each iframe between two screens ==================== -->
+    <script>
+    (function() {
+      var sats = document.querySelectorAll('.proto-sat[data-screen-a]');
+      sats.forEach(function(sat) {
+        var btn    = sat.querySelector('.proto-sat-btn');
+        var iframe = sat.querySelector('.proto-sat-iframe');
+        var dots   = sat.querySelectorAll('.psd');
+        var arrow  = btn ? btn.querySelector('.psb-arrow') : null;
+        var label  = btn ? btn.querySelector('.psb-label') : null;
+        if (!btn || !iframe) return;
+
+        var screenA = sat.dataset.screenA;
+        var screenB = sat.dataset.screenB;
+        var labelA  = sat.dataset.labelA  || 'Next';
+        var labelB  = sat.dataset.labelB  || 'Back';
+        var titleA  = sat.dataset.titleA  || iframe.title;
+        var titleB  = sat.dataset.titleB  || iframe.title;
+        var state   = 'a';
+
+        function setState(next) {
+          if (next === state) return;
+          state = next;
+          var src     = (next === 'a') ? screenA : screenB;
+          var newLbl  = (next === 'a') ? labelA  : labelB;
+          var newTtl  = (next === 'a') ? titleA  : titleB;
+          var newArr  = (next === 'a') ? '→' : '←';
+
+          // Fade iframe out, swap src, fade back in
+          iframe.style.opacity = '0';
+          setTimeout(function() {
+            iframe.src = 'demo/sandbagr-app.html?app=' + src;
+            iframe.title = newTtl;
+            // Wait for iframe load, then fade in (with a max-wait fallback)
+            var done = false;
+            function show() {
+              if (done) return;
+              done = true;
+              iframe.style.opacity = '1';
+              iframe.removeEventListener('load', show);
+            }
+            iframe.addEventListener('load', show);
+            setTimeout(show, 700);
+          }, 220);
+
+          if (label) label.textContent = newLbl;
+          if (arrow) arrow.textContent = newArr;
+          dots.forEach(function(d, i) {
+            d.classList.toggle('active', (next === 'a' && i === 0) || (next === 'b' && i === 1));
+          });
+        }
+
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          setState(state === 'a' ? 'b' : 'a');
+        });
+      });
+    })();
+    </script>
+</body>
+</html>

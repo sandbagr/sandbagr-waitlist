@@ -1,0 +1,2885 @@
+/* ============================================================================
+   SANDBAGR — features.html Patch Stylesheet (v2 — Premium Redesign)
+   Cinematic scroll animations, 3D tilt, ambient glow, premium hover depth
+   ============================================================================ */
+
+/* ============================================================================
+   0. FEATURE GRAPHIC STYLES — Ported from index-patch.css so features.html
+      no longer needs to load that file (which carried unwanted nav overrides)
+   ============================================================================ */
+
+/* --- Scroll progress bar: hide on this page --- */
+.scroll-progress { display: none !important; }
+
+/* --- Feature 2-column grid --- */
+.feat {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin: 6rem 0;
+  padding: 0;
+}
+.feat:nth-of-type(even) .feat-vis { order: -1; }
+
+.feat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 100px;
+  background: var(--green-dim);
+  border: 1px solid var(--green-border);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 0.75rem;
+}
+
+.feat h3 {
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 0.8rem;
+}
+.feat p {
+  color: var(--slate);
+  font-size: 0.92rem;
+  line-height: 1.75;
+  margin-bottom: 0.8rem;
+}
+
+.feat-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0;
+}
+.feat-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.5;
+}
+.feat-list li::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
+  margin-top: 0.4rem;
+  box-shadow: 0 0 6px rgba(0,255,135,0.3);
+}
+
+.feat-vis {
+  background: var(--charcoal);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(255,255,255,0.03);
+  position: relative;
+  overflow: hidden;
+}
+.feat-vis::before {
+  content: '';
+  position: absolute;
+  top: -40%; right: -40%;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,255,135,0.04), transparent 70%);
+  pointer-events: none;
+}
+
+/* --- Ghost Bookie Flow --- */
+.gb-flow { display: flex; flex-direction: column; gap: 1rem; }
+.gb-step {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--black);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.gb-step-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--green);
+  opacity: 0.5;
+  min-width: 24px;
+}
+.gb-step-text {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.5;
+}
+.gb-step-text strong { color: var(--white); }
+.gb-step-text .g { color: var(--green); font-weight: 700; }
+
+.gb-highlight {
+  background: rgba(0,255,135,0.04);
+  border-color: var(--green-border);
+}
+.gb-pot-bar { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.5rem; }
+.gb-pot-fill { flex: 1; height: 8px; background: rgba(255,255,255,0.04); border-radius: 4px; overflow: hidden; }
+.gb-pot-fill-inner { height: 100%; background: var(--green); border-radius: 4px; box-shadow: 0 0 8px rgba(0,255,135,0.2); }
+.gb-pot-label { font-size: 0.6rem; font-weight: 700; color: var(--slate); min-width: 60px; }
+
+/* --- Odds Engine --- */
+.odds-card {
+  background: var(--black);
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid rgba(255,255,255,0.04);
+  margin-bottom: 0.6rem;
+}
+.odds-name {
+  font-size: 0.52rem;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+.odds-desc { font-size: 0.75rem; font-weight: 600; margin-bottom: 0.5rem; }
+.odds-row { display: flex; align-items: center; gap: 0.6rem; }
+.odds-bar { flex: 1; height: 5px; background: rgba(255,255,255,0.04); border-radius: 3px; overflow: hidden; }
+.odds-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--green);
+  box-shadow: 0 0 6px rgba(0,255,135,0.2);
+  transition: width 1.5s cubic-bezier(0.16,1,0.3,1);
+}
+.odds-mult {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--green);
+  min-width: 2.5rem;
+  text-align: right;
+}
+.odds-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 1.25rem; }
+.odds-tag {
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.58rem;
+  font-weight: 600;
+  color: var(--slate);
+}
+
+/* --- Social Feed --- */
+.social-feed {
+  background: var(--black);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.sf-item {
+  padding: 0.85rem;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+}
+.sf-item:last-child { border: none; }
+.sf-av {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.45rem;
+}
+.sf-text { font-size: 0.72rem; color: rgba(255,255,255,0.65); line-height: 1.4; }
+.sf-text strong { color: var(--white); }
+.sf-text .g { color: var(--green); font-weight: 700; }
+.sf-claim {
+  display: inline-block;
+  margin-top: 0.3rem;
+  font-size: 0.48rem;
+  font-weight: 800;
+  color: var(--green);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(0,255,135,0.06);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+.sf-sandbagr { background: rgba(0,255,135,0.02); border-bottom: none; }
+
+/* --- AI Commentary / Heckle --- */
+.heckle-vis { text-align: center; }
+.hk-bubble {
+  background: var(--black);
+  border-radius: 14px;
+  padding: 1.25rem;
+  border: 1px solid rgba(255,255,255,0.04);
+  margin-bottom: 0.8rem;
+  text-align: left;
+}
+.hk-text { font-weight: 600; font-size: 0.88rem; line-height: 1.45; color: rgba(255,255,255,0.85); }
+.hk-attr {
+  font-size: 0.52rem;
+  color: var(--green);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 0.4rem;
+}
+.hk-attr.red { color: var(--red); }
+.hk-btns { display: flex; gap: 0.4rem; justify-content: center; margin-top: 1.25rem; }
+.hk-btn {
+  padding: 0.4rem 0.85rem;
+  border-radius: 8px;
+  background: var(--charcoal-light);
+  border: 1px solid rgba(255,255,255,0.04);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--white);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.hk-btn:hover { border-color: var(--green-border); background: rgba(0,255,135,0.03); }
+
+/* ============================================================================
+   1. AMBIENT EFFECTS — Background orbs, noise, section atmosphere
+   ============================================================================ */
+
+.features-bg-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.4;
+}
+.features-bg-orb.orb-1 {
+  width: 600px; height: 600px;
+  background: rgba(0, 255, 135, 0.06);
+  top: -200px; right: -200px;
+  animation: orbFloat1 20s ease-in-out infinite;
+}
+.features-bg-orb.orb-2 {
+  width: 500px; height: 500px;
+  background: rgba(139, 92, 246, 0.04);
+  bottom: 30%; left: -200px;
+  animation: orbFloat2 25s ease-in-out infinite;
+}
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, 60px) scale(1.05); }
+  66% { transform: translate(-30px, 30px) scale(0.95); }
+}
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(50px, -40px) scale(1.08); }
+}
+.features-bg-orb.orb-3 {
+  width: 400px; height: 400px;
+  background: rgba(0, 255, 135, 0.03);
+  top: 50%; left: 40%;
+  animation: orbFloat3 30s ease-in-out infinite;
+}
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(-60px, 40px) scale(1.1); }
+  80% { transform: translate(30px, -20px) scale(0.9); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0,255,135,0.3), 0 0 40px rgba(0,255,135,0.1); }
+  50% { box-shadow: 0 0 30px rgba(0,255,135,0.5), 0 0 60px rgba(0,255,135,0.2); }
+}
+
+/* ============================================================================
+   2. PAGE HERO — Cinematic entry
+   ============================================================================ */
+
+.features-hero {
+  padding: 8rem 0 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.features-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,255,135,0.2), transparent);
+}
+.features-hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+}
+.features-hero .hero-desc {
+  max-width: 560px;
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.8;
+}
+
+/* ============================================================================
+   3. SECTION TRANSITIONS — Gradient dividers instead of plain lines
+   ============================================================================ */
+
+.feat-divider {
+  height: 1px;
+  margin: 4rem 0;
+  background: linear-gradient(90deg, transparent, rgba(0,255,135,0.15), transparent);
+  border: none;
+}
+
+/* ===== GSAP OVERRIDES ===== */
+/* On this page, GSAP handles all scroll animations.
+   Disable the IntersectionObserver .rv system so elements start visible
+   and GSAP can properly animate them with from() tweens. */
+body .rv,
+body .rv-s,
+body .rv-s2,
+body .rv-s3,
+body .rv-s4,
+body .rv-s5 {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Override index-patch section padding for this page */
+.features { padding: 2rem 0 2rem !important; }
+
+/* GSAP feature animation classes */
+.feat-anim-left { opacity: 0; transform: translateX(-60px); }
+.feat-anim-right { opacity: 0; transform: translateX(60px); }
+.feat-anim-up { opacity: 0; transform: translateY(40px); }
+.feat-anim-scale { opacity: 0; transform: scale(0.9); }
+
+/* Pipeline particle trail */
+.pipeline-particle {
+  position: absolute;
+  left: 20px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 20px rgba(0,255,135,0.6), 0 0 50px rgba(0,255,135,0.3), 0 0 80px rgba(0,255,135,0.1);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+  filter: blur(1px);
+}
+
+/* Enhanced pipeline step hover */
+.pipeline-step.lit .pipeline-card {
+  cursor: default;
+}
+.pipeline-step.lit .pipeline-card:hover {
+  background: rgba(0,255,135,0.05);
+}
+
+/* Feature vis inner animations */
+.gb-step { transform: translateX(0); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+.gb-step.gb-animate { opacity: 0; transform: translateX(20px); }
+.gb-step.gb-visible { opacity: 1; transform: translateX(0); }
+
+.odds-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.odds-card.odds-animate { opacity: 0; transform: translateY(15px) scale(0.95); }
+.odds-card.odds-visible { opacity: 1; transform: translateY(0) scale(1); }
+
+.sf-item { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.sf-item.sf-animate { opacity: 0; transform: translateX(-20px); }
+.sf-item.sf-visible { opacity: 1; transform: translateX(0); }
+
+.hk-bubble { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.hk-bubble.hk-animate { opacity: 0; transform: translateY(20px) scale(0.95); }
+.hk-bubble.hk-visible { opacity: 1; transform: translateY(0) scale(1); }
+
+.hk-btn { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+.hk-btn.hk-btn-animate { opacity: 0; transform: scale(0.8); }
+.hk-btn.hk-btn-visible { opacity: 1; transform: scale(1); }
+
+/* Ambient glow on feature vis on hover */
+.feat-vis {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.feat-vis:hover {
+  border-color: rgba(0,255,135,0.08) !important;
+  box-shadow: 0 0 40px rgba(0,255,135,0.04);
+}
+
+/* ============================================================================
+   4. THE ENGINE — Animated vertical pipeline
+   ============================================================================ */
+
+.pipeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Vertical track line */
+.pipeline-track {
+  position: absolute;
+  left: 22px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, rgba(0,255,135,0.1), rgba(0,255,135,0.05));
+}
+.pipeline-fill {
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 0%;
+  background: linear-gradient(180deg, var(--green), rgba(0,255,135,0.3));
+  border-radius: 1px;
+  box-shadow: 0 0 12px rgba(0,255,135,0.5), 0 0 30px rgba(0,255,135,0.15);
+  transition: height 0.1s linear;
+}
+.pipeline-pulse {
+  position: absolute;
+  left: -4.5px;
+  top: 0;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 20px rgba(0,255,135,0.7), 0 0 50px rgba(0,255,135,0.3);
+  opacity: 0;
+  transition: top 0.1s linear;
+}
+
+/* Each step row */
+.pipeline-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 0.5rem 0;
+  position: relative;
+  opacity: 0.3;
+  transform: translateY(10px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pipeline-step.lit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Node (dot + number) */
+.pipeline-node {
+  flex-shrink: 0;
+  width: 46px;
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5rem;
+  position: relative;
+  z-index: 2;
+}
+.pipeline-dot {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0,255,135,0.25);
+  background: #0d0d0d;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 0 4px rgba(10,10,10,1), inset 0 0 12px rgba(0,255,135,0.04);
+}
+.pipeline-dot span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(0,255,135,0.45);
+  transition: color 0.5s ease;
+}
+.pipeline-step.lit .pipeline-dot {
+  border-color: var(--green);
+  background: #0f1a14;
+  box-shadow: 0 0 0 4px rgba(10,10,10,1), 0 0 20px rgba(0,255,135,0.25), 0 0 50px rgba(0,255,135,0.06), inset 0 0 16px rgba(0,255,135,0.08);
+}
+.pipeline-step.lit .pipeline-dot span {
+  color: var(--green);
+}
+
+/* Highlight step (Lock It In) */
+.pipeline-dot-active {
+  border-color: var(--green) !important;
+  background: #0f1a14 !important;
+}
+.pipeline-step-highlight.lit .pipeline-dot {
+  animation: pulseGlow 2s ease-in-out infinite;
+  box-shadow: 0 0 30px rgba(0,255,135,0.4), 0 0 60px rgba(0,255,135,0.12);
+}
+
+/* Card */
+.pipeline-card {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+.pipeline-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at top left, rgba(0,255,135,0.06), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.pipeline-step.lit .pipeline-card {
+  border-left: 2px solid rgba(0,255,135,0.3);
+  border-color: rgba(0,255,135,0.1);
+  background: rgba(255,255,255,0.03);
+}
+.pipeline-card:hover {
+  border-color: rgba(0,255,135,0.2);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2), 0 0 20px rgba(0,255,135,0.05);
+}
+.pipeline-card:hover::before { opacity: 1; }
+
+/* Glow variant for "Lock It In" */
+.pipeline-card-glow {
+  border-color: rgba(0,255,135,0.15);
+  background: rgba(0,255,135,0.03);
+}
+.pipeline-step-highlight.lit .pipeline-card-glow {
+  border-color: rgba(0,255,135,0.25);
+  box-shadow: 0 0 30px rgba(0,255,135,0.08);
+}
+
+.pipeline-card-icon {
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0.7;
+  padding-top: 2px;
+}
+.pipeline-step.lit .pipeline-card-icon { opacity: 1; }
+
+.pipeline-card-content h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.3rem;
+}
+.pipeline-card-content p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+  margin: 0;
+}
+.pipeline-step.lit .pipeline-card-content p {
+  color: rgba(255,255,255,0.65);
+}
+
+.pipeline-card-time {
+  flex-shrink: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: rgba(0,255,135,0.35);
+  padding-top: 4px;
+  transition: color 0.5s ease;
+}
+.pipeline-step.lit .pipeline-card-time {
+  color: var(--green);
+  text-shadow: 0 0 10px rgba(0,255,135,0.3);
+}
+
+/* ============================================================================
+   5. FEATURE SECTIONS — Additional layout helpers
+   ============================================================================ */
+
+.feat-content {
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* ============================================================================
+   6–9. REMOVED — Ghost Bookie, Pot Health, Social Feed, AI Commentary
+   styles now inherited from index-patch.css
+   ============================================================================ */
+
+/* ============================================================================
+   10. BET CATALOG — Phase tabs + card grid
+   ============================================================================ */
+
+.phase-tabs {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.phase-tab {
+  padding: 0.65rem 1.5rem;
+  background: transparent;
+  border: 1.5px solid rgba(0,255,135,0.2);
+  color: rgba(255,255,255,0.55);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  position: relative;
+  overflow: hidden;
+}
+.phase-tab::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,255,135,0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.phase-tab:hover {
+  border-color: rgba(0,255,135,0.5);
+  color: var(--white);
+}
+.phase-tab:hover::before { opacity: 1; }
+
+.phase-tab.active {
+  background: var(--green);
+  color: var(--black);
+  border-color: var(--green);
+  box-shadow: 0 0 24px rgba(0,255,135,0.3), 0 0 60px rgba(0,255,135,0.08);
+  font-weight: 700;
+}
+.phase-tab.active::before { opacity: 0; }
+
+.phase-content {
+  display: none;
+  animation: slideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.phase-content.active {
+  display: block;
+}
+
+/* ============================================================================
+   11. BET CARDS — Premium glass cards with depth
+   ============================================================================ */
+
+.bet-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.bet-card {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.bet-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at top right, rgba(0,255,135,0.08), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.bet-card:hover {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(0,255,135,0.2);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3), 0 0 30px rgba(0,255,135,0.08);
+}
+.bet-card:hover::before { opacity: 1; }
+
+.bet-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.75rem;
+  position: relative;
+  z-index: 1;
+}
+.bet-card-header h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.bet-card-odds {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--green);
+  text-shadow: 0 0 16px rgba(0,255,135,0.3);
+  animation: textGlow 3s ease-in-out infinite;
+}
+
+.bet-card-desc {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.bet-card-example {
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(0,255,135,0.06);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.85rem;
+  position: relative;
+  z-index: 1;
+}
+.bet-card-example p {
+  font-size: 0.88rem;
+  color: var(--white);
+  margin: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+}
+
+.bet-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(0,255,135,0.7);
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.bet-card-sub {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.4);
+  margin-top: auto;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================================
+   12. PRICING CARDS
+   ============================================================================ */
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pricing-card {
+  background: var(--charcoal);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 2.5rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pricing-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.12);
+}
+
+.pricing-tier {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 0.75rem;
+}
+
+.pricing-price {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+.pricing-price span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.4);
+}
+
+.pricing-features {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+.pricing-features li {
+  padding: 0.4rem 0;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+  padding-left: 1.25rem;
+  position: relative;
+}
+.pricing-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.pricing-card-featured {
+  background: rgba(0,255,135,0.06);
+  border-color: rgba(0,255,135,0.25);
+  position: relative;
+  transform: scale(1.03);
+  box-shadow: 0 0 40px rgba(0,255,135,0.1), 0 0 80px rgba(0,255,135,0.04);
+}
+.pricing-card-featured::before {
+  content: 'MOST POPULAR';
+  position: absolute;
+  top: -12px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--green);
+  color: var(--black);
+  padding: 0.35rem 1rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+.pricing-card-featured:hover {
+  box-shadow: 0 0 60px rgba(0,255,135,0.2), 0 0 100px rgba(0,255,135,0.06);
+  transform: scale(1.05);
+}
+
+/* ============================================================================
+   13. CTA SECTION
+   ============================================================================ */
+
+.cta-section {
+  text-align: center;
+  padding: 2.5rem 2rem;
+  position: relative;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,255,135,0.2), transparent);
+}
+.cta-section h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
+}
+
+/* ============================================================================
+   14. SECTION DESCRIPTION TEXT
+   ============================================================================ */
+
+.section-desc {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto 1.5rem;
+  text-align: center;
+}
+
+/* ============================================================================
+   15. SCROLL REVEAL STAGGER
+   ============================================================================ */
+
+.rv-s2 { transition-delay: 0.16s; }
+.rv-s3 { transition-delay: 0.24s; }
+.rv-s4 { transition-delay: 0.32s; }
+.rv-s5 { transition-delay: 0.40s; }
+
+/* ============================================================================
+   16. SCROLLBAR INDICATOR
+   ============================================================================ */
+
+.scrollbar-track {
+  position: fixed;
+  right: 8px; top: 50%;
+  transform: translateY(-50%);
+  width: 3px; height: 60px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  z-index: 999;
+  display: none;
+}
+.scrollbar-track.visible { display: block; }
+.scrollbar-thumb {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 20px;
+  background: var(--green);
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(0,255,135,0.4);
+  transition: all 0.15s ease;
+}
+
+/* Active state (phase tabs only) */
+.phase-tab.active { opacity: 1; pointer-events: auto; }
+.phase-content.active { opacity: 1; pointer-events: auto; }
+
+/* ============================================================================
+   17. GSAP ANIMATION CLASSES
+   ============================================================================ */
+
+.gsap-fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+}
+.gsap-fade-left {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+.gsap-fade-right {
+  opacity: 0;
+  transform: translateX(40px);
+}
+.gsap-scale-in {
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+/* Tilt card overrides */
+[data-tilt] {
+  transform-style: preserve-3d;
+}
+
+/* ============================================================================
+   18. RESPONSIVE
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .feat {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .bet-cards-grid { grid-template-columns: 1fr; }
+
+  .pipeline { padding: 0 1rem; }
+  .pipeline-track { left: 24px; }
+  .pipeline-card-time { display: none; }
+
+  .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-card-featured { transform: scale(1.01); }
+  .pricing-card-featured:hover { transform: scale(1.02); }
+
+  .phase-tabs { gap: 0.5rem; }
+  .phase-tab { padding: 0.55rem 1rem; font-size: 0.8rem; }
+
+  .features-hero { padding: 7rem 1.5rem 2rem; }
+
+  .features-bg-orb { display: none; }
+
+  /* Fix flush-left sections on mobile */
+  section.container,
+  section[id="bet-catalog"],
+  section[id="engine"] {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .bet-card { padding: 1.25rem; }
+  .bet-card-odds { font-size: 1.1rem; }
+  /* gb-step, sf-item styles inherited from index-patch.css */
+  .gps-flow-step { padding: 1rem 0.5rem; }
+
+  section.container,
+  section[id="bet-catalog"],
+  section[id="engine"] {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  .features-hero { padding: 7rem 1rem 2rem; }
+}
+
+/* ============================================================================
+   19. REDUCED MOTION
+   ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .bet-card, .gb-step, .sf-item, .hk-bubble, .phase-tab,
+  .pot-health-fill, .btn-reaction, .gps-flow-step, .pricing-card {
+    transition: none;
+  }
+  .features-bg-orb { animation: none; }
+  .bet-card-odds { animation: none; }
+}
+
+/* ============================================================================
+   20. ANIMATIONS
+   ============================================================================ */
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ============================================================================
+   21. LIVE PROTOTYPE PHONE EMBEDS
+   ============================================================================ */
+
+.phones-row-live {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  align-items: start;
+  justify-items: center;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.phone-live-wrap {
+  text-align: center;
+  width: 100%;
+  max-width: 300px;
+}
+
+.phone-live-frame {
+  position: relative;
+  background: #000;
+  border-radius: 38px;
+  padding: 8px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.06), 0 0 50px rgba(0,255,135,0.06);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.phone-live-frame:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.08), 0 0 80px rgba(0,255,135,0.12);
+}
+
+.phone-live-frame::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 22px;
+  background: #000;
+  border-radius: 0 0 14px 14px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.phone-live-iframe {
+  width: 100%;
+  aspect-ratio: 9/19.5;
+  border: 0;
+  display: block;
+  border-radius: 30px;
+  background: #0A0A0A;
+  color-scheme: dark;
+}
+
+.phone-live-label {
+  margin-top: 1rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.phone-live-hint {
+  margin-top: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #00FF87;
+  opacity: 0.75;
+  letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   ENGINE HERO — cinematic intro for the GPS pipeline.
+   ============================================================ */
+.engine-hero {
+    padding: 6rem 0 3rem;
+}
+
+.engine-eyebrow {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.32em;
+    color: var(--green, #00FF87);
+    text-transform: uppercase;
+    margin-bottom: 1.6rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(0, 255, 135, 0.25);
+    border-radius: 999px;
+    background: rgba(0, 255, 135, 0.03);
+}
+
+.engine-title {
+    font-size: clamp(2.4rem, 5.8vw, 4.2rem);
+    font-weight: 900;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    margin-bottom: 1.4rem;
+    max-width: 880px;
+}
+
+.engine-sub {
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--slate, #6B7280);
+    max-width: 620px;
+    margin-bottom: 3rem;
+}
+
+@media (max-width: 880px) {
+    .engine-hero { padding: 4rem 0 2rem; }
+}
+
+/* ============================================================
+   ENGINE CINEMA — auto-playing SVG flow animation.
+   Replaces the old vertical 6-card pipeline.
+   ============================================================ */
+.engine-cinema-wrap {
+    padding: 4rem 0 6rem;
+    overflow: hidden;
+}
+.engine-cinema {
+    position: relative;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    aspect-ratio: 1200 / 360;
+    width: 100%;
+    background:
+        radial-gradient(ellipse 800px 200px at 50% 50%, rgba(0, 255, 135, 0.06), transparent 70%);
+}
+.cinema-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+}
+
+/* Default node state — dimmed */
+[data-node] {
+    opacity: 0.2;
+    transform-origin: center center;
+    transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1), filter 0.6s;
+}
+[data-node].cn-on {
+    opacity: 1;
+}
+[data-node].cn-now {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 14px rgba(0, 255, 135, 0.5));
+}
+
+/* Pulse on GPS dot when its node is "now" */
+[data-node="0"].cn-now .cn-pulse {
+    animation: gps-pulse 1.4s ease-in-out infinite;
+}
+[data-node="0"].cn-now .cn-ring {
+    animation: gps-ring 1.4s ease-out infinite;
+}
+[data-node="0"].cn-now .cn-ring2 {
+    animation: gps-ring 1.4s ease-out 0.3s infinite;
+}
+@keyframes gps-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+@keyframes gps-ring {
+    0% { opacity: 0.5; r: 14; }
+    100% { opacity: 0; r: 30; }
+}
+
+/* Brain breathing */
+[data-node="1"].cn-now .cn-brain {
+    animation: brain-breath 1.8s ease-in-out infinite;
+    transform-origin: 40px 40px;
+}
+@keyframes brain-breath {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.08); opacity: 0.85; }
+}
+
+/* Path strokes (drawn-in via JS) */
+[data-path] {
+    stroke-dashoffset: 0;
+}
+
+/* Labels */
+.cinema-labels {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+.cl {
+    position: absolute;
+    max-width: 200px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.cl.cl-on {
+    opacity: 1;
+    transform: translateY(0);
+}
+.cl-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    color: rgba(0, 255, 135, 0.85);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+}
+.cl-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: #fff;
+    margin-bottom: 0.15rem;
+}
+.cl-detail {
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+/* Mobile: stack labels vertically below stage */
+@media (max-width: 1000px) {
+    .engine-cinema {
+        aspect-ratio: 1200 / 480;
+    }
+    .cinema-labels { display: none; }
+}
+
+/* ============================================================
+   ENGINE CINEMA V2 — clean linear flow, labels in a row below.
+   Easier to follow than zigzag, reads like a film strip.
+   ============================================================ */
+.engine-cinema {
+    aspect-ratio: 1200 / 220;
+}
+
+/* Labels row (under the SVG stage) */
+.cinema-labels-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    max-width: 1280px;
+    margin: 1.5rem auto 0;
+    padding: 0 2rem;
+}
+.clr {
+    text-align: center;
+    padding: 0.4rem 0.4rem;
+    opacity: 0.28;
+    transform: translateY(4px);
+    transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.clr.cl-on {
+    opacity: 1;
+    transform: translateY(0);
+}
+.clr-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: rgba(0, 255, 135, 0.85);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+}
+.clr-title {
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: -0.005em;
+    color: #fff;
+    margin-bottom: 0.2rem;
+}
+.clr-detail {
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+/* Strengthen the active node ring so it's obvious which step is current */
+[data-node].cn-now > circle:first-of-type,
+[data-node].cn-now > rect:first-of-type {
+    stroke: #00FF87;
+    stroke-width: 2;
+    filter: drop-shadow(0 0 18px rgba(0, 255, 135, 0.5));
+}
+
+@media (max-width: 1000px) {
+    .cinema-labels-row {
+        display: none;
+    }
+}
+
+/* ============================================================
+   ENGINE OUTPUT — embeds the live trading terminal under engine.
+   Reuses .markets-terminal styles from index-patch.css
+   (loaded only on homepage), so duplicate the essentials here.
+   ============================================================ */
+.engine-output {
+    padding: 6rem 0 7rem;
+    position: relative;
+}
+.output-eyebrow {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.32em;
+    color: #00FF87;
+    text-transform: uppercase;
+    margin-bottom: 1.6rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(0, 255, 135, 0.25);
+    border-radius: 999px;
+    background: rgba(0, 255, 135, 0.03);
+}
+.output-headline {
+    font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.035em;
+    margin-bottom: 1.2rem;
+}
+.output-sub {
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 580px;
+    margin-bottom: 3rem;
+}
+.output-terminal-wrap {
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+/* Duplicate the terminal styles here so they apply on features.html too */
+.markets-terminal {
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.6),
+        0 0 60px rgba(0, 255, 135, 0.06);
+    font-family: 'JetBrains Mono', monospace;
+}
+.mt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.4rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(0, 255, 135, 0.02);
+}
+.mt-status {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    color: #00FF87;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+.mt-pulse {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #00FF87;
+    box-shadow: 0 0 12px rgba(0, 255, 135, 0.7);
+    animation: mt-pulse 1.4s ease-in-out infinite;
+}
+@keyframes mt-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+}
+.mt-clock {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: rgba(255, 255, 255, 0.45);
+}
+.mt-vol-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.mt-vol-block {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 1.2rem;
+}
+.mt-vol-label {
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 0.4rem;
+}
+.mt-vol-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+.mt-vol-num span { color: #00FF87; text-shadow: 0 0 18px rgba(0, 255, 135, 0.25); }
+.mt-list { padding: 0.6rem 0; }
+.mt-row {
+    display: grid;
+    grid-template-columns: 1fr 76px 70px 60px;
+    gap: 0.9rem;
+    padding: 0.85rem 1.4rem;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    transition: background 0.3s;
+    position: relative;
+}
+.mt-row:hover { background: rgba(0, 255, 135, 0.02); }
+.mt-row.tick-up::after,
+.mt-row.tick-down::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    animation: tick-flash 0.6s ease-out;
+}
+.mt-row.tick-up::after { background: rgba(0, 255, 135, 0.06); }
+.mt-row.tick-down::after { background: rgba(255, 59, 48, 0.06); }
+@keyframes tick-flash {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+.mt-q {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.92);
+    letter-spacing: -0.005em;
+    line-height: 1.3;
+}
+.mt-q-meta {
+    display: block;
+    font-size: 0.62rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.35);
+    margin-top: 0.2rem;
+    letter-spacing: 0.06em;
+}
+.mt-spark { width: 76px; height: 26px; }
+.mt-price {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #00FF87;
+    text-align: right;
+    text-shadow: 0 0 12px rgba(0, 255, 135, 0.3);
+    transition: color 0.3s;
+}
+.mt-price.is-down { color: #ff5555; text-shadow: 0 0 12px rgba(255, 85, 85, 0.3); }
+.mt-arrow {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-align: right;
+    color: rgba(255, 255, 255, 0.4);
+}
+.mt-arrow.up { color: #00FF87; }
+.mt-arrow.down { color: #ff5555; }
+.mt-tape {
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0.6rem 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+.mt-tape-inner {
+    display: flex;
+    gap: 2.5rem;
+    white-space: nowrap;
+    will-change: transform;
+}
+.mt-take {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.55);
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.mt-take strong { color: #fff; font-weight: 700; }
+.mt-take .mt-take-side {
+    font-weight: 800;
+    padding: 0.1rem 0.45rem;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+    font-size: 0.65rem;
+}
+.mt-take .mt-take-side.yes { background: rgba(0, 255, 135, 0.12); color: #00FF87; }
+.mt-take .mt-take-side.no { background: rgba(255, 59, 48, 0.12); color: #ff5555; }
+
+@media (max-width: 1000px) {
+    .mt-row { grid-template-columns: 1fr 60px 60px; }
+    .mt-arrow { display: none; }
+    .engine-output { padding: 4rem 0; }
+}
+
+/* ============================================================
+   ENGINE STAGE V3 — phone-morph cinematic.
+   Replaces SVG node flow. Single phone in center cycles screens,
+   side copy panel updates, bottom progress bar tracks the step.
+   ============================================================ */
+.engine-stage-wrap {
+    padding: 4rem 0 6rem;
+    overflow: hidden;
+}
+.engine-stage {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 5rem;
+    align-items: center;
+    position: relative;
+}
+.es-mesh {
+    position: absolute;
+    inset: -2rem -2rem -6rem -2rem;
+    background:
+        radial-gradient(circle 400px at 30% 50%, rgba(0, 255, 135, 0.08), transparent 60%),
+        radial-gradient(circle 300px at 80% 60%, rgba(0, 255, 135, 0.04), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+}
+.engine-stage > * { position: relative; z-index: 1; }
+
+/* Phone frame */
+.es-phone-frame {
+    position: relative;
+    width: 320px;
+    height: 640px;
+    background: #000;
+    border-radius: 38px;
+    padding: 8px;
+    box-shadow:
+        0 50px 120px rgba(0, 0, 0, 0.85),
+        0 0 0 1px rgba(255, 255, 255, 0.06),
+        0 0 100px rgba(0, 255, 135, 0.18);
+    margin: 0 auto;
+}
+.es-phone-notch {
+    position: absolute;
+    top: 8px; left: 50%; transform: translateX(-50%);
+    width: 100px; height: 22px;
+    background: #000;
+    border-radius: 0 0 14px 14px;
+    z-index: 5;
+}
+.es-phone-screen {
+    width: 100%;
+    height: 100%;
+    background: #0A0A0A;
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Screens — only one visible at a time */
+.es-screen {
+    position: absolute;
+    inset: 0;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+    transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    pointer-events: none;
+}
+.es-screen.es-screen-active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.es-statusbar {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+    padding: 0 4px;
+}
+
+/* SCREEN 1 — Bet Card */
+.es-app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 4px 10px;
+    margin-bottom: 6px;
+}
+.es-back { color: rgba(255,255,255,0.5); font-size: 18px; }
+.es-app-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.5);
+    font-weight: 800;
+}
+.es-spacer { width: 18px; }
+
+.es-bet-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(0,255,135,0.15);
+    border-radius: 14px;
+    padding: 14px 14px 12px;
+    margin-bottom: 12px;
+}
+.es-bet-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.4);
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+.es-bet-q {
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin-bottom: 14px;
+}
+.es-bet-toggle {
+    display: flex;
+    background: rgba(255,255,255,0.04);
+    border-radius: 9px;
+    padding: 2px;
+    gap: 2px;
+    margin-bottom: 14px;
+}
+.es-bet-side {
+    flex: 1;
+    text-align: center;
+    padding: 8px 0;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.4);
+}
+.es-bet-side.es-yes {
+    background: #00FF87;
+    color: #000;
+}
+.es-bet-stake-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.4);
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 4px;
+}
+.es-bet-stake {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 36px;
+    font-weight: 800;
+    color: #00FF87;
+    letter-spacing: -0.04em;
+    text-align: center;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+.es-bet-tok {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 600;
+}
+.es-bet-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.7);
+}
+.es-bet-row:first-of-type { margin-top: 6px; }
+.es-bet-pos { color: #00FF87; font-weight: 800; }
+.es-broadcast-btn {
+    margin-top: auto;
+    background: #00FF87;
+    color: #000;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    text-align: center;
+    padding: 13px 0;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+    box-shadow: 0 0 24px rgba(0,255,135,0.25);
+}
+
+/* SCREEN 2 — Live Feed */
+.es-feed-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 4px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    margin-bottom: 12px;
+}
+.es-feed-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: #00FF87;
+    font-weight: 800;
+}
+.es-feed-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: rgba(255,255,255,0.4);
+}
+.es-feed-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.es-feed-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 8px;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 10px;
+}
+.es-feed-item.es-feed-fade {
+    border-color: rgba(0,255,135,0.4);
+    background: rgba(0,255,135,0.05);
+    box-shadow: 0 0 20px rgba(0,255,135,0.1);
+}
+.es-fav {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+.es-av-cc { background: linear-gradient(135deg, #2a4d3a, #00FF87); color: #000; }
+.es-av-jk { background: linear-gradient(135deg, #1f3a5f, #4a7ba6); color: #fff; }
+.es-av-s { background: linear-gradient(135deg, #3a5a3a, #FFD700); color: #000; }
+.es-av-m { background: linear-gradient(135deg, #5a3a3a, #b85c5c); color: #fff; }
+.es-fi-text {
+    font-size: 11px;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.85);
+    flex: 1;
+}
+.es-fi-text strong { color: #fff; font-weight: 700; }
+.es-fi-amt { color: #00FF87; font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+.es-fi-tag {
+    display: inline-block;
+    padding: 0.05rem 0.4rem;
+    border-radius: 4px;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    background: rgba(0, 255, 135, 0.12);
+    color: #00FF87;
+    margin-left: 4px;
+}
+.es-feed-bar {
+    margin-top: auto;
+    padding: 12px 4px 0;
+}
+.es-bar-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 6px;
+    font-weight: 700;
+}
+.es-bar {
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 3px;
+    overflow: hidden;
+}
+.es-bar-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #00FF87, #00cc6a);
+    box-shadow: 0 0 12px rgba(0,255,135,0.5);
+    border-radius: 3px;
+    transition: width 1.5s cubic-bezier(0.16,1,0.3,1);
+}
+.es-screen[data-step="1"].es-screen-active .es-bar-fill { width: 92%; }
+
+/* SCREEN 3 — Settle */
+.es-settle-check {
+    display: flex;
+    justify-content: center;
+    margin: 22px 0 16px;
+}
+.es-check {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: rgba(0,255,135,0.08);
+    border: 2px solid #00FF87;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 40px rgba(0,255,135,0.25);
+}
+.es-check svg { width: 36px; height: 36px; }
+.es-settle-h {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+.es-settle-h2 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: #00FF87;
+}
+.es-settle-net {
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 30px;
+    font-weight: 800;
+    color: #00FF87;
+    margin-top: 12px;
+    letter-spacing: -0.03em;
+}
+.es-settle-meta {
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.4);
+    font-weight: 700;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+.es-settle-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 12px;
+}
+.es-settle-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 4px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.85);
+}
+.es-settle-row span:nth-of-type(1) { flex: 1; font-weight: 600; }
+.es-settle-row span:nth-of-type(2) { font-family: 'JetBrains Mono', monospace; font-weight: 800; }
+.es-venmo {
+    background: #3D95CE;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 5px 9px;
+    border-radius: 6px;
+    letter-spacing: 0.06em;
+}
+
+/* ============================================================
+   Side copy panel — fades in/out per step
+   ============================================================ */
+.es-copy {
+    position: relative;
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+}
+.es-copy-step {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1);
+    pointer-events: none;
+}
+.es-copy-step.es-copy-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+.es-step-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.32em;
+    color: #00FF87;
+    margin-bottom: 1.2rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(0, 255, 135, 0.25);
+    border-radius: 999px;
+    background: rgba(0, 255, 135, 0.03);
+    align-self: flex-start;
+}
+.es-step-title {
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.2rem;
+    color: #fff;
+}
+.es-step-detail {
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.65);
+    max-width: 480px;
+}
+.es-step-detail strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* ============================================================
+   Bottom progress bar with markers
+   ============================================================ */
+.es-progress {
+    grid-column: 1 / -1;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+.es-progress-track {
+    height: 2px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    position: relative;
+    margin-bottom: 1.2rem;
+}
+.es-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, rgba(0,255,135,0.4), #00FF87);
+    box-shadow: 0 0 12px rgba(0,255,135,0.5);
+    border-radius: 2px;
+    transition: width 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.es-markers {
+    display: flex;
+    justify-content: space-between;
+}
+.es-marker {
+    text-align: center;
+    flex: 1;
+    opacity: 0.4;
+    transition: opacity 0.4s;
+}
+.es-marker.es-marker-active {
+    opacity: 1;
+}
+.es-marker-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    margin: 0 auto 0.5rem;
+    transition: background 0.4s, transform 0.4s, box-shadow 0.4s;
+}
+.es-marker.es-marker-active .es-marker-dot {
+    background: #00FF87;
+    transform: scale(1.3);
+    box-shadow: 0 0 16px rgba(0,255,135,0.6);
+}
+.es-marker-label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.2rem;
+}
+.es-marker-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    color: rgba(255,255,255,0.4);
+    font-weight: 700;
+}
+
+@media (max-width: 1000px) {
+    .engine-stage {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    .es-copy { min-height: 200px; text-align: center; align-items: flex-start; }
+    .es-step-num { align-self: center; }
+    .es-step-detail { margin: 0 auto; }
+}
+
+/* ============================================================
+   ENGINE STAGE V3 — TYPOGRAPHY + 3D FLOAT POLISH
+   Bigger, clearer text. Subtle 3D hover/idle on the phone.
+   ============================================================ */
+
+/* Bump the side copy panel — was too small relative to the phone */
+.engine-stage .es-step-num {
+    font-size: 0.82rem;
+    letter-spacing: 0.34em;
+    padding: 0.5rem 1.15rem;
+    margin-bottom: 1.6rem;
+}
+.engine-stage .es-step-title {
+    font-size: clamp(2.4rem, 5.2vw, 3.8rem);
+    line-height: 1.04;
+    letter-spacing: -0.032em;
+    margin-bottom: 1.4rem;
+}
+.engine-stage .es-step-detail {
+    font-size: 1.18rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.72);
+    max-width: 540px;
+}
+
+/* Bigger, more prominent bottom progress markers */
+.es-progress {
+    margin-top: 5rem;
+    padding-top: 2.5rem;
+}
+.es-progress-track {
+    height: 3px;
+}
+.es-marker-dot {
+    width: 14px;
+    height: 14px;
+}
+.es-marker.es-marker-active .es-marker-dot {
+    transform: scale(1.4);
+    box-shadow: 0 0 22px rgba(0, 255, 135, 0.8);
+}
+.es-marker-label {
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: -0.005em;
+    margin-bottom: 0.35rem;
+}
+.es-marker-time {
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+}
+
+/* 3D FLOAT — phone gently rotates and bobs to feel alive */
+.es-phone-frame {
+    width: 340px;
+    height: 680px;
+    perspective: 1400px;
+    transform-style: preserve-3d;
+    animation: phone-float 7s ease-in-out infinite;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes phone-float {
+    0%, 100% {
+        transform: perspective(1400px) rotateY(-4deg) rotateX(2deg) translateY(0);
+    }
+    50% {
+        transform: perspective(1400px) rotateY(-4deg) rotateX(2deg) translateY(-12px);
+    }
+}
+.es-phone-frame:hover {
+    transform: perspective(1400px) rotateY(0deg) rotateX(0deg) translateY(-8px) scale(1.02);
+    animation-play-state: paused;
+}
+
+/* Add reflection sheen on hover */
+.es-phone-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 38px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, transparent 40%, transparent 60%, rgba(0, 255, 135, 0.04) 100%);
+    pointer-events: none;
+    z-index: 6;
+    opacity: 0.5;
+    transition: opacity 0.6s;
+}
+.es-phone-frame:hover::after {
+    opacity: 1;
+}
+
+/* Better gap on the stage so phone has breathing room */
+.engine-stage {
+    gap: 6rem;
+    align-items: center;
+}
+
+@media (max-width: 1000px) {
+    .es-phone-frame {
+        animation: none;
+        transform: none;
+    }
+    .engine-stage .es-step-title { font-size: 2.2rem; }
+    .engine-stage .es-step-detail { font-size: 1.05rem; }
+}
+
+/* ============================================================
+   ENGINE STAGE V3 — PROGRESS BAR V2
+   Bigger, denser markers with icons + numbered badges + tick lines.
+   Constrains horizontally so it doesn't feel sparse.
+   ============================================================ */
+.es-progress {
+    grid-column: 1 / -1;
+    margin-top: 5rem;
+    padding-top: 0;
+    max-width: 920px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    border-top: none !important;
+}
+
+/* Slimmer, brighter rail */
+.es-progress-track {
+    height: 2px;
+    background: rgba(0, 255, 135, 0.08);
+    border-radius: 2px;
+    position: relative;
+    margin-bottom: 0;
+}
+.es-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, rgba(0, 255, 135, 0.4) 0%, #00FF87 100%);
+    box-shadow: 0 0 14px rgba(0, 255, 135, 0.6);
+    border-radius: 2px;
+    transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Markers row */
+.es-markers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    position: relative;
+    margin-top: 0;
+}
+.es-marker {
+    text-align: center;
+    opacity: 0.42;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    padding-top: 0;
+    position: relative;
+}
+.es-marker.es-marker-active {
+    opacity: 1;
+}
+
+/* Vertical tick from rail down to dot */
+.es-marker-tick {
+    width: 1px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.12);
+    margin: 0 auto;
+    transition: background 0.4s, height 0.4s;
+}
+.es-marker.es-marker-active .es-marker-tick {
+    background: #00FF87;
+    box-shadow: 0 0 8px rgba(0, 255, 135, 0.5);
+    height: 22px;
+}
+
+/* Big dot with icon inside */
+.es-marker-dot {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1.5px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.4);
+    transition: background 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.es-marker.es-marker-active .es-marker-dot {
+    background: rgba(0, 255, 135, 0.08);
+    border-color: #00FF87;
+    color: #00FF87;
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(0, 255, 135, 0.35), 0 0 0 4px rgba(0, 255, 135, 0.08);
+}
+.es-marker-icon {
+    width: 22px;
+    height: 22px;
+    transition: transform 0.4s;
+}
+.es-marker.es-marker-active .es-marker-icon {
+    transform: scale(1.05);
+}
+
+/* Marker copy */
+.es-marker-content {
+    margin-top: 0.9rem;
+}
+.es-marker-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.32em;
+    color: rgba(255, 255, 255, 0.35);
+    margin-bottom: 0.4rem;
+    transition: color 0.5s;
+}
+.es-marker.es-marker-active .es-marker-num {
+    color: #00FF87;
+}
+.es-marker-label {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    color: rgba(255, 255, 255, 0.78);
+    margin-bottom: 0.3rem;
+    line-height: 1.05;
+    transition: color 0.5s;
+}
+.es-marker.es-marker-active .es-marker-label {
+    color: #fff;
+}
+.es-marker-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1.4;
+}
+
+@media (max-width: 880px) {
+    .es-progress {
+        margin-top: 3rem;
+    }
+    .es-marker-label { font-size: 1.15rem; }
+    .es-marker-time { font-size: 0.65rem; }
+    .es-marker-dot { width: 44px; height: 44px; }
+    .es-marker-icon { width: 18px; height: 18px; }
+}
+
+/* ============================================================
+   ENGINE STAGE V3 — manual step-through controls.
+   Markers are clickable. Hint label tells users they can.
+   ============================================================ */
+.es-progress-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    user-select: none;
+}
+.es-progress-hint-line {
+    flex: 0 0 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 135, 0.25), transparent);
+}
+.es-progress-hint-txt {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(0, 255, 135, 0.7);
+    white-space: nowrap;
+}
+
+/* Click affordance on markers */
+.es-marker {
+    cursor: pointer;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.es-marker:hover:not(.es-marker-active) {
+    opacity: 0.75;
+}
+.es-marker:hover .es-marker-dot {
+    border-color: rgba(0, 255, 135, 0.5);
+    color: rgba(0, 255, 135, 0.85);
+}
+.es-marker:hover:not(.es-marker-active) .es-marker-dot {
+    background: rgba(0, 255, 135, 0.04);
+}
+.es-marker:active .es-marker-dot {
+    transform: scale(0.96);
+}
+
+@media (max-width: 880px) {
+    .es-progress-hint-line { flex-basis: 30px; }
+    .es-progress-hint-txt { font-size: 0.6rem; }
+}
+
+/* ============================================================
+   ENGINE STAGE V4 — Apple keynote vertical layout.
+   Phone on top → tap-buttons directly under it (anchored to
+   the phone visually) → single copy block below. Replaces
+   the V3 side-by-side grid + bottom progress bar.
+   ============================================================ */
+
+/* Override V3 grid — vertical stack, single column */
+.engine-stage.es-stage-v4 {
+    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    max-width: 720px;
+    padding: 0 1.5rem;
+}
+
+/* Phone keeps its 3D float — no margin reset, but trim trailing space */
+.es-stage-v4 .es-phone-frame {
+    margin-bottom: 1.6rem;
+}
+
+/* Tap-button strip — sits directly under the phone like a tab bar.
+   Width matches the phone, gives the impression buttons control the screens above. */
+.es4-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.4rem;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto 3.2rem;
+    padding: 0.4rem;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    position: relative;
+}
+
+/* Subtle ribbon connecting phone to tabs — implies they're wired together */
+.es4-tabs::before {
+    content: "";
+    position: absolute;
+    top: -1.4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 1.4rem;
+    background: linear-gradient(180deg, transparent, rgba(0, 255, 135, 0.35));
+    pointer-events: none;
+}
+
+/* Each tab — flat button, big label, mono number on top */
+.es4-tab {
+    appearance: none;
+    background: transparent;
+    border: none;
+    padding: 0.85rem 0.5rem 0.95rem;
+    border-radius: 11px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    color: rgba(255, 255, 255, 0.55);
+    transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    text-align: center;
+    line-height: 1;
+    /* Wipe any inherited V3 marker styles */
+    opacity: 1 !important;
+    text-decoration: none;
+    outline: none;
+}
+
+.es4-tab:hover {
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.es4-tab:active {
+    transform: scale(0.97);
+}
+
+.es4-tab.es-marker-active {
+    background: rgba(0, 255, 135, 0.1);
+    color: #fff;
+    box-shadow:
+        0 0 0 1px rgba(0, 255, 135, 0.45),
+        0 0 28px rgba(0, 255, 135, 0.18),
+        inset 0 0 0 1px rgba(0, 255, 135, 0.06);
+}
+
+/* Numeric prefix — small, mono */
+.es4-tab-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    color: rgba(255, 255, 255, 0.32);
+    margin-bottom: 0.35rem;
+    transition: color 0.4s;
+}
+
+.es4-tab.es-marker-active .es4-tab-num {
+    color: #00FF87;
+}
+
+/* Big label — the verb */
+.es4-tab-label {
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    color: inherit;
+    line-height: 1.05;
+    margin-bottom: 0.25rem;
+}
+
+/* Tiny meta — what happens, how long */
+.es4-tab-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.32);
+    text-transform: uppercase;
+    transition: color 0.4s;
+    line-height: 1.2;
+}
+
+.es4-tab.es-marker-active .es4-tab-time {
+    color: rgba(0, 255, 135, 0.65);
+}
+
+/* Copy block — single, centered, fades between steps */
+.es4-copy {
+    position: relative;
+    width: 100%;
+    max-width: 620px;
+    min-height: 220px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 0.5rem;
+}
+
+.es4-copy-step {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    /* Wipe V3 inset/flex inheritance */
+    display: block;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.es4-copy-step.es-copy-active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.es4-step-title {
+    font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -0.028em;
+    color: #fff;
+    margin: 0 auto 1rem;
+    max-width: 520px;
+}
+
+.es4-step-detail {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.72);
+    max-width: 540px;
+    margin: 0 auto;
+}
+
+.es4-step-detail strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Mobile — keep the same vertical flow, just tighten */
+@media (max-width: 720px) {
+    .engine-stage.es-stage-v4 {
+        padding: 0 1rem;
+    }
+    .es4-tabs {
+        max-width: 340px;
+        gap: 0.25rem;
+        padding: 0.3rem;
+    }
+    .es4-tab {
+        padding: 0.7rem 0.3rem 0.8rem;
+    }
+    .es4-tab-num { font-size: 0.55rem; letter-spacing: 0.22em; }
+    .es4-tab-label { font-size: 0.92rem; }
+    .es4-tab-time { font-size: 0.5rem; letter-spacing: 0.08em; }
+    .es4-copy { min-height: 240px; }
+    .es4-step-title { font-size: 1.7rem; }
+    .es4-step-detail { font-size: 1rem; }
+}
+
+/* ============================================================
+   ENGINE STAGE V4 — NEW SCREENS
+   Step 2: Incoming offer (FADE — buddy's POV)
+   Step 3: Resolution voting (CALL — foursome decides)
+   ============================================================ */
+
+/* ── STEP 2: FADE — incoming offer banner + question + CTAs ── */
+.es-incoming-banner {
+    margin: 6px -16px 14px;
+    padding: 10px 16px 11px;
+    background: rgba(0, 255, 135, 0.07);
+    border-bottom: 1px solid rgba(0, 255, 135, 0.22);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.es-incoming-banner .es-fav {
+    width: 30px;
+    height: 30px;
+    font-size: 10px;
+}
+.es-incoming-from {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+.es-incoming-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.2em;
+    color: #00FF87;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 3px;
+}
+.es-incoming-when {
+    font-size: 9px;
+    color: rgba(255,255,255,0.4);
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1;
+    letter-spacing: 0.04em;
+}
+
+.es-incoming-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(0,255,135,0.18);
+    border-radius: 14px;
+    padding: 14px 14px 16px;
+    margin-bottom: auto;
+}
+
+.es-incoming-stakes {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 6px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+.es-stake-block {
+    flex: 1;
+    text-align: center;
+}
+.es-stake-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.4);
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+.es-stake-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.04em;
+    line-height: 1;
+}
+.es-stake-num.es-stake-win {
+    color: #00FF87;
+}
+.es-stake-divider {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    color: rgba(255,255,255,0.32);
+    font-weight: 800;
+    align-self: center;
+    padding: 0 4px;
+}
+
+.es-incoming-actions {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 8px;
+    margin-top: 14px;
+}
+.es-incoming-pass {
+    text-align: center;
+    padding: 13px 0;
+    font-size: 11px;
+    font-weight: 800;
+    border-radius: 999px;
+    color: rgba(255,255,255,0.55);
+    background: rgba(255,255,255,0.04);
+    letter-spacing: 0.08em;
+    border: 1px solid rgba(255,255,255,0.06);
+}
+.es-incoming-take {
+    text-align: center;
+    padding: 13px 0;
+    font-size: 11px;
+    font-weight: 800;
+    border-radius: 999px;
+    color: #000;
+    background: #00FF87;
+    letter-spacing: 0.04em;
+    box-shadow: 0 0 24px rgba(0, 255, 135, 0.28);
+}
+
+/* ── STEP 3: CALL — resolution voting + payout ── */
+.es-resolve-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: #00FF87;
+    font-weight: 800;
+    padding: 8px 4px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.es-resolve-status {
+    color: #00FF87;
+    font-size: 8px;
+    line-height: 1;
+    text-shadow: 0 0 8px #00FF87;
+}
+
+.es-resolve-card {
+    background: rgba(0,255,135,0.04);
+    border: 1px solid rgba(0,255,135,0.22);
+    border-radius: 14px;
+    padding: 14px 14px 16px;
+    margin-bottom: 14px;
+}
+
+.es-vote-row {
+    display: grid;
+    grid-template-columns: 2.4fr 1fr;
+    gap: 6px;
+    margin-top: 14px;
+}
+.es-vote-pill {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 10px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+}
+.es-vote-yes {
+    background: rgba(0,255,135,0.12);
+    border: 1px solid rgba(0,255,135,0.4);
+    color: #00FF87;
+}
+.es-vote-no {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.45);
+    justify-content: space-between;
+}
+.es-vote-mark {
+    font-size: 13px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+.es-vote-label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+}
+.es-vote-avatars {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+.es-vote-yes .es-vote-avatars .es-fav {
+    width: 19px;
+    height: 19px;
+    font-size: 7.5px;
+    margin-left: -5px;
+    border: 1.5px solid #0A0A0A;
+    box-shadow: 0 0 0 0.5px rgba(0,255,135,0.2);
+}
+.es-vote-yes .es-vote-avatars .es-fav:first-child {
+    margin-left: 0;
+}
+.es-vote-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 800;
+    margin-left: 5px;
+    flex-shrink: 0;
+}
+.es-vote-no .es-vote-count {
+    margin-left: 0;
+    color: rgba(255,255,255,0.55);
+}
+
+.es-resolve-result {
+    margin-top: auto;
+    padding: 18px 14px 16px;
+    background: rgba(0,255,135,0.08);
+    border: 1px solid rgba(0,255,135,0.32);
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 0 36px rgba(0,255,135,0.22), inset 0 0 0 1px rgba(0,255,135,0.04);
+}
+.es-resolve-amount {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 38px;
+    font-weight: 800;
+    color: #00FF87;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    margin-bottom: 7px;
+    text-shadow: 0 0 20px rgba(0,255,135,0.35);
+}
+.es-resolve-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.24em;
+    color: rgba(255,255,255,0.5);
+    font-weight: 800;
+}
+
+/* When this screen activates, gently pulse the payout block */
+.es-screen[data-step="2"].es-screen-active .es-resolve-result {
+    animation: es-resolve-pop 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes es-resolve-pop {
+    0%   { transform: scale(0.92); opacity: 0; }
+    60%  { transform: scale(1.04); opacity: 1; }
+    100% { transform: scale(1);    opacity: 1; }
+}
+
+/* ============================================================
+   ENGINE STAGE V4 — IFRAME-BASED SCREENS
+   The three steps now embed real flow-map screens via kiosk
+   mode (?app=screen-id). Strip the inner padding/flex from
+   .es-screen so each iframe fills the phone screen edge-to-edge.
+   ============================================================ */
+.es-screen.es-screen-frame {
+    padding: 0;
+    display: block;
+    overflow: hidden;
+    border-radius: 30px; /* match phone-screen radius */
+}
+
+.es-screen-iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    background: #0A0A0A;
+    color-scheme: dark;
+    border-radius: 30px;
+    /* Iframes are display-only — clicks don't pass through. The tab
+       buttons under the phone control which screen is shown. */
+    pointer-events: none;
+    user-select: none;
+}

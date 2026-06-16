@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>SANDBAGR — Talk Sh*t. Back It Up.</title>
+  <meta name="description" content="Turn every round into live action. Peer-to-peer golf betting with your foursome. Golf apps don't bet. Betting apps don't golf. We do both. Join the waitlist.">
+  <meta name="theme-color" content="#0A0A0A">
+
+  <!-- Open Graph — most traffic comes from Instagram -->
+  <meta property="og:title" content="SANDBAGR — Talk Sh*t. Back It Up.">
+  <meta property="og:description" content="Turn every round into live action. Get in before your foursome does.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sandbagrapp.com">
+  <meta property="og:image" content="https://sandbagrapp.com/assets/ig-profile.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" href="assets/ig-profile.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Fixed brand header — invisible on load, fades in after the hero -->
+  <header class="brand-header" id="brandHeader">
+    <span class="bh-brand">
+      <img class="bh-mark" src="assets/mascot-mark.png" alt="" aria-hidden="true">
+      <span class="bh-wordmark">SAND<span class="g">BAGR</span></span>
+    </span>
+    <a href="#cta" class="bh-cta">Get In Line</a>
+  </header>
+
+  <!-- ==================== 1 · HERO ==================== -->
+  <section class="hero" id="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-inner">
+      <img class="hero-mark" src="assets/mascot-mark.png" alt="SANDBAGR" width="1238" height="1224">
+      <h1 class="hero-wordmark">SAND<span class="g">BAGR</span></h1>
+      <p class="hero-tagline">Talk Sh*t. Back It Up.</p>
+
+      <p class="hero-headline">Turn every round into <span class="g">live action.</span></p>
+
+      <form class="capture" id="heroForm" data-capture="hero" novalidate>
+        <div class="capture-row">
+          <input type="text" class="capture-input" name="firstName"
+                 autocomplete="given-name" placeholder="First name" aria-label="First name" required>
+          <input type="email" class="capture-input" name="email" inputmode="email"
+                 autocomplete="email" placeholder="you@email.com" aria-label="Email address" required>
+        </div>
+        <input type="text" name="company" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button type="submit" class="capture-btn">Get In Line</button>
+      </form>
+      <p class="capture-err" id="heroErr" role="alert"></p>
+
+      <!-- Placeholder until the new app screenshots land. -->
+      <div class="device device-hero">
+        <div class="device-glow"></div>
+        <div class="device-ph" aria-hidden="true">
+          <span class="ph-mark">SAND<span class="g">BAGR</span></span>
+          <div class="ph-skeleton"><i></i><i></i><i></i></div>
+          <span class="ph-label">Live Round</span>
+          <span class="ph-soon">Preview coming</span>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">
+      <span class="scroll-hint-label">Scroll to enter</span>
+      <span class="scroll-hint-arrow">&#8595;</span>
+    </div>
+  </section>
+
+  <!-- ==================== 2 · THE PROBLEM — scroll-built chat ==================== -->
+  <section class="problem" id="problem">
+    <div class="wrap problem-inner">
+      <p class="big-line problem-headline">Every foursome has the same fight at the 19th hole.</p>
+      <p class="big-line dim problem-subline">Half the bets are already forgotten.</p>
+
+      <!-- the group chat reconstructs itself as you scroll -->
+      <div class="chat-mock" id="chatMock" aria-hidden="true">
+        <div class="chat-bubble them">$5 says you chunk this one</div>
+        <div class="chat-bubble me">you're on. press the back nine?</div>
+        <div class="chat-bubble them">lol done. closest to pin too</div>
+        <div class="chat-bubble me">wait who won the front</div>
+        <div class="chat-bubble them">idk Danny owes someone $20?</div>
+        <div class="chat-bubble me">we said double or nothing on 17 right</div>
+        <div class="chat-bubble them">…did anyone actually pay</div>
+      </div>
+
+      <!-- bold bridge into the product -->
+      <p class="problem-bridge">Change the way you <span class="g">play golf forever.</span></p>
+    </div>
+  </section>
+
+  <!-- ==================== 3 · THE FLOW — three real app layers ==================== -->
+  <section class="flow" id="how">
+    <div class="wrap">
+      <p class="eyebrow g">One round. Three layers.</p>
+      <h2 class="flow-title">Golf apps don't bet. Betting apps don't golf. <span class="g">We do both.</span></h2>
+    </div>
+
+    <div class="layers">
+      <article class="layer rv">
+        <div class="device">
+          <div class="device-glow"></div>
+          <div class="device-ph" aria-hidden="true">
+            <span class="ph-mark">SAND<span class="g">BAGR</span></span>
+            <div class="ph-skeleton"><i></i><i></i><i></i></div>
+            <span class="ph-label">Pre-Round Bets</span>
+            <span class="ph-soon">Preview coming</span>
+          </div>
+        </div>
+        <div class="layer-copy">
+          <span class="layer-num">01 — Before the tee</span>
+          <h3>Call your bets before you tee off.</h3>
+          <ul class="bullets">
+            <li>Square up one-off bets with your foursome — peer to peer</li>
+            <li>You call it, they cover it. Set the terms, lock the stake.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="layer reverse rv">
+        <div class="device">
+          <div class="device-glow"></div>
+          <div class="device-ph" aria-hidden="true">
+            <span class="ph-mark">SAND<span class="g">BAGR</span></span>
+            <div class="ph-skeleton"><i></i><i></i><i></i></div>
+            <span class="ph-label">Live Round</span>
+            <span class="ph-soon">Preview coming</span>
+          </div>
+        </div>
+        <div class="layer-copy">
+          <span class="layer-num">02 — In the round</span>
+          <h3>If you can talk it, you can track it.</h3>
+          <ul class="bullets">
+            <li>Skins, presses, closest to the pin, "$5 says you chunk it"</li>
+            <li>Bets resolve live on a shared ledger</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="layer rv">
+        <div class="device">
+          <div class="device-glow"></div>
+          <div class="device-ph" aria-hidden="true">
+            <span class="ph-mark">SAND<span class="g">BAGR</span></span>
+            <div class="ph-skeleton"><i></i><i></i><i></i></div>
+            <span class="ph-label">The 19th Hole</span>
+            <span class="ph-soon">Preview coming</span>
+          </div>
+        </div>
+        <div class="layer-copy">
+          <span class="layer-num">03 — The 19th hole</span>
+          <h3>The app holds the memory, not the money.</h3>
+          <ul class="bullets">
+            <li>One number at the 19th. Straight to Venmo</li>
+            <li>App holds zero. We're a ledger, not a bookie</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==================== 5 · GROUPS / THE LEAGUE ==================== -->
+  <section class="league" id="groups">
+    <div class="wrap league-inner">
+      <p class="eyebrow g">Built for the league</p>
+      <h2 class="league-title">Your crew. Your league. <span class="g">Your odds.</span></h2>
+      <ul class="bullets bullets-lg league-bullets">
+        <li>One 4-digit code gets the whole group in</li>
+        <li>Bet the whole group, not just your foursome</li>
+        <li>A standings board that never resets</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ==================== 6 · FIVE FORMATS ==================== -->
+  <section class="formats" id="formats">
+    <div class="wrap">
+      <h2 class="formats-title">Five formats.<br><span class="dim2">Infinite ways to take your boy's money.</span></h2>
+      <div class="format-list">
+        <span class="fmt"><i style="--c:#00FF87"></i>Stroke</span>
+        <span class="fmt"><i style="--c:#FFD700"></i>Skins</span>
+        <span class="fmt"><i style="--c:#8B5CF6"></i>Match Play</span>
+        <span class="fmt"><i style="--c:#36A2FF"></i>Scramble</span>
+        <span class="fmt"><i style="--c:#FF6B6B"></i>Best Ball</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 6 · THE LINE (waitlist + referral) ==================== -->
+  <section class="line" id="cta">
+    <div class="wrap">
+      <p class="eyebrow g">The line</p>
+      <h2 class="line-title">Don't wait in line. <span class="g">Cut it.</span></h2>
+      <p class="line-sub">The first ones in never pay. Every friend who joins on your link moves you up.</p>
+
+      <!-- STATE A: email capture -->
+      <div class="queue-card" id="queueCard">
+        <div class="qc-capture" id="qcCapture">
+          <form class="capture stacked" id="lineForm" data-capture="line" novalidate>
+            <input type="text" class="capture-input" name="firstName"
+                   autocomplete="given-name" placeholder="First name" aria-label="First name" required>
+            <input type="email" class="capture-input" name="email" inputmode="email"
+                   autocomplete="email" placeholder="you@email.com" aria-label="Email address" required>
+            <input type="text" name="company" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <button type="submit" class="capture-btn">Get In Line</button>
+          </form>
+          <p class="capture-err" id="lineErr" role="alert"></p>
+          <p class="qc-trust"><span class="live-dot"></span> <span id="trustCount">0</span> already in line</p>
+        </div>
+
+        <!-- STATE B: position + referral, revealed after signup -->
+        <div class="qc-position" id="qcPosition" hidden>
+          <div class="mascot-in">
+            <img src="assets/mascot.png" alt="The Sandbagr" class="mascot-img" id="mascotImg">
+          </div>
+          <p class="qc-youre-in">You're in.</p>
+          <p class="qc-pos-label">Your spot in line</p>
+          <div class="qc-pos-num">#<span id="posNum">0</span></div>
+          <p class="qc-pos-move" id="posMove" hidden></p>
+
+          <div class="qc-invite">
+            <p class="qc-invite-h">Cut the line. Bring your foursome.</p>
+
+            <!-- Direct email invites -->
+            <form class="invite-form" id="inviteForm" novalidate>
+              <input type="email" class="capture-input" name="friendEmail" inputmode="email"
+                     placeholder="friend@email.com" aria-label="Friend's email">
+              <input type="text" name="company" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <button type="submit" class="invite-send">Invite</button>
+            </form>
+            <p class="invite-sent" id="inviteSent" hidden></p>
+
+            <!-- Personal referral link -->
+            <div class="ref-link-row">
+              <input type="text" class="ref-link" id="refLink" readonly aria-label="Your referral link">
+              <button class="ref-copy" id="refCopy" type="button">Copy</button>
+            </div>
+
+            <!-- One-tap share -->
+            <div class="share-row">
+              <a class="share-btn" id="shareText" href="#">💬 Text the group</a>
+              <a class="share-btn" id="shareIG" href="#">📸 Story</a>
+              <button class="share-btn" id="shareNative" type="button">↗ Share</button>
+            </div>
+
+            <!-- Your crew — who joined on your link, auto-updating -->
+            <div class="crew" id="crew">
+              <div class="crew-head">
+                <span class="crew-title">Your crew</span>
+                <span class="crew-count" id="refCount">0</span>
+              </div>
+              <div class="crew-list" id="crewList">
+                <p class="crew-empty" id="crewEmpty">No one yet — share your link and watch them stack up.</p>
+              </div>
+              <p class="crew-foot">Each one moves you up the line.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 7 · FOOTER ==================== -->
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <span class="footer-wordmark">SAND<span class="g">BAGR</span></span>
+        <p class="footer-tag">Talk Sh*t. Back It Up.</p>
+        <div class="footer-links">
+          <a href="https://sandbagrapp.com">sandbagrapp.com</a>
+          <a href="https://instagram.com/sandbagrapp" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </div>
+    <p class="compliance">SANDBAGR is a social scorekeeping app, not a sportsbook. No money moves through the app. Tokens are a record of bets agreed between friends, and players settle up among themselves. Must be of legal age in your jurisdiction. Please play responsibly.</p>
+  </footer>
+
+  <script src="js/vendor/gsap.min.js"></script>
+  <script src="js/vendor/ScrollTrigger.min.js"></script>
+  <script src="js/waitlist.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

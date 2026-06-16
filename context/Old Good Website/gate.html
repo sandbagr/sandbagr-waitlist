@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SANDBAGR — Access</title>
+    <meta name="description" content="SANDBAGR is the AI-powered social golf betting app. Enter your access code to continue.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0A0A0A;
+            --charcoal: #1A1A1A;
+            --charcoal-light: #242424;
+            --green: #00FF87;
+            --green-dim: rgba(0, 255, 135, 0.1);
+            --green-border: rgba(0, 255, 135, 0.12);
+            --white: #FFFFFF;
+            --red: #FF3B30;
+            --glow: 0 0 40px rgba(0, 255, 135, 0.2), 0 0 80px rgba(0, 255, 135, 0.08);
+            --glow-intense: 0 0 30px rgba(0, 255, 135, 0.45), 0 0 60px rgba(0, 255, 135, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            height: 100%;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            -webkit-font-smoothing: antialiased;
+            overflow: hidden;
+        }
+
+        .gate {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Ambient green orb */
+        .gate::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,255,135,0.06) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .gate-wordmark {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            font-size: clamp(2.8rem, 8vw, 5rem);
+            letter-spacing: -0.03em;
+            color: var(--green);
+            text-shadow: var(--glow);
+            margin-bottom: 0.5rem;
+            user-select: none;
+        }
+
+        .gate-tagline {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+        }
+
+        .gate-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+            max-width: 360px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gate-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .gate-input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-align: center;
+            text-transform: uppercase;
+            color: var(--white);
+            background: var(--charcoal);
+            border: 1px solid var(--green-border);
+            border-radius: 12px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .gate-input::placeholder {
+            color: rgba(255,255,255,0.2);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        .gate-input:focus {
+            border-color: var(--green);
+            box-shadow: var(--glow);
+        }
+
+        .gate-btn {
+            width: 100%;
+            padding: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--black);
+            background: var(--green);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        .gate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--glow-intense);
+        }
+
+        .gate-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Error shake */
+        .gate-error .gate-input {
+            border-color: var(--red);
+            box-shadow: 0 0 20px rgba(255,59,48,0.25);
+            animation: shake 0.4s ease;
+        }
+
+        .gate-msg {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--red);
+            min-height: 1.2em;
+            transition: opacity 0.3s;
+            opacity: 0;
+        }
+
+        .gate-error .gate-msg {
+            opacity: 1;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-8px); }
+            40% { transform: translateX(8px); }
+            60% { transform: translateX(-5px); }
+            80% { transform: translateX(5px); }
+        }
+
+        /* Success flash */
+        .gate-success .gate-input {
+            border-color: var(--green);
+            box-shadow: var(--glow-intense);
+        }
+
+        .gate-success .gate-btn {
+            pointer-events: none;
+        }
+
+        .gate-footer {
+            position: absolute;
+            bottom: 2rem;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.15);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* NDA checkbox */
+        .gate-nda {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            width: 100%;
+            margin-top: 0.25rem;
+        }
+
+        .gate-nda input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px;
+            background: var(--charcoal);
+            cursor: pointer;
+            margin-top: 2px;
+            transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .gate-nda input[type="checkbox"]:checked {
+            background: var(--green);
+            border-color: var(--green);
+            box-shadow: 0 0 12px rgba(0,255,135,0.3);
+        }
+
+        .gate-nda input[type="checkbox"]:checked::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 5px;
+            width: 5px;
+            height: 9px;
+            border: solid var(--black);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .gate-nda-text {
+            font-size: 0.75rem;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.45);
+        }
+
+        .gate-nda-text strong {
+            color: rgba(255,255,255,0.7);
+            font-weight: 600;
+        }
+
+        /* NDA unchecked error state */
+        .gate-nda-error .gate-nda input[type="checkbox"] {
+            border-color: var(--red);
+            box-shadow: 0 0 12px rgba(255,59,48,0.3);
+            animation: shake 0.4s ease;
+        }
+
+        .gate-nda-error .gate-nda-text {
+            color: var(--red);
+        }
+
+        /* Button disabled state when checkbox unchecked */
+        .gate-btn.disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        .gate-btn.disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="gate" id="gate">
+        <div class="gate-wordmark">SANDBAGR</div>
+        <div class="gate-tagline">Talk sh*t. Back it up.</div>
+
+        <div class="gate-box" id="gateBox">
+            <div class="gate-label">Enter Access Code</div>
+            <input
+                type="text"
+                class="gate-input"
+                id="gateInput"
+                placeholder="- - - - - -"
+                autocomplete="off"
+                autofocus
+                spellcheck="false"
+            >
+            <div class="gate-nda">
+                <input type="checkbox" id="gateNda">
+                <div class="gate-nda-text">
+                    By entering this code, I acknowledge that all content on this site is <strong>proprietary and confidential</strong>. I agree not to share, reproduce, or distribute any information, designs, or materials viewed here without prior written consent from SANDBAGR.
+                </div>
+            </div>
+            <button class="gate-btn disabled" id="gateBtn">Enter</button>
+            <div class="gate-msg" id="gateMsg">Wrong code. Try again.</div>
+        </div>
+
+        <div class="gate-footer">Early Access Preview</div>
+    </div>
+
+    <script>
+    (function() {
+        var CODE = 'TALKSHIT';
+        var input = document.getElementById('gateInput');
+        var btn = document.getElementById('gateBtn');
+        var box = document.getElementById('gateBox');
+        var nda = document.getElementById('gateNda');
+        var msg = document.getElementById('gateMsg');
+
+        // If already unlocked, skip straight to the site
+        if (sessionStorage.getItem('sandbagr_access') === 'granted') {
+            window.location.replace('index.html');
+            return;
+        }
+
+        // Toggle button enabled state based on checkbox
+        nda.addEventListener('change', function() {
+            if (nda.checked) {
+                btn.classList.remove('disabled');
+                box.classList.remove('gate-nda-error');
+            } else {
+                btn.classList.add('disabled');
+            }
+        });
+
+        function attempt() {
+            // Check NDA first
+            if (!nda.checked) {
+                box.classList.remove('gate-nda-error');
+                void box.offsetWidth;
+                box.classList.add('gate-nda-error');
+                msg.textContent = 'You must agree to the confidentiality terms.';
+                box.classList.add('gate-error');
+                return;
+            }
+
+            var val = input.value.trim().toUpperCase();
+            if (val === CODE) {
+                // Success
+                box.classList.remove('gate-error');
+                box.classList.remove('gate-nda-error');
+                box.classList.add('gate-success');
+                sessionStorage.setItem('sandbagr_access', 'granted');
+                setTimeout(function() {
+                    window.location.replace('index.html');
+                }, 400);
+            } else {
+                // Wrong code
+                box.classList.remove('gate-error');
+                box.classList.remove('gate-nda-error');
+                msg.textContent = 'Wrong code. Try again.';
+                void box.offsetWidth;
+                box.classList.add('gate-error');
+                input.select();
+            }
+        }
+
+        btn.addEventListener('click', attempt);
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') attempt();
+        });
+
+        // Clear error state on new input
+        input.addEventListener('input', function() {
+            box.classList.remove('gate-error');
+        });
+    })();
+    </script>
+</body>
+</html>

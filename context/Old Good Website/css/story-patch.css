@@ -1,0 +1,492 @@
+/* ============================================================
+   STORY PAGE — Apple-keynote redesign.
+   Replaces the old 9-card timeline + 3-card origin + role grid
+   with cinematic editorial layouts.
+   ============================================================ */
+
+/* Reusable eyebrow chip */
+.story-eyebrow,
+.journey-eyebrow,
+.bg-eyebrow,
+.founder-eyebrow {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.32em;
+    color: #00FF87;
+    text-transform: uppercase;
+    margin-bottom: 1.6rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(0, 255, 135, 0.25);
+    border-radius: 999px;
+    background: rgba(0, 255, 135, 0.03);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.story-hero {
+    padding: 9rem 0 5rem;
+    position: relative;
+}
+.story-headline {
+    font-size: clamp(2.6rem, 6.5vw, 5.4rem);
+    font-weight: 900;
+    line-height: 0.97;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.6rem;
+    max-width: 920px;
+}
+.story-sub {
+    font-size: 1.1rem;
+    line-height: 1.55;
+    color: #6B7280;
+    max-width: 620px;
+}
+.story-sub strong {
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 700;
+}
+
+/* ============================================================
+   FOUNDER — split layout, photo + editorial bio
+   ============================================================ */
+.story-founder {
+    padding: 6rem 0;
+}
+.founder-stage {
+    display: grid;
+    grid-template-columns: minmax(280px, 380px) 1fr;
+    gap: 5rem;
+    align-items: center;
+}
+.founder-photo-frame {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow:
+        0 40px 100px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.06),
+        0 0 80px rgba(0, 255, 135, 0.1);
+}
+.founder-photo {
+    width: 100%;
+    height: 110%;
+    object-fit: cover;
+    display: block;
+    will-change: transform;
+}
+.founder-name {
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+.founder-role {
+    font-size: 0.95rem;
+    color: #00FF87;
+    letter-spacing: 0.02em;
+    font-weight: 600;
+    margin-bottom: 1.8rem;
+}
+.founder-bio {
+    font-size: 1.02rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.78);
+    margin-bottom: 1.2rem;
+}
+.founder-bio strong {
+    color: rgba(255, 255, 255, 0.96);
+    font-weight: 600;
+}
+.founder-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.founder-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.founder-links a:hover {
+    color: #00FF87;
+}
+.fl-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #00FF87;
+    opacity: 0.5;
+}
+
+/* ============================================================
+   JOURNEY — editorial timeline with vertical line
+   ============================================================ */
+.story-journey {
+    padding: 7rem 0 5rem;
+}
+.journey-headline {
+    font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.035em;
+    margin-bottom: 1.2rem;
+}
+.journey-sub {
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: #6B7280;
+    max-width: 540px;
+    margin-bottom: 4rem;
+}
+.journey-timeline {
+    position: relative;
+    padding-left: 0;
+}
+.jt-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    padding: 1.8rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    align-items: baseline;
+    transition: background 0.4s, padding 0.4s;
+}
+.jt-row:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.jt-row:hover {
+    background: rgba(0, 255, 135, 0.02);
+    padding-left: 1rem;
+}
+.jt-row.jt-now .jt-date {
+    color: #00FF87;
+    text-shadow: 0 0 18px rgba(0, 255, 135, 0.35);
+}
+.jt-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    padding-top: 0.3rem;
+}
+.jt-title {
+    font-size: clamp(1.4rem, 2.6vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -0.018em;
+    line-height: 1.15;
+    margin-bottom: 0.6rem;
+    color: rgba(255, 255, 255, 0.96);
+}
+.jt-detail {
+    font-size: 1rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* ============================================================
+   BACKGROUND — single horizontal strip
+   ============================================================ */
+.story-bg {
+    padding: 6rem 0;
+}
+.bg-headline {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin-bottom: 3.5rem;
+    max-width: 720px;
+}
+.bg-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    align-items: center;
+}
+.bg-cell {
+    text-align: center;
+    padding: 1.4rem 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.015);
+    transition: border-color 0.4s, background 0.4s, transform 0.4s;
+}
+.bg-cell:hover {
+    border-color: rgba(0, 255, 135, 0.18);
+    background: rgba(0, 255, 135, 0.02);
+    transform: translateY(-2px);
+}
+.bg-logo-wrap {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.8rem;
+}
+.bg-logo {
+    max-height: 48px;
+    max-width: 80%;
+    object-fit: contain;
+    opacity: 0.85;
+    transition: opacity 0.4s;
+}
+.bg-cell:hover .bg-logo {
+    opacity: 1;
+}
+.bg-logo-invert {
+    filter: brightness(0) invert(1);
+}
+.bg-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* ============================================================
+   CLOSING — pull quote + CTA combined
+   ============================================================ */
+.story-closing {
+    padding: 7rem 0 8rem;
+    text-align: center;
+}
+.closing-quote {
+    font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    color: rgba(255, 255, 255, 0.96);
+    max-width: 920px;
+    margin: 0 auto 1.6rem;
+    position: relative;
+    border: none;
+    padding: 0 1rem;
+}
+.cq-mark {
+    color: #00FF87;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.4em;
+    line-height: 0;
+    position: relative;
+    top: 0.18em;
+    margin-right: 0.1em;
+    text-shadow: 0 0 30px rgba(0, 255, 135, 0.3);
+}
+.closing-cite {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 3.5rem;
+    font-style: normal;
+}
+.closing-cta {
+    display: flex;
+    justify-content: center;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media (max-width: 880px) {
+    .story-hero { padding: 6rem 0 3rem; }
+    .story-founder { padding: 4rem 0; }
+    .story-journey { padding: 5rem 0 3rem; }
+    .story-bg { padding: 4rem 0; }
+    .story-closing { padding: 5rem 0 6rem; }
+
+    .founder-stage {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+    }
+    .founder-photo-wrap {
+        max-width: 320px;
+        margin: 0 auto;
+    }
+    .founder-links {
+        justify-content: center;
+    }
+
+    .jt-row {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+        padding: 1.4rem 0;
+    }
+    .jt-row:hover { padding-left: 0; }
+
+    .bg-strip {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.9rem;
+    }
+
+    .closing-quote {
+        font-size: 1.4rem;
+    }
+}
+
+/* ============================================================
+   STORY V2 — Hero quote moved up + new editorial Background.
+   ============================================================ */
+
+/* Hero quote — sits between hero and founder */
+.story-quote {
+    padding: 4rem 0 5rem;
+    text-align: center;
+    position: relative;
+}
+.hero-quote {
+    font-size: clamp(1.6rem, 3.4vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: -0.025em;
+    color: rgba(255, 255, 255, 0.95);
+    max-width: 900px;
+    margin: 0 auto 1.4rem;
+    border: none;
+    padding: 0 1rem;
+}
+.hero-quote .grad {
+    background: linear-gradient(135deg, #00FF87 0%, #00cc6a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero-quote-cite {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: normal;
+}
+
+/* New Background — editorial rows, no logos */
+.story-bg-v2 {
+    padding: 7rem 0 6rem;
+}
+.story-bg-v2 .bg-headline {
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.035em;
+    margin-bottom: 1.2rem;
+}
+.bg-sub {
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: #6B7280;
+    max-width: 600px;
+    margin-bottom: 4rem;
+}
+.bg-rows {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.bg-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 2rem;
+    padding: 1.6rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    align-items: center;
+    transition: padding 0.4s, background 0.4s;
+}
+.bg-row:hover {
+    padding-left: 1rem;
+    background: rgba(0, 255, 135, 0.015);
+}
+.bg-row-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    color: #00FF87;
+    text-transform: uppercase;
+}
+.bg-row-line {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.bg-row-line-multi {
+    gap: 0.6rem;
+}
+.bg-pill {
+    display: inline-block;
+    padding: 0.45rem 0.95rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.92);
+    letter-spacing: -0.005em;
+    transition: border-color 0.3s, background 0.3s;
+}
+.bg-row:hover .bg-pill {
+    border-color: rgba(0, 255, 135, 0.25);
+}
+.bg-meta {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 500;
+}
+.bg-meta-stat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+/* Closing CTA — simplified */
+.story-closing {
+    padding: 6rem 0 8rem;
+    text-align: center;
+}
+.closing-h {
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.8rem;
+}
+.closing-sub {
+    font-size: 1.02rem;
+    color: #6B7280;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 880px) {
+    .story-quote { padding: 3rem 0; }
+    .hero-quote { font-size: 1.5rem; }
+    .story-bg-v2 { padding: 4rem 0; }
+    .bg-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+    .bg-row:hover { padding-left: 0; }
+    .story-closing { padding: 4rem 0 5rem; }
+}

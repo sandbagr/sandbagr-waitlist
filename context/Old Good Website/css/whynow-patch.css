@@ -1,0 +1,729 @@
+/* ============================================================================
+   WHY NOW — Page-Specific Styles
+   Trend convergence page: mega stats, competitive matrix, convergence cards
+   ============================================================================ */
+
+/* ============================================================================
+   LAYOUT
+   ============================================================================ */
+
+.wn-section {
+    padding: 1rem 2rem;
+}
+
+/* Section labels — keep the green box, add breathing room */
+.wn-section .label {
+    margin-bottom: 1.25rem;
+}
+
+/* Tighten divider gaps on Why Now page */
+.wn-section + .divider,
+.divider + .wn-section,
+.hero + .divider,
+.stats-ban + .divider,
+.divider + .stats-ban,
+.divider + .logo-section,
+.logo-section + .divider,
+.divider + .cta {
+    margin-top: 0;
+}
+
+/* Override global divider margin for this page */
+body .divider {
+    margin: 0.25rem 0;
+}
+
+.wn-section .container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ============================================================================
+   TEXT EMPHASIS — bold white + green accent
+   ============================================================================ */
+
+.wn-section strong,
+.wn-takeaway strong,
+.wn-body-text strong,
+.matrix-caption strong,
+.wn-conv-card strong,
+.trend-subtitle strong,
+.wn-culture-card strong,
+.logo-caption strong,
+.roadmap-note strong,
+.hero-desc strong {
+    color: var(--white);
+    font-weight: 700;
+}
+
+.wn-section .g,
+.wn-takeaway .g,
+.wn-body-text .g,
+.matrix-caption .g,
+.wn-conv-card .g,
+.trend-subtitle .g,
+.wn-culture-card .g,
+.logo-caption .g,
+.roadmap-note .g,
+.hero-desc .g {
+    color: var(--green);
+    font-weight: 600;
+}
+
+/* ============================================================================
+   MEGA STAT — "$63.5B → $1T" hero stat
+   ============================================================================ */
+
+.wn-mega-stat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem auto 1.5rem;
+    max-width: 700px;
+    padding: 2.5rem 3rem;
+    background: var(--charcoal);
+    border-radius: 24px;
+    border: 1px solid rgba(0, 255, 135, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.wn-mega-stat::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--green), transparent);
+    opacity: 0.4;
+}
+
+.wn-mega-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 900;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    color: var(--green);
+    text-shadow: 0 0 30px rgba(0, 255, 135, 0.15);
+    line-height: 1;
+}
+
+.wn-mega-arrow {
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.2);
+    font-weight: 300;
+}
+
+.wn-mega-caption {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--slate);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-top: 1rem;
+    width: 100%;
+    position: absolute;
+    bottom: 0.75rem;
+    left: 0;
+}
+
+/* ============================================================================
+   LOGO PILL ROW — horizontal brand name row
+   ============================================================================ */
+
+.wn-logo-row {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 2rem 0 1.5rem;
+}
+
+.wn-logo-pill {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 0.45rem 1.1rem 0.45rem 0.45rem;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.55);
+    transition: all 0.3s ease;
+}
+
+.wn-logo-pill:hover {
+    background: rgba(0, 255, 135, 0.06);
+    border-color: rgba(0, 255, 135, 0.2);
+    color: var(--green);
+}
+
+/* ============================================================================
+   TAKEAWAY LINE — section closing statement
+   ============================================================================ */
+
+.wn-takeaway {
+    font-size: 0.95rem;
+    color: var(--slate);
+    text-align: center;
+    max-width: 650px;
+    margin: 1.5rem auto 0;
+    line-height: 1.7;
+    font-style: italic;
+}
+
+/* ============================================================================
+   STAT ROW — 4 big numbers in a row
+   ============================================================================ */
+
+.wn-stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+}
+
+.wn-stat-block {
+    text-align: center;
+    padding: 1.75rem 1rem;
+    background: var(--charcoal);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: all 0.3s ease;
+}
+
+.wn-stat-block:hover {
+    border-color: rgba(0, 255, 135, 0.1);
+    transform: translateY(-2px);
+}
+
+.wn-stat-block.accent {
+    border-color: rgba(0, 255, 135, 0.12);
+    background: rgba(0, 255, 135, 0.03);
+}
+
+.wn-stat-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 900;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.wn-stat-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--slate);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+}
+
+/* ============================================================================
+   CULTURE CARDS — YouTube golf, Topgolf, tech-native
+   ============================================================================ */
+
+.wn-culture-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin: 2rem 0;
+}
+
+.wn-culture-card {
+    background: var(--charcoal);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: all 0.4s ease;
+}
+
+.wn-culture-card:hover {
+    border-color: rgba(0, 255, 135, 0.1);
+    transform: translateY(-3px);
+}
+
+.wn-culture-icon {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 1rem;
+}
+
+.wn-culture-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.wn-culture-card h3 {
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--white);
+    margin-bottom: 0.6rem;
+}
+
+.wn-culture-card p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+    line-height: 1.7;
+}
+
+/* ============================================================================
+   CONTRAST STAT — "84% vs 0" side-by-side
+   ============================================================================ */
+
+.wn-contrast {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    margin: 1.5rem auto;
+    max-width: 700px;
+    padding: 2.5rem;
+    background: var(--charcoal);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.wn-contrast-stat {
+    text-align: center;
+    flex: 1;
+}
+
+.wn-contrast-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 900;
+    font-size: clamp(3rem, 6vw, 5rem);
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+    text-shadow: 0 0 30px rgba(0, 255, 135, 0.15);
+}
+
+.wn-contrast-num.zero {
+    color: var(--red);
+    text-shadow: 0 0 30px rgba(255, 59, 48, 0.15);
+}
+
+.wn-contrast-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--slate);
+    line-height: 1.5;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.wn-contrast-divider {
+    width: 1px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+}
+
+/* ============================================================================
+   BODY TEXT
+   ============================================================================ */
+
+.wn-body-text {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 1rem;
+    line-height: 1.85;
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+    text-align: center;
+}
+
+/* ============================================================================
+   COMPETITIVE MATRIX — 2D positioning chart
+   ============================================================================ */
+
+.wn-matrix {
+    position: relative;
+    max-width: 780px;
+    width: 100%;
+    aspect-ratio: 1;
+    background: var(--charcoal);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    margin: 1.5rem auto;
+    overflow: visible;
+}
+
+/* Crosshairs */
+.wn-crosshair-h {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    right: 5%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.wn-crosshair-v {
+    position: absolute;
+    left: 50%;
+    top: 5%;
+    bottom: 5%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* Axis labels */
+.wn-axis {
+    position: absolute;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--slate);
+    white-space: nowrap;
+}
+
+.wn-axis-top {
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.wn-axis-bottom {
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.wn-axis-left {
+    left: -0.5rem;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    transform-origin: center;
+}
+
+.wn-axis-right {
+    right: -0.5rem;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    transform-origin: center;
+}
+
+/* Quadrant labels */
+.wn-quadrant {
+    position: absolute;
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.12);
+}
+
+.wn-q-tl { top: 3.5rem; left: 1.5rem; }
+.wn-q-tr { top: 3.5rem; right: 1.5rem; }
+.wn-q-bl { bottom: 3.5rem; left: 1.5rem; }
+.wn-q-br { bottom: 3.5rem; right: 1.5rem; }
+
+/* Company dots */
+.wn-dot {
+    position: absolute;
+    z-index: 2;
+}
+
+.wn-dot span {
+    display: inline-block;
+    padding: 0.35rem 0.7rem;
+    border-radius: 8px;
+    font-size: 0.62rem;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.55);
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.wn-dot span:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: var(--white);
+    transform: scale(1.05);
+}
+
+/* SANDBAGR hero dot */
+.wn-dot-hero span {
+    background: rgba(0, 255, 135, 0.12);
+    border-color: var(--green);
+    color: var(--green);
+    font-weight: 900;
+    font-size: 0.85rem;
+    padding: 0.6rem 1.15rem;
+    box-shadow: 0 0 30px rgba(0, 255, 135, 0.25);
+    animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 135, 0.15); }
+    50% { box-shadow: 0 0 35px rgba(0, 255, 135, 0.3); }
+}
+
+/* ============================================================================
+   CONVERGENCE CARDS — 3-card "why it all comes together"
+   ============================================================================ */
+
+.wn-convergence-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.wn-conv-card {
+    background: var(--charcoal);
+    border-radius: 20px;
+    padding: 2.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.wn-conv-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--green);
+    border-radius: 20px 20px 0 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.wn-conv-card:hover {
+    border-color: rgba(0, 255, 135, 0.12);
+    transform: translateY(-4px);
+}
+
+.wn-conv-card:hover::before {
+    opacity: 1;
+}
+
+.wn-conv-icon {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 1rem;
+}
+
+.wn-conv-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.wn-conv-card h3 {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+}
+
+.wn-conv-card p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+
+/* ============================================================================
+   STATS BANNER — "$0" special treatment
+   ============================================================================ */
+
+.wn-zero {
+    color: var(--red) !important;
+    text-shadow: 0 0 16px rgba(255, 59, 48, 0.12) !important;
+}
+
+/* ============================================================================
+   RESPONSIVE
+   ============================================================================ */
+
+@media (max-width: 1024px) {
+    .wn-stat-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .wn-convergence-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .wn-section {
+        padding: 2rem 1.25rem;
+    }
+
+    .wn-mega-stat {
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 2rem 1.5rem 2.5rem;
+    }
+
+    .wn-mega-arrow {
+        transform: rotate(90deg);
+    }
+
+    .wn-mega-caption {
+        position: static;
+        margin-top: 1rem;
+    }
+
+    .wn-stat-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .wn-culture-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wn-contrast {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .wn-contrast-divider {
+        width: 60%;
+        height: 1px;
+    }
+
+    .wn-matrix {
+        aspect-ratio: auto;
+        min-height: 400px;
+        padding: 1rem;
+    }
+
+    .wn-axis-left,
+    .wn-axis-right {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .wn-stat-row {
+        grid-template-columns: 1fr;
+    }
+
+    .wn-mega-number {
+        font-size: 2rem;
+    }
+
+    .wn-contrast-num {
+        font-size: 3rem;
+    }
+}
+
+/* ============================================================================
+   LOGO IMAGES IN GRID AND PILLS
+   ============================================================================ */
+
+/* Logo grid item with image — BLOWN UP for impact */
+.logo-item-img {
+    width: 100%;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.85rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.94);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.logo-item-img img {
+    max-width: 92%;
+    max-height: 74px;
+    object-fit: contain;
+    display: block;
+}
+
+/* Logo pill with image */
+.wn-logo-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.wn-logo-pill img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 4px;
+}
+
+/* ============================================================================
+   MATRIX LOGO DOTS — company logos on the competitive chart
+   ============================================================================ */
+
+.wn-dot-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.wn-dot-logo img {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    background: rgba(255, 255, 255, 0.94);
+    border-radius: 12px;
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.wn-dot-logo:hover img {
+    transform: scale(1.15);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.wn-dot-logo span {
+    font-size: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.4);
+    background: none;
+    border: none;
+    padding: 0;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.wn-dot-logo:hover span {
+    color: rgba(255, 255, 255, 0.7);
+    background: none;
+    border: none;
+    transform: none;
+}
+
+/* Responsive: shrink logo images on mobile */
+@media (max-width: 768px) {
+    .logo-item-img {
+        height: 64px;
+    }
+    .logo-item-img img {
+        max-height: 44px;
+    }
+    .wn-dot-logo img {
+        width: 40px;
+        height: 40px;
+        padding: 5px;
+        border-radius: 9px;
+    }
+    .wn-dot-logo span {
+        font-size: 0.45rem;
+    }
+}

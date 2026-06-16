@@ -1,0 +1,1127 @@
+/* ============================================================================
+   SANDBAGR — Pages Patch CSS
+   Additional styles for market.html and story.html — missing component classes
+   and structural fixes for non-index pages
+   ============================================================================ */
+
+/* ============================================================================
+   NAV OVERRIDES — match index.html nav exactly on all pages
+   ============================================================================ */
+
+#nav {
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(0,255,135,0.06);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+}
+.nav-inner {
+    max-width: 1200px;
+    height: 56px;
+    padding: 0 2.5rem;
+}
+.nav-logo {
+    font-size: 1.3rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    color: var(--green);
+    text-shadow: 0 0 20px rgba(0,255,135,0.2);
+}
+.nav-links {
+    gap: 1.8rem;
+    align-items: center;
+}
+.nav-links a {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    transition: color 0.3s, text-shadow 0.3s;
+    padding-bottom: 0;
+}
+.nav-links a::after {
+    bottom: -4px;
+    height: 1px;
+    background: var(--green);
+    box-shadow: 0 0 6px rgba(0,255,135,0.3);
+}
+.nav-links a:hover {
+    color: rgba(255,255,255,0.9);
+    text-shadow: 0 0 8px rgba(255,255,255,0.08);
+}
+.nav-links a.active {
+    color: var(--green);
+}
+.nav-cta {
+    font-size: 0.68rem !important;
+    padding: 0.5rem 1.25rem !important;
+    border-radius: 100px !important;
+    background: var(--green) !important;
+    color: #0A0A0A !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: 0 0 16px rgba(0,255,135,0.15);
+    transition: all 0.3s ease;
+}
+.nav-cta:hover {
+    box-shadow: 0 0 24px rgba(0,255,135,0.35) !important;
+    transform: scale(1.03);
+    color: #0A0A0A !important;
+}
+.nav-links a.nav-cta::after {
+    display: none !important;
+}
+.nav-links a.nav-cta,
+.nav-links a.nav-cta:hover {
+    color: #0A0A0A !important;
+    text-shadow: none !important;
+}
+
+/* ============================================================================
+   NAV DROPDOWN — Our Story sub-links
+   ============================================================================ */
+
+.nav-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-dropdown > a {
+    cursor: pointer;
+}
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 180px;
+    background: rgba(15, 15, 15, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 255, 135, 0.08);
+    border-radius: 12px;
+    padding: 0.5rem 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(6px);
+    transition: all 0.25s ease;
+    z-index: 9999;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.nav-dropdown-menu a {
+    display: block !important;
+    padding: 0.55rem 1.25rem !important;
+    font-size: 0.68rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+    color: rgba(255,255,255,0.45) !important;
+    transition: all 0.2s ease !important;
+    white-space: nowrap;
+}
+
+.nav-dropdown-menu a::after {
+    display: none !important;
+}
+
+.nav-dropdown-menu a:hover {
+    color: var(--green) !important;
+    background: rgba(0, 255, 135, 0.04);
+}
+
+/* Mobile: flatten dropdown into stacked links */
+@media (max-width: 768px) {
+    .nav-dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0;
+        min-width: auto;
+    }
+
+    .nav-dropdown-menu a {
+        padding: 0.75rem 1rem 0.75rem 2rem !important;
+        font-size: 0.65rem !important;
+        color: rgba(255,255,255,0.3) !important;
+    }
+}
+
+/* ============================================================================
+   STRUCTURAL FIXES
+   ============================================================================ */
+
+/* Fix hero height on non-index pages: avoid full viewport coverage */
+.hero:not(:has(.hero-mascot)) {
+  min-height: auto;
+  padding: 8rem 0 4rem;
+}
+
+/* Alias for scroll-bar: allow .scroll-bar to trigger same styles as .scroll-progress */
+.scroll-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--green), var(--green));
+  width: 0%;
+  z-index: 9999;
+  transition: width 0.05s linear;
+}
+
+/* Scroll reveal variants with staggered delays */
+.rv-s2 {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  transition-delay: 0.1s;
+}
+.rv-s2.vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rv-s3 {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  transition-delay: 0.2s;
+}
+.rv-s3.vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Waitlist disclaimer text styling */
+.wl-note {
+  font-size: 0.75rem;
+  color: var(--slate);
+  text-align: center;
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+
+/* ============================================================================
+   HERO SECTION STYLES — market.html & story.html
+   ============================================================================ */
+
+.hero-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--green);
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  background-color: rgba(0, 255, 135, 0.1);
+  border: 1px solid rgba(0, 255, 135, 0.12);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  color: var(--white);
+}
+
+/* ============================================================================
+   SECTION HEADING STYLES
+   ============================================================================ */
+
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 0.95rem;
+  color: var(--slate);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+/* ============================================================================
+   STAT CARD STYLES — market.html & story.html
+   ============================================================================ */
+
+.stat-card {
+  text-align: center;
+  flex: 1;
+  min-width: 200px;
+}
+
+.stat-number {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--green);
+  text-shadow: 0 0 16px rgba(0, 255, 135, 0.12);
+  margin-bottom: 0.5rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--slate);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+}
+
+/* ============================================================================
+   BADGE STYLES (trend badges)
+   ============================================================================ */
+
+.badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.4rem 0.8rem;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--slate);
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.badge:hover {
+  background: rgba(0, 255, 135, 0.06);
+  border-color: rgba(0, 255, 135, 0.2);
+  color: var(--green);
+}
+
+/* ============================================================================
+   COMPETITIVE POSITIONING MATRIX
+   ============================================================================ */
+
+.matrix-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.matrix-wrap {
+  position: relative;
+  max-width: 600px;
+  width: 100%;
+  aspect-ratio: 1;
+  background: var(--charcoal);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+  margin: 3rem auto;
+}
+
+/* Axis label positioning */
+.axis-label {
+  position: absolute;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--slate);
+  z-index: 5;
+}
+
+.x-left {
+  bottom: -2rem;
+  left: 1rem;
+}
+
+.x-right {
+  bottom: -2rem;
+  right: 1rem;
+}
+
+.y-top {
+  top: 1rem;
+  right: -6rem;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.y-bottom {
+  bottom: 1rem;
+  right: -6rem;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+/* Matrix dot styling */
+.matrix-dot {
+  position: absolute;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.matrix-dot:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.matrix-dot.hero-dot {
+  background: rgba(0, 255, 135, 0.08);
+  border-color: var(--green);
+  color: var(--green);
+  box-shadow: 0 0 20px rgba(0, 255, 135, 0.15);
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.dot-label {
+  display: block;
+  color: inherit;
+  font-weight: 700;
+}
+
+.matrix-caption {
+  font-size: 0.9rem;
+  color: var(--slate);
+  text-align: center;
+  max-width: 600px;
+  margin: 2rem auto 0;
+  line-height: 1.7;
+}
+
+/* ============================================================================
+   ROADMAP / VISION TIMELINE STYLES
+   ============================================================================ */
+
+.roadmap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.roadmap-phase {
+  background: var(--charcoal);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  position: relative;
+  transition: all 0.4s;
+}
+
+.roadmap-phase:hover {
+  border-color: rgba(0, 255, 135, 0.12);
+  transform: translateY(-4px);
+}
+
+.roadmap-phase.current {
+  border-color: rgba(0, 255, 135, 0.12);
+}
+
+.roadmap-phase.current::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--green);
+  border-radius: 20px 20px 0 0;
+}
+
+.roadmap-note {
+  font-size: 0.9rem;
+  color: var(--slate);
+  text-align: center;
+  max-width: 800px;
+  margin: 2rem auto 0;
+  line-height: 1.7;
+}
+
+.current {
+  /* Alias for highlighting current phase */
+}
+
+/* ============================================================================
+   CONNECT / FOOTER SECTION
+   ============================================================================ */
+
+.connect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.connect-links {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.connect-link {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--slate);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.connect-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--green);
+  transition: width 0.3s ease;
+}
+
+.connect-link:hover {
+  color: var(--green);
+}
+
+.connect-link:hover::after {
+  width: 100%;
+}
+
+/* ============================================================================
+   LOGO SECTION (aspirational companies)
+   ============================================================================ */
+
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.logo-item {
+  background: var(--charcoal);
+  border-radius: 20px;
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: all 0.4s;
+  opacity: 0.75;
+}
+
+.logo-item:hover {
+  opacity: 1;
+  border-color: rgba(0, 255, 135, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.logo-item-name {
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: var(--white);
+}
+
+.logo-item-cat {
+  font-size: 0.65rem;
+  color: var(--slate);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+}
+
+.logo-caption {
+  font-size: 0.9rem;
+  color: var(--slate);
+  text-align: center;
+  max-width: 700px;
+  margin-top: 2rem;
+  line-height: 1.7;
+}
+
+/* ============================================================================
+   QR CODE CONTAINER
+   ============================================================================ */
+
+.qr-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.qr-container img {
+  width: 120px;
+  height: auto;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.qr-container img:hover {
+  box-shadow: 0 0 20px rgba(0, 255, 135, 0.15);
+  transform: scale(1.05);
+}
+
+/* ============================================================================
+   STORY PAGE — TIMELINE SECTION
+   ============================================================================ */
+
+.timeline-month {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--green);
+  text-transform: uppercase;
+  text-align: right;
+  min-width: 160px;
+}
+
+.timeline-section {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+  align-items: flex-start;
+}
+
+.timeline-date {
+  min-width: 160px;
+  text-align: right;
+  padding-top: 0.4rem;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 180px;
+  top: 0.5rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--black);
+  border: 2.5px solid var(--green);
+  transform: translateX(-50%);
+  box-shadow: 0 0 12px rgba(0, 255, 135, 0.25);
+  z-index: 2;
+}
+
+/* ============================================================================
+   FOUNDER CARD SECTION
+   ============================================================================ */
+
+.founder-card-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.founder-card {
+  max-width: 540px;
+  width: 100%;
+  margin: 0 auto;
+  background: var(--charcoal);
+  border-radius: 20px;
+  padding: 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  text-align: center;
+}
+
+.founder-name {
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: var(--white);
+}
+
+.founder-role {
+  color: var(--green);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+
+.founder-school {
+  color: var(--slate);
+  font-size: 0.8rem;
+  margin-top: 0.15rem;
+}
+
+.founder-bio {
+  color: var(--slate);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-top: 1rem;
+}
+
+.founder-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.founder-links a {
+  color: var(--slate);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.founder-links a:hover {
+  color: var(--green);
+}
+
+.link-divider {
+  color: var(--slate);
+  opacity: 0.5;
+}
+
+/* ============================================================================
+   VALIDATION CHARTS SECTION
+   ============================================================================ */
+
+.charts-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.chart-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  background: rgba(255, 255, 255, 0.01);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.chart-card {
+  background: var(--charcoal);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: all 0.4s;
+}
+
+.chart-card:hover {
+  border-color: rgba(0, 255, 135, 0.12);
+  transform: translateY(-4px);
+}
+
+.chart-card h4 {
+  font-weight: 800;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: var(--white);
+}
+
+.chart-card canvas {
+  max-height: 220px;
+  width: 100%;
+}
+
+.chart-caption {
+  font-size: 0.7rem;
+  color: var(--green);
+  font-weight: 600;
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+/* ============================================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================================ */
+
+@media (max-width: 1024px) {
+  .roadmap-grid,
+  .roadmap {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .logo-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .chart-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-label {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .stat-number {
+    font-size: 2.2rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+  }
+
+  .logo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .logo-item {
+    padding: 1rem;
+  }
+
+  .logo-item-name {
+    font-size: 0.8rem;
+  }
+
+  .logo-item-cat {
+    font-size: 0.6rem;
+  }
+
+  .connect-links {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .timeline-month {
+    font-size: 0.65rem;
+    min-width: 140px;
+  }
+
+  .matrix-wrap {
+    max-width: 100%;
+  }
+
+  .y-top,
+  .y-bottom {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.3rem;
+    line-height: 1.2;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+  }
+
+  .stat-number {
+    font-size: 1.8rem;
+  }
+
+  .logo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .connect-links {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .badge {
+    font-size: 0.55rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .roadmap-phase {
+    padding: 1.5rem;
+  }
+
+  .founder-card {
+    padding: 1.5rem;
+  }
+
+  .founder-name {
+    font-size: 1.1rem;
+  }
+
+  .founder-bio {
+    font-size: 0.8rem;
+  }
+}
+
+/* ============================================================================
+   CTA SECTION — shared across market, story, founder pages
+   ============================================================================ */
+
+section.cta {
+    text-align: center;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section.cta .section-title {
+    margin-bottom: 2rem;
+    text-align: center;
+    width: 100%;
+}
+
+section.cta .btn {
+    display: inline-block;
+}
+
+/* ============================================================================
+   APPLE KEYNOTE CSS POLISH — Premium spacing, typography, hover behavior
+   ============================================================================ */
+
+/* Section spacing system */
+.apple-section {
+    padding: 6rem 0;
+}
+
+.apple-section-tight {
+    padding: 4rem 0;
+}
+
+.apple-section-loose {
+    padding: 8rem 0;
+}
+
+/* Refined divider — subtle hairline gradient */
+.divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+    border: none;
+    margin: 4rem auto;
+}
+
+/* Premium typography rhythm */
+.title {
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+}
+
+.label {
+    letter-spacing: 0.28em;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.desc {
+    line-height: 1.6;
+    max-width: 680px;
+}
+
+/* Refined hover easing — cubic-bezier for premium feel */
+.hot:hover,
+.btn:hover {
+    transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+/* Ensure iframe prototype sections have premium breathing */
+.proto-hero,
+.proto-satellites,
+.golden-hero,
+.groups-hero {
+    padding: 6rem 0;
+}
+
+/* Mobile scaling — gentler on small screens */
+@media (max-width: 880px) {
+    .apple-section,
+    .apple-section-loose {
+        padding: 4rem 0;
+    }
+
+    .proto-hero,
+    .proto-satellites,
+    .golden-hero,
+    .groups-hero {
+        padding: 4rem 0;
+    }
+}
+
+/* ============================================================
+   CAMBRIENT-TIER ANIMATION POLISH
+   Custom cursor, magnetic buttons, pinned engine pipeline,
+   line reveals. Loaded from pages-patch.css (sitewide).
+   ============================================================ */
+
+/* Custom cursor — small green dot + ring trail, desktop only */
+.sb-cursor,
+.sb-cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.2s, width 0.3s, height 0.3s, background 0.3s;
+    will-change: transform;
+}
+.sb-cursor {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00FF87;
+    box-shadow: 0 0 16px rgba(0, 255, 135, 0.6);
+}
+.sb-cursor-ring {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(0, 255, 135, 0.45);
+    border-radius: 50%;
+    background: transparent;
+    transition: width 0.35s cubic-bezier(0.16,1,0.3,1), height 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s, opacity 0.25s;
+}
+body.sb-cursor-hover .sb-cursor {
+    width: 4px;
+    height: 4px;
+}
+body.sb-cursor-hover .sb-cursor-ring {
+    width: 56px;
+    height: 56px;
+    border-color: rgba(0, 255, 135, 0.7);
+    background: rgba(0, 255, 135, 0.04);
+}
+@media (pointer: coarse) {
+    .sb-cursor,
+    .sb-cursor-ring { display: none !important; }
+}
+
+/* Hide native cursor on pointer-fine devices for full effect (optional, comment out for less invasive) */
+/* @media (pointer: fine) {
+    body { cursor: none; }
+    a, button, .btn, .hot, [data-go] { cursor: none; }
+} */
+
+/* Magnetic buttons — smoothing transform when not hovering */
+.btn,
+.wl-submit {
+    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+/* Pipeline scroll-driven states */
+.pipeline-step {
+    transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.pipeline-step:not(.pipeline-step-active) {
+    opacity: 0.32;
+}
+.pipeline-step-active {
+    opacity: 1;
+}
+.pipeline-step-current .pipeline-card {
+    box-shadow:
+        0 0 0 1px rgba(0, 255, 135, 0.45),
+        0 30px 80px rgba(0, 0, 0, 0.4),
+        0 0 60px rgba(0, 255, 135, 0.25);
+    border-color: rgba(0, 255, 135, 0.45) !important;
+    transform: translateX(8px);
+}
+.pipeline-step-current .pipeline-dot {
+    background: #00FF87 !important;
+    box-shadow: 0 0 0 6px rgba(0, 255, 135, 0.18), 0 0 30px rgba(0, 255, 135, 0.5) !important;
+    color: #000 !important;
+}
+.pipeline-step-current .pipeline-dot span {
+    color: #000 !important;
+}
+
+/* Scroll-driven pulse + fill on the track */
+.pipeline-fill {
+    transition: height 0.05s linear;
+}
+.pipeline-pulse {
+    transition: top 0.05s linear;
+}
+
+/* Line-reveal headline — masked rise */
+.reveal-lines {
+    overflow: visible;
+}
+.rl-line {
+    display: block;
+    overflow: hidden;
+    line-height: 1.05;
+    padding: 0.04em 0;
+}
+.rl-inner {
+    display: inline-block;
+    will-change: transform;
+}

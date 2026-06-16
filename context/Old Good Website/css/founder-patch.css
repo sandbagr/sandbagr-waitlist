@@ -1,0 +1,593 @@
+/* ============================================================================
+   FOUNDER-PATCH.CSS — Styles for founder.html
+   Cinematic, personal, premium. Matches the index.html design system.
+   ============================================================================ */
+
+/* ============================================================================
+   STORY PROSE SECTION
+   ============================================================================ */
+
+.f-story-prose p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.05rem;
+    line-height: 1.85;
+    max-width: 720px;
+    margin-bottom: 1.5rem;
+}
+
+.f-story-prose p:last-child {
+    margin-bottom: 0;
+}
+
+.f-story-prose strong {
+    color: #fff;
+    font-weight: 700;
+}
+
+/* ============================================================================
+   STORY PAGE — TIGHTER SPACING
+   ============================================================================ */
+
+/* Reduce gaps between all sections on story page */
+body .f-bio-section,
+body .f-origin-section,
+body .f-bg-section,
+body .f-role-section,
+body .f-learnings-section {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+body .timeline-section {
+    padding: 1rem 2rem 2rem;
+}
+
+body .divider {
+    margin: 0.5rem 0;
+}
+
+/* Give label badges breathing room between divider and title */
+body .label {
+    margin-top: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+body .pull-quote {
+    padding: 2rem 0;
+}
+
+body .cta {
+    padding: 2rem 0 3rem;
+}
+
+/* ============================================================================
+   STORY PAGE — TIMELINE REDESIGN (stacked cards, no left column)
+   ============================================================================ */
+
+.timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+
+.tl-card {
+    background: var(--charcoal);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.tl-card:hover {
+    border-color: rgba(0, 255, 135, 0.1);
+    transform: translateY(-3px);
+}
+
+.tl-card-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.85rem;
+}
+
+.tl-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: var(--green);
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.tl-badge {
+    font-size: 0.55rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 100px;
+    background: rgba(0, 255, 135, 0.06);
+    border: 1px solid rgba(0, 255, 135, 0.12);
+    color: var(--green);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.tl-card h3 {
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+}
+
+.tl-card p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.82rem;
+    line-height: 1.65;
+    flex: 1;
+}
+
+@media (max-width: 900px) {
+    .timeline-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 560px) {
+    .timeline-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tl-card {
+        padding: 1.25rem;
+    }
+}
+
+/* ============================================================================
+   PHOTO + BIO SECTION
+   ============================================================================ */
+
+.f-bio-section {
+    padding: 2rem 0 4rem;
+}
+
+.f-bio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Photo frame — cinematic crop with glow */
+.f-photo-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.f-photo-frame {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    max-width: 380px;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    border: 1px solid rgba(0, 255, 135, 0.08);
+    box-shadow:
+        0 0 40px rgba(0, 255, 135, 0.06),
+        0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.f-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+    filter: contrast(1.05) brightness(0.95);
+}
+
+/* Dark gradient overlay at bottom — blends photo into dark bg */
+.f-photo-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+/* Bio content */
+.f-bio-content {
+    max-width: 440px;
+}
+
+.f-bio-name {
+    font-weight: 900;
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    color: var(--white);
+    letter-spacing: -0.02em;
+}
+
+.f-bio-role {
+    color: var(--green);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 0.35rem;
+}
+
+.f-bio-text {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    margin-top: 1.25rem;
+}
+
+.f-bio-text strong {
+    color: var(--green);
+}
+
+.f-bio-links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.f-bio-links a {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.f-bio-links a:hover {
+    color: var(--green);
+}
+
+/* ============================================================================
+   ORIGIN STORY CARDS
+   ============================================================================ */
+
+.f-origin-section {
+    padding: 2rem 0 4rem;
+}
+
+.f-origin-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+}
+
+.f-origin-card {
+    background: var(--charcoal);
+    border-radius: 20px;
+    padding: 2.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: all 0.4s ease;
+}
+
+.f-origin-card:hover {
+    border-color: rgba(0, 255, 135, 0.1);
+    transform: translateY(-4px);
+}
+
+.f-origin-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    font-size: 2rem;
+    color: rgba(0, 255, 135, 0.15);
+    margin-bottom: 1rem;
+    line-height: 1;
+}
+
+.f-origin-card h3 {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+}
+
+.f-origin-card p {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+
+.f-origin-card p strong {
+    color: var(--green);
+}
+
+/* ============================================================================
+   BACKGROUND — EDUCATION & AFFILIATIONS
+   ============================================================================ */
+
+.f-bg-section {
+    padding: 2rem 0 4rem;
+}
+
+.f-bg-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.f-bg-group-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0, 255, 135, 0.08);
+}
+
+.f-bg-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.f-bg-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.f-bg-item:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.f-bg-logo-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.f-bg-logo {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+}
+
+/* Invert logos that have white backgrounds with dark text */
+.f-bg-logo-invert {
+    /* These logos have white/light backgrounds and need no extra treatment
+       since the container has a white bg */
+}
+
+.f-bg-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--white);
+}
+
+.f-bg-detail {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 0.1rem;
+}
+
+/* ============================================================================
+   ROLE / WHAT I DO SECTION
+   ============================================================================ */
+
+.f-role-section {
+    padding: 2rem 0 4rem;
+}
+
+.f-role-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.f-role-card {
+    background: var(--charcoal);
+    border-radius: 20px;
+    padding: 2.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: all 0.4s ease;
+}
+
+.f-role-card:hover {
+    border-color: rgba(0, 255, 135, 0.1);
+    transform: translateY(-4px);
+}
+
+.f-role-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 1.25rem;
+}
+
+.f-role-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.f-role-card h3 {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+}
+
+.f-role-card p {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+
+.f-role-card p strong {
+    color: var(--green);
+}
+
+/* pull-quote inherited from style.css */
+
+/* ============================================================================
+   KEY LEARNINGS SECTION
+   ============================================================================ */
+
+.f-learnings-section {
+    padding: 2rem 0 4rem;
+}
+
+.f-learnings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+}
+
+.f-learning-card {
+    background: var(--charcoal);
+    border-radius: 20px;
+    padding: 2.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.f-learning-card:hover {
+    border-color: rgba(0, 255, 135, 0.1);
+    transform: translateY(-4px);
+}
+
+.f-learning-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: var(--green);
+    margin-bottom: 0.75rem;
+    line-height: 1;
+    opacity: 0.6;
+}
+
+.f-learning-card h3 {
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+}
+
+.f-learning-card p {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+
+/* ============================================================================
+   CTA SECTION
+   ============================================================================ */
+
+.cta {
+    text-align: center;
+    padding: 3rem 2rem 4rem;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ============================================================================
+   RESPONSIVE
+   ============================================================================ */
+
+@media (max-width: 900px) {
+    .f-bio-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
+    }
+
+    .f-bio-content {
+        max-width: 100%;
+    }
+
+    .f-bio-links {
+        justify-content: center;
+    }
+
+    .f-photo-frame {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .f-origin-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .f-bg-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .f-role-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .f-learnings-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    body .pull-quote {
+        padding: 3rem 1.5rem;
+    }
+    body .cta {
+        padding: 2rem 1.5rem 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .f-photo-frame {
+        max-width: 260px;
+    }
+
+    .f-origin-card {
+        padding: 1.5rem;
+    }
+
+    .f-role-card {
+        padding: 1.5rem;
+    }
+
+    .f-learning-card {
+        padding: 1.5rem;
+    }
+
+    body .pull-quote {
+        padding: 2rem 1rem;
+    }
+
+    body .cta {
+        padding: 2rem 1rem 3rem;
+    }
+}

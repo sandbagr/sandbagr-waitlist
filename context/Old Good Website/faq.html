@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ — SANDBAGR</title>
+    <meta name="description" content="Got questions about SANDBAGR? We've got answers. How peer-to-peer betting works, why the app holds zero money, whether it's legal, and everything else you need to know.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/faq-patch.css?v=2">
+    <link rel="stylesheet" href="css/pages-patch.css?v=3">
+</head>
+<body>
+    <!-- Ambient background orbs -->
+    <div class="faq-bg-orb orb-1"></div>
+    <div class="faq-bg-orb orb-2"></div>
+
+    <!-- Scrollbar indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Nav placeholder -->
+    <div id="nav-placeholder"></div>
+
+    <!-- ==================== PAGE HERO ==================== -->
+    <section class="faq-hero">
+        <div class="container">
+            <div class="rv">
+                <span class="label">Answers</span>
+            </div>
+            <h1 class="rv rv-s2">You've got questions.<br>We don't <span class="grad">dodge them.</span></h1>
+            <p class="faq-hero-desc rv rv-s3">Everything you need to know before you step up.</p>
+        </div>
+    </section>
+
+    <div class="faq-divider"></div>
+
+    <!-- ==================== PROTOTYPE EMBED ==================== -->
+    <section class="faq-prototype-embed">
+        <div class="faq-prototype-label">Try It While You Read</div>
+        <div class="faq-prototype-frame">
+            <iframe src="demo/sandbagr-app.html?app=nineteenth-hole" class="faq-prototype-iframe"></iframe>
+        </div>
+        <div class="faq-prototype-hint">This is the actual prototype. Tap anywhere.</div>
+    </section>
+
+    <div class="faq-divider"></div>
+
+    <!-- ==================== FAQ ACCORDION ==================== -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+
+            <!-- Q1 -->
+            <div class="faq-item rv" data-index="01">
+                <button class="faq-trigger" aria-expanded="false">
+                    <div class="faq-number"><span>01</span></div>
+                    <span class="faq-question">Does real money go through the app?</span>
+                    <div class="faq-icon">
+                        <span class="faq-icon-bar bar-h"></span>
+                        <span class="faq-icon-bar bar-v"></span>
+                    </div>
+                </button>
+                <div class="faq-answer" aria-hidden="true">
+                    <div class="faq-answer-inner">
+                        <p>No. <strong>SANDBAGR holds zero money.</strong> Every bet is peer-to-peer between players. The app is a <span class="g">ledger</span> &mdash; it tracks who owes who, then opens a pre-filled <strong>Venmo deep link</strong> per pair on the 19th Hole screen. You settle with your buddies directly. We're an <span class="g">accounting tool</span>, not a payment processor, not a sportsbook, not a bookie.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="faq-item rv" data-index="02">
+                <button class="faq-trigger" aria-expanded="false">
+                    <div class="faq-number"><span>02</span></div>
+                    <span class="faq-question">What are pre-round markets?</span>
+                    <div class="faq-icon">
+                        <span class="faq-icon-bar bar-h"></span>
+                        <span class="faq-icon-bar bar-v"></span>
+                    </div>
+                </button>
+                <div class="faq-answer" aria-hidden="true">
+                    <div class="faq-answer-inner">
+                        <p><span class="g">Polymarket-style YES/NO contracts</span> on round outcomes, opened the night before tee time. <strong>"Lowest score today?" "Anyone goes hole-in-one?" "Mike vs. Jake H2H?"</strong> Group prices the line by trading in. You buy YES at 62¢, the line moves, you trade out or hold to settlement. Round resolves contracts from the scorecard. League positions settle <strong>on the 1st of every month</strong> via debt-minimized Venmo set &mdash; one tap per pair, not chasing 24 people.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="faq-item rv" data-index="03">
+                <button class="faq-trigger" aria-expanded="false">
+                    <div class="faq-number"><span>03</span></div>
+                    <span class="faq-question">How does the app calculate odds?</span>
+                    <div class="faq-icon">
+                        <span class="faq-icon-bar bar-h"></span>
+                        <span class="faq-icon-bar bar-v"></span>
+                    </div>
+                </button>
+                <div class="faq-answer" aria-hidden="true">
+                    <div class="faq-answer-inner">
+                        <p>A <strong>logistic regression model</strong> weighs <span class="g">real-time inputs</span>: GHIN handicap, distance, lie, club yardages, hole context, personal history, and momentum &mdash; then converts that probability to a decimal multiplier with a thin <span class="g">vig built in</span>. On Hole 1 we use public data from <strong>600M+ real shots.</strong> By Round 5, your personal stats take over. By Round 20, the engine <span class="g">knows your game better than you do.</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="faq-item rv" data-index="04">
+                <button class="faq-trigger" aria-expanded="false">
+                    <div class="faq-number"><span>04</span></div>
+                    <span class="faq-question">When do market positions settle?</span>
+                    <div class="faq-icon">
+                        <span class="faq-icon-bar bar-h"></span>
+                        <span class="faq-icon-bar bar-v"></span>
+                    </div>
+                </button>
+                <div class="faq-answer" aria-hidden="true">
+                    <div class="faq-answer-inner">
+                        <p>In-round bets <strong>settle the same day</strong> on the 19th Hole screen between your foursome. Pre-round market positions are different &mdash; they often span the whole league (24+ people across multiple foursomes). Chasing 24 Venmo settlements is bad UX. So markets <strong>auto-settle on the 1st of every month</strong>: the app debt-minimizes the entire league's positions, sends each pair one Venmo deep-link, and you clear it in seconds. <span class="g">One ritual day a month, instead of one chase per round.</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="faq-item rv" data-index="05">
+                <button class="faq-trigger" aria-expanded="false">
+                    <div class="faq-number"><span>05</span></div>
+                    <span class="faq-question">Is this gambling? Is it legal?</span>
+                    <div class="faq-icon">
+                        <span class="faq-icon-bar bar-h"></span>
+                        <span class="faq-icon-bar bar-v"></span>
+                    </div>
+                </button>
+                <div class="faq-answer" aria-hidden="true">
+                    <div class="faq-answer-inner">
+                        <p><strong>No.</strong> Gambling requires three elements: consideration (money in), chance, and a prize. <span class="g">No real money flows through the app</span> and golf is a <strong>game of skill</strong>, so two of three elements are absent. SANDBAGR is a social scorekeeper and entertainment tool. Same as keeping a side-bet tally on the Notes app. We just make it <span class="g">way more fun.</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="faq-item rv" data-index="06">
+                <button class="faq-trigger" aria-expanded="false">
+                    <div class="faq-number"><span>06</span></div>
+                    <span class="faq-question">How do payouts work at the end?</span>
+                    <div class="faq-icon">
+                        <span class="faq-icon-bar bar-h"></span>
+                        <span class="faq-icon-bar bar-v"></span>
+                    </div>
+                </button>
+                <div class="faq-answer" aria-hidden="true">
+                    <div class="faq-answer-inner">
+                        <p>The <span class="g">19th Hole</span> screen shows your net win/loss across in-round bets and Golden Bet, debt-minimized into per-pair Venmo links. Tap "Mike pays you $53.50 / VENMO" and Venmo opens pre-filled. Done. <strong>Pre-round market</strong> positions roll into your monthly Settle Day on the 1st. <span class="g">Two channels, one app, app holds zero.</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="faq-item rv" data-index="07">
+                <button class="faq-trigger" aria-expanded="false">
+                    <div class="faq-number"><span>07</span></div>
+                    <span class="faq-question">Can I bet against my friend directly?</span>
+                    <div class="faq-icon">
+                        <span class="faq-icon-bar bar-h"></span>
+                        <span class="faq-icon-bar bar-v"></span>
+                    </div>
+                </button>
+                <div class="faq-answer" aria-hidden="true">
+                    <div class="faq-answer-inner">
+                        <p><strong>Yes &mdash; that's the whole product.</strong> Every bet is direct peer-to-peer. Tap a player, choose a bet card, set your stake, broadcast. The bet appears in the live feed with a <span class="g">FADE THIS BET</span> button. Anyone in the foursome taps to take the other side and lock the match. <strong>No house, no pot, no rake.</strong> Winner collects from the loser, app tracks the math.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="faq-item rv" data-index="08">
+                <button class="faq-trigger" aria-expanded="false">
+                    <div class="faq-number"><span>08</span></div>
+                    <span class="faq-question">What if someone cheats or lies about a score?</span>
+                    <div class="faq-icon">
+                        <span class="faq-icon-bar bar-h"></span>
+                        <span class="faq-icon-bar bar-v"></span>
+                    </div>
+                </button>
+                <div class="faq-answer" aria-hidden="true">
+                    <div class="faq-answer-inner">
+                        <p><strong>Group-verification model.</strong> Scores are player-entered but visible to the entire group in <span class="g">real time.</span> Anyone can flag a dispute, which triggers a <strong>group vote.</strong> GPS data adds another layer. If someone claims a 280-yard drive but their phone says 180, <span class="g">the numbers don't lie.</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q9 -->
+            <div class="faq-item rv" data-index="09">
+                <button class="faq-trigger" aria-expanded="false">
+                    <div class="faq-number"><span>09</span></div>
+                    <span class="faq-question">What does the app cost?</span>
+                    <div class="faq-icon">
+                        <span class="faq-icon-bar bar-h"></span>
+                        <span class="faq-icon-bar bar-v"></span>
+                    </div>
+                </button>
+                <div class="faq-answer" aria-hidden="true">
+                    <div class="faq-answer-inner">
+                        <p><strong>Free to play.</strong> The core betting, scoretracking, and social experience costs <span class="g">nothing.</span> Revenue comes from the <strong>Pro Locker</strong> subscription (AI Caddie, advanced analytics, custom cosmetics), brand partnerships, and in-app cosmetics.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q10 -->
+            <div class="faq-item rv" data-index="10">
+                <button class="faq-trigger" aria-expanded="false">
+                    <div class="faq-number"><span>10</span></div>
+                    <span class="faq-question">What is the Golden Bet?</span>
+                    <div class="faq-icon">
+                        <span class="faq-icon-bar bar-h"></span>
+                        <span class="faq-icon-bar bar-v"></span>
+                    </div>
+                </button>
+                <div class="faq-answer" aria-hidden="true">
+                    <div class="faq-answer-inner">
+                        <p><strong>One signature moment per round.</strong> You declare a Golden Bet on a shot you're about to take &mdash; the 22-foot putt, the carry over water, the must-make par save. <span class="g">Whole foursome can take or fade.</span> Optional 15-second video clip captures the moment. Win, gold accent payouts ripple through the feed, the clip lives in your Round Recap. Miss, you eat it. <strong>Maximum spectacle, minimum frequency.</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q11 -->
+            <div class="faq-item rv" data-index="11">
+                <button class="faq-trigger" aria-expanded="false">
+                    <div class="faq-number"><span>11</span></div>
+                    <span class="faq-question">What's coming after launch?</span>
+                    <div class="faq-icon">
+                        <span class="faq-icon-bar bar-h"></span>
+                        <span class="faq-icon-bar bar-v"></span>
+                    </div>
+                </button>
+                <div class="faq-answer" aria-hidden="true">
+                    <div class="faq-answer-inner">
+                        <p><strong>V2</strong> adds <span class="g">Spectator Mode</span>, AI Caddie (auto-generated bet cards), Apple Watch integration, and expanded heckle/comment system. <strong>V3</strong> is the <span class="g">"Strava Endgame"</span>: Country Club Tournament Mode, course partnerships, league leaderboards at scale, and a social golf network that stands on its own. Long-term: <strong>the operating system for recreational golf.</strong></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="faq-divider"></div>
+
+    <!-- ==================== CTA SECTION ==================== -->
+    <section class="faq-cta rv">
+        <div class="container" style="text-align: center;">
+            <h2 class="rv rv-s2">Still have questions?<br><span class="grad">Come find out.</span></h2>
+            <p class="faq-cta-desc rv rv-s3">Join the waitlist and be <strong>first to know</strong> when we <span class="g">launch.</span></p>
+            <a href="waitlist.html" class="btn btn-p faq-cta-btn rv rv-s4">Join the Waitlist</a>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts — same stack as other pages -->
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+    <script src="js/main.js?v=18"></script>
+    <script src="js/animations.js?v=5"></script>
+
+    <!-- FAQ accordion + scroll animations -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+      /* =========================================================
+         ACCORDION TOGGLE
+         ========================================================= */
+      const faqItems = document.querySelectorAll('.faq-item');
+
+      faqItems.forEach(item => {
+        const trigger = item.querySelector('.faq-trigger');
+        const answer  = item.querySelector('.faq-answer');
+
+        trigger.addEventListener('click', () => {
+          const isOpen = item.classList.contains('open');
+
+          // Close all others
+          faqItems.forEach(other => {
+            if (other !== item && other.classList.contains('open')) {
+              other.classList.remove('open');
+              other.querySelector('.faq-trigger').setAttribute('aria-expanded', 'false');
+              other.querySelector('.faq-answer').setAttribute('aria-hidden', 'true');
+              other.querySelector('.faq-answer').style.maxHeight = null;
+            }
+          });
+
+          // Toggle current
+          if (!isOpen) {
+            item.classList.add('open');
+            trigger.setAttribute('aria-expanded', 'true');
+            answer.setAttribute('aria-hidden', 'false');
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+          } else {
+            item.classList.remove('open');
+            trigger.setAttribute('aria-expanded', 'false');
+            answer.setAttribute('aria-hidden', 'true');
+            answer.style.maxHeight = null;
+          }
+        });
+      });
+
+      /* =========================================================
+         STAGGERED REVEAL — items cascade on scroll
+         ========================================================= */
+      const revealItems = document.querySelectorAll('.faq-item');
+      let revealDelay = 0;
+
+      const faqObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.dataset.index) - 1;
+            entry.target.style.transitionDelay = (index * 0.06) + 's';
+            entry.target.classList.add('vis');
+            faqObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+      revealItems.forEach(item => faqObserver.observe(item));
+
+    });
+    </script>
+</body>
+</html>
