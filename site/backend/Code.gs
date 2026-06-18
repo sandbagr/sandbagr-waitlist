@@ -18,7 +18,7 @@
    ============================================================================ */
 
 var SHEET_NAME = 'Waitlist';
-var SEED = 2847;   // starting line size so #1 isn't lonely — must match waitlist.js seedCount
+var SEED = 0;      // no seed — count + positions reflect the real number of signups (must match waitlist.js seedCount)
 var JUMP = 35;     // spots you cut per friend who joins on your link
 
 function doGet(e) { return handle(e); }
@@ -29,9 +29,9 @@ function handle(e) {
   var action = p.action || '';
   var out;
   try {
-    if (action === 'join')        out = join_(p.email, p.ref, p.name);
+    if (action === 'join')        out = join_(p.phone, p.ref, p.name);
     else if (action === 'status') out = status_(p.code);
-    else if (action === 'invite') out = invite_(p.code, p.email);
+    else if (action === 'invite') out = invite_(p.code, p.phone);
     else if (action === 'count')  out = { count: count_() };
     else                          out = { error: 'unknown action' };
   } catch (err) {
@@ -48,7 +48,7 @@ function sheet_() {
   var sh = ss.getSheetByName(SHEET_NAME);
   if (!sh) { sh = ss.insertSheet(SHEET_NAME); }
   if (sh.getLastRow() === 0) {
-    sh.appendRow(['order', 'email', 'code', 'ref', 'joinedAt', 'name']);
+    sh.appendRow(['order', 'phone', 'code', 'ref', 'joinedAt', 'name']);
   }
   return sh;
 }
@@ -58,7 +58,7 @@ function rows_() {
   if (n < 2) { return []; }
   var vals = sh.getRange(2, 1, n - 1, 6).getValues();
   return vals.map(function (r) {
-    return { order: Number(r[0]), email: String(r[1]).toLowerCase(), code: String(r[2]),
+    return { order: Number(r[0]), phone: normalizePhone_(String(r[1])), code: String(r[2]),
              ref: String(r[3] || ''), name: String(r[5] || '') };
   });
 }
@@ -69,8 +69,13 @@ function makeCode_() {
 }
 
 // ---- input hardening --------------------------------------------------------
-var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-function isEmail_(e) { return typeof e === 'string' && e.length <= 254 && EMAIL_RE.test(e); }
+// Phone: keep digits only (drop a leading US "1"); valid = 10–15 digits.
+function normalizePhone_(p) {
+  var d = String(p == null ? '' : p).replace(/\D/g, '');
+  if (d.length === 11 && d.charAt(0) === '1') { d = d.slice(1); }
+  return d;
+}
+function isPhone_(p) { var d = normalizePhone_(p); return d.length >= 10 && d.length <= 15; }
 // Neutralize Google Sheets formula injection: a cell whose text starts with
 // = + - @ (or tab/CR) can execute as a formula when the owner opens the sheet
 // (e.g. =IMPORTXML(...) exfiltrates other rows). Prefix those with an apostrophe.
@@ -83,13 +88,11 @@ function cleanName_(v) {
   var s = String(v == null ? '' : v).replace(/[<>=+@\t\r\n]/g, '').trim();
   return s.slice(0, 40);
 }
-// A display label for someone in your crew: their first name, else masked email.
+// A display label for someone in your crew: their first name, else masked phone.
 function crewLabel_(p) {
   if (p.name) { return p.name; }
-  var e = p.email || '';
-  var at = e.indexOf('@');
-  if (at <= 0) { return 'A friend'; }
-  return e.slice(0, 1) + '•••' + e.slice(at);   // d•••@gmail.com
+  var d = String(p.phone || '');
+  return d.length >= 4 ? ('•••-' + d.slice(-4)) : 'A friend';   // •••-1234
 }
 // Everyone who joined on `code`, in join order.
 function referredOf_(all, code) {
@@ -117,9 +120,9 @@ function positionOf_(all, code) {
 }
 
 // ---- actions ----------------------------------------------------------------
-function join_(email, ref, name) {
-  email = String(email || '').trim().toLowerCase();
-  if (!isEmail_(email)) { return { error: 'invalid email' }; }
+function join_(phone, ref, name) {
+  phone = normalizePhone_(phone);
+  if (!isPhone_(phone)) { return { error: 'invalid phone' }; }
   ref = cleanCode_(ref);
   name = cleanName_(name);
   var lock = LockService.getScriptLock();
@@ -127,7 +130,7 @@ function join_(email, ref, name) {
   try {
     var all = rows_();
     for (var i = 0; i < all.length; i++) {
-      if (all[i].email === email) {
+      if (all[i].phone === phone) {
         var st0 = positionOf_(all, all[i].code);
         return { code: all[i].code, position: st0.position, refCount: st0.refCount,
                  crew: referredOf_(all, all[i].code), returning: true };
@@ -139,8 +142,8 @@ function join_(email, ref, name) {
     var refValid = '';
     if (ref) { for (var k = 0; k < all.length; k++) { if (all[k].code === ref) { refValid = ref; break; } } }
     var order = all.length + 1;
-    // email is validated to EMAIL_RE so it can't be a formula; safeCell_ is belt-and-suspenders.
-    sheet_().appendRow([order, safeCell_(email), code, refValid, new Date(), safeCell_(name)]);
+    // phone is digits-only after normalize so it can't be a formula; safeCell_ is belt-and-suspenders.
+    sheet_().appendRow([order, safeCell_(phone), code, refValid, new Date(), safeCell_(name)]);
     var all2 = rows_();
     var st = positionOf_(all2, code);
     return { code: code, position: st.position, refCount: st.refCount,
@@ -157,15 +160,15 @@ function status_(code) {
   return st ? { position: st.position, refCount: st.refCount, crew: referredOf_(all, code) }
             : { error: 'not found' };
 }
-function invite_(code, email) {
-  // Logs intent on an "Invites" tab. (Sending email is optional — see note in README.)
+function invite_(code, phone) {
+  // Logs intent on an "Invites" tab. (Currently unused — the site shares via link, not direct invite.)
   code = cleanCode_(code);
-  email = String(email || '').trim().toLowerCase();
-  if (!isEmail_(email)) { return { error: 'invalid email' }; }
+  phone = normalizePhone_(phone);
+  if (!isPhone_(phone)) { return { error: 'invalid phone' }; }
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var inv = ss.getSheetByName('Invites');
   if (!inv) { inv = ss.insertSheet('Invites'); inv.appendRow(['from', 'to', 'at']); }
-  inv.appendRow([code, safeCell_(email), new Date()]);
+  inv.appendRow([code, safeCell_(phone), new Date()]);
   return { ok: true };
 }
 function count_() {

@@ -97,11 +97,14 @@
       stagger: 0.32,
       scrollTrigger: { trigger: '#chatMock', start: 'top 75%' }
     });
-    // bold bridge — the climax that hands off to the product
-    window.gsap.from(bridge, {
-      opacity: 0, y: 56, scale: 0.9, duration: 1, ease: 'power3.out',
-      scrollTrigger: { trigger: bridge, start: 'top 85%' }
-    });
+    // bold bridge — the climax that hands off to the product. It now lives in the
+    // magic section; if present here animate it, otherwise it reveals via .rv.
+    if (bridge) {
+      window.gsap.from(bridge, {
+        opacity: 0, y: 56, scale: 0.9, duration: 1, ease: 'power3.out',
+        scrollTrigger: { trigger: bridge, start: 'top 85%' }
+      });
+    }
   })();
 
   /* ----------------------------------------- number count-up helper (queue/trust) */
@@ -131,10 +134,12 @@
   // live "already in line" social proof — hide the line until the real count
   // loads from the backend so it never flashes "0 already in line".
   var trustLine = trustCountEl ? trustCountEl.closest('.qc-trust') : null;
+  var heroCountEl = $('#heroCount');
   if (trustLine) { trustLine.style.visibility = 'hidden'; }
   Waitlist.count().then(function (n) {
     if (trustLine) { trustLine.style.visibility = 'visible'; }
     tickTo(trustCountEl, n);
+    if (heroCountEl) { tickTo(heroCountEl, n); }
   });
 
   function tickTo(el, target) {
@@ -202,15 +207,15 @@
       var hp = form.querySelector('.hp');
       if (hp && hp.value) { revealPosition({ code: 'XXXXXX', position: 847, refCount: 0, crew: [] }); return; }
       var nameInput = form.querySelector('input[name="firstName"]');
-      var input = form.querySelector('input[name="email"]');
+      var input = form.querySelector('input[name="phone"]');
       var name = (nameInput && nameInput.value || '').trim();
-      var email = input.value.trim();
+      var phone = input.value.trim();
       showError(errId, '');
       if (!name) { showError(errId, 'Add your first name.'); if (nameInput) { nameInput.focus(); } return; }
-      if (!Waitlist.validEmail(email)) { showError(errId, 'Enter a valid email.'); input.focus(); return; }
+      if (!Waitlist.validPhone(phone)) { showError(errId, 'Enter a valid phone number.'); input.focus(); return; }
       var btn = form.querySelector('button'); var label = btn.textContent;
       btn.disabled = true; btn.textContent = 'Locking in…';
-      Waitlist.join(email, name).then(function (res) {
+      Waitlist.join(phone, name).then(function (res) {
         btn.disabled = false; btn.textContent = label;
         // both captures route to the queue card in section 6
         revealPosition(res);
@@ -255,25 +260,6 @@
     if (window.gsap && !prefersReduced) {
       window.gsap.fromTo(el, { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, yoyo: true, repeat: 1 });
     }
-  }
-
-  /* ---- direct email invites ---- */
-  var inviteForm = $('#inviteForm');
-  if (inviteForm) {
-    inviteForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var hp = inviteForm.querySelector('.hp');
-      if (hp && hp.value) { return; }
-      var me = Waitlist.me(); if (!me) { return; }
-      var input = inviteForm.querySelector('input[name="friendEmail"]');
-      var fe = input.value.trim();
-      if (!Waitlist.validEmail(fe)) { input.focus(); return; }
-      Waitlist.invite(me.code, fe).then(function () {
-        input.value = '';
-        var sent = $('#inviteSent');
-        sent.hidden = false; sent.textContent = 'Invite sent to ' + fe + ' — they\'ll see you sent it.';
-      });
-    });
   }
 
   /* ---- copy referral link ---- */
@@ -323,4 +309,81 @@
       shareNative.style.display = 'none';
     }
   }
+})();
+
+/* ============================================================================
+   SANDBAGR — self-running phone animations (voice-to-ledger + groups cascade).
+   Vanilla setTimeout loops, independent of the GSAP scroll choreography above.
+   ============================================================================ */
+(function voiceToLedger() {
+  'use strict';
+  var q = document.getElementById('g-q'), cur = document.getElementById('g-cur'), course = document.getElementById('g-course');
+  var av = [document.getElementById('gav1'), document.getElementById('gav2'), document.getElementById('gav3')];
+  var start = document.getElementById('g-start'), betnow = document.getElementById('g-betnow'), custom = document.getElementById('g-custom');
+  var ring = document.getElementById('g-ring'), mic = document.getElementById('g-mic'), wave = document.getElementById('g-wave'), cap = document.getElementById('g-cap'), sentence = document.getElementById('g-sentence');
+  var neu = document.getElementById('g-new');
+  var sc = [document.getElementById('gs1'), document.getElementById('gs2'), document.getElementById('gs3'), document.getElementById('gs4'), document.getElementById('gs5')];
+  if (!sc[0]) { return; }
+  var tiles = document.querySelectorAll('#gs3 .gtile');
+  var T = []; function at(ms, fn) { T.push(setTimeout(fn, ms)); }
+  function show(el) { el.classList.add('show'); } function hide(el) { el.classList.remove('show'); }
+  var query = 'Pebble Beach', words = ['Mike Bennett', 'shanks', 'it', 'off', 'the', 'tee'];
+  function run() {
+    T.forEach(clearTimeout); T = []; sc.forEach(hide);
+    q.textContent = ''; hide(course); cur.style.display = 'inline';
+    av.forEach(function (a) { a.classList.remove('sel'); }); start.classList.remove('show', 'press');
+    betnow.classList.remove('press'); tiles.forEach(function (t) { t.classList.remove('show', 'tap'); });
+    ring.classList.remove('on'); mic.classList.remove('on'); wave.classList.remove('on'); cap.textContent = '';
+    sentence.classList.remove('show', 'dock'); neu.classList.remove('show', 'settle');
+    at(200, function () { show(sc[0]); });
+    for (var i = 1; i <= query.length; i++) { (function (n) { at(450 + n * 55, function () { q.textContent = query.slice(0, n); }); })(i); }
+    at(450 + query.length * 55 + 250, function () { cur.style.display = 'none'; show(course); });
+    at(2600, function () { hide(sc[0]); });
+    at(2900, function () { show(sc[1]); });
+    at(3350, function () { av[0].classList.add('sel'); }); at(3680, function () { av[1].classList.add('sel'); }); at(4010, function () { av[2].classList.add('sel'); });
+    at(4500, function () { show(start); }); at(5100, function () { start.classList.add('press'); }); at(5700, function () { hide(sc[1]); });
+    at(6000, function () { show(sc[2]); }); at(6550, function () { betnow.classList.add('press'); });
+    tiles.forEach(function (tl, i) { at(6950 + i * 150, function () { tl.classList.add('show'); }); });
+    at(8050, function () { custom.classList.add('tap'); }); at(8500, function () { custom.classList.remove('tap'); }); at(8800, function () { hide(sc[2]); });
+    at(9100, function () { show(sc[3]); }); at(9450, function () { mic.classList.add('on'); ring.classList.add('on'); wave.classList.add('on'); });
+    var t = 9900; words.forEach(function (w, i) { at(t, function () { cap.textContent += (i ? ' ' : '') + w; }); t += 300; });
+    at(t + 120, function () { mic.classList.remove('on'); ring.classList.remove('on'); wave.classList.remove('on'); });
+    at(t + 400, function () { show(sentence); }); at(t + 1500, function () { sentence.classList.add('dock'); }); at(t + 1800, function () { hide(sc[3]); });
+    at(t + 1950, function () { show(sc[4]); }); at(t + 2250, function () { neu.classList.add('show'); }); at(t + 3300, function () { neu.classList.add('settle'); });
+    at(t + 6000, run);
+  }
+  // Start (and restart) the loop only when the phone scrolls into view, so it
+  // always begins from the top instead of being caught mid-animation on arrival.
+  var stageEl = document.querySelector('#magic .stage') || sc[0];
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (ents) {
+      ents.forEach(function (e) {
+        if (e.isIntersecting) { run(); }
+        else { T.forEach(clearTimeout); T = []; }
+      });
+    }, { threshold: 0.45 }).observe(stageEl);
+  } else { run(); }
+})();
+
+(function groupsCascade() {
+  'use strict';
+  var cards = [document.getElementById('lg1'), document.getElementById('lg2'), document.getElementById('lg3'), document.getElementById('lg4')];
+  if (!cards[0]) { return; }
+  var T = []; function at(ms, fn) { T.push(setTimeout(fn, ms)); }
+  function run() {
+    T.forEach(clearTimeout); T = [];
+    cards.forEach(function (c) { c.classList.remove('show'); });
+    cards.forEach(function (c, i) { at(500 + i * 180, function () { c.classList.add('show'); }); });
+    at(7000, run);
+  }
+  // Same treatment as the voice demo: kick off the cascade on scroll-in.
+  var el = document.querySelector('.groups-phone') || cards[0];
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (ents) {
+      ents.forEach(function (e) {
+        if (e.isIntersecting) { run(); }
+        else { T.forEach(clearTimeout); T = []; }
+      });
+    }, { threshold: 0.35 }).observe(el);
+  } else { run(); }
 })();

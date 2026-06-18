@@ -39,15 +39,20 @@
   <section class="hero" id="hero">
     <div class="hero-glow"></div>
     <div class="hero-inner">
-      <img class="hero-mark" src="assets/mascot-mark.png" alt="SANDBAGR" width="1238" height="1224">
-      <h1 class="hero-wordmark">SAND<span class="g">BAGR</span></h1>
-      <p class="hero-tagline">Talk Sh*t. Back It Up.</p>
+      <!-- splash lockup: centered on load -->
+      <div class="hero-lockup">
+        <img class="hero-mark" src="assets/mascot-mark.png" alt="SANDBAGR" width="1238" height="1224">
+        <h1 class="hero-wordmark">SAND<span class="g">BAGR</span></h1>
+        <p class="hero-tagline">Talk Sh*t. Back It Up.</p>
+      </div>
 
-      <p class="hero-headline">Turn every round into <span class="g">live action.</span></p>
-
-      <!-- email capture moved to "The Line"; the hero now just points there -->
-      <a href="#cta" class="capture-btn cta-glow hero-cta">Get In Line <span class="cta-arrow" aria-hidden="true">→</span></a>
-      <p class="qc-trust hero-proof"><span class="live-dot"></span> <span><span id="heroCount">—</span>+ already in line</span></p>
+      <!-- revealed (and slid up) once the user scrolls -->
+      <div class="hero-reveal">
+        <p class="hero-headline">Turn every round into <span class="g">live action.</span></p>
+        <!-- signup moved to "The Line"; the hero now just points there -->
+        <a href="#cta" class="capture-btn cta-glow hero-cta">Get In Line <span class="cta-arrow" aria-hidden="true">→</span></a>
+        <p class="qc-trust hero-proof"><span class="live-dot"></span> <span><span id="heroCount">—</span>+ already in line</span></p>
+      </div>
     </div>
 
     <!-- live ledger ticker: wins green, losses red, scrolling along the bottom -->
@@ -274,10 +279,10 @@
       <h2 class="line-title">Don't wait in line. <span class="g">Cut it.</span></h2>
       <p class="line-sub">The first ones in never pay. Every friend who joins on your link moves you up.</p>
 
-      <!-- Founder incentives — first 500 signups -->
+      <!-- Founder incentives — first 250 signups -->
       <div class="founders">
-        <span class="founders-badge"><i class="ti ti-flame"></i> First 500 only</span>
-        <p class="founders-title">The first 500 never pay.</p>
+        <span class="founders-badge"><i class="ti ti-flame"></i> First 250 only</span>
+        <p class="founders-title">The first 250 never pay.</p>
         <p class="founders-sub">Get in before the line fills and lock in founder status for good. Every founding member gets:</p>
         <ul class="founders-list">
           <li><i class="ti ti-crown"></i><span><b>Lifetime Pro, on the house.</b> Premium drops soon — founders never pay for it.</span></li>
@@ -288,18 +293,19 @@
         </ul>
       </div>
 
-      <!-- STATE A: email capture -->
+      <!-- STATE A: phone capture -->
       <div class="queue-card" id="queueCard">
         <div class="qc-capture" id="qcCapture">
           <form class="capture stacked" id="lineForm" data-capture="line" novalidate>
             <input type="text" class="capture-input" name="firstName"
                    autocomplete="given-name" placeholder="First name" aria-label="First name" required>
-            <input type="email" class="capture-input" name="email" inputmode="email"
-                   autocomplete="email" placeholder="you@email.com" aria-label="Email address" required>
+            <input type="tel" class="capture-input" name="phone" inputmode="tel"
+                   autocomplete="tel" placeholder="(555) 123-4567" aria-label="Phone number" required>
             <input type="text" name="company" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
             <button type="submit" class="capture-btn">Get In Line</button>
           </form>
           <p class="capture-err" id="lineErr" role="alert"></p>
+          <p class="capture-consent">By tapping "Get In Line" you agree to receive recurring automated promotional and informational texts from SANDBAGR at the number provided. Consent isn't a condition of purchase. Msg frequency varies; msg &amp; data rates may apply. Reply STOP to opt out, HELP for help.</p>
           <p class="qc-trust"><span class="live-dot"></span> <span id="trustCount">0</span> already in line</p>
         </div>
 
