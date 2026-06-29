@@ -810,3 +810,5 @@ section { position: relative; }
   margin: 14px auto 0; max-width: 42ch;
   font-size: 0.72rem; line-height: 1.45; color: var(--grey-2); text-align: center;
 }
+.capture-consent a { color: var(--grey); text-decoration: underline; }
+.capture-consent a:hover { color: var(--green); }
