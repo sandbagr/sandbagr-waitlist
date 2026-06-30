@@ -527,7 +527,7 @@ section { position: relative; }
 .footer-grid { display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; align-items: center; }
 .footer-wordmark { font-size: 1.5rem; font-weight: 900; letter-spacing: -0.02em; }
 .footer-tag { margin-top: 6px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--grey); }
-.footer-links { display: flex; gap: 22px; margin-top: 18px; font-size: 1.02rem; font-weight: 600; }
+.footer-links { display: flex; flex-direction: column; flex-wrap: wrap; gap: 12px 22px; margin-top: 18px; font-size: 1.02rem; font-weight: 600; }
 .footer-links a { color: var(--grey); transition: color 0.15s ease; }
 .footer-links a:hover { color: var(--green); }
 .footer-qr { text-align: center; }
@@ -549,6 +549,7 @@ section { position: relative; }
    ============================================================================ */
 @media (min-width: 600px) {
   .device { max-width: 320px; }
+  .footer-links { flex-direction: row; }
 }
 @media (min-width: 820px) {
   /* layers alternate sides, copy beside the device */
