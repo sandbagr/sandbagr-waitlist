@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SANDBAGR — Contact Us</title>
+<style>
+  :root {
+    --ink:#FFFFFF; --muted:#777E89; --body:#B4BAC4;
+    --line:rgba(255,255,255,0.08); --green:#00FF87; --green-line:rgba(0,255,135,0.22);
+    --bg:#0A0A0A; --charcoal:#161616;
+    --glow-soft:0 0 24px rgba(0,255,135,0.18);
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--body);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.65; font-size:17px; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:760px; margin:0 auto; padding:56px 22px 96px; }
+  .brand { font-weight:800; letter-spacing:0.5px; font-size:22px; color:var(--ink); }
+  .brand .dot { color:var(--green); }
+  header { border-bottom:1px solid var(--line); padding-bottom:22px; margin-bottom:34px; }
+  h1 { font-size:30px; margin:18px 0 6px; letter-spacing:-0.2px; color:var(--ink); }
+  .meta { color:var(--muted); font-size:14px; margin:0; }
+  p, li { color:var(--body); }
+  a { color:var(--green); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .callout { background:rgba(0,255,135,0.06); border:1px solid var(--green-line); border-left:4px solid var(--green);
+    border-radius:10px; padding:14px 18px; margin:24px 0; font-size:15.5px; }
+  .callout strong { display:block; font-size:13px; letter-spacing:0.4px; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+  .callout a { font-size:19px; font-weight:700; }
+  form { margin-top:30px; }
+  .field { margin-bottom:18px; }
+  label { display:block; font-size:14px; font-weight:600; color:var(--muted); margin-bottom:7px; letter-spacing:0.2px; }
+  input, textarea { width:100%; font-family:inherit; font-size:16px; color:var(--ink);
+    background:var(--charcoal); border:1px solid var(--line); border-radius:10px; padding:13px 14px; line-height:1.5; }
+  input::placeholder, textarea::placeholder { color:var(--muted); }
+  input:focus, textarea:focus { outline:none; border-color:var(--green-line); box-shadow:var(--glow-soft); }
+  textarea { resize:vertical; min-height:140px; }
+  button { -webkit-appearance:none; appearance:none; cursor:pointer; border:none;
+    background:var(--green); color:#0A0A0A; font-family:inherit; font-size:17px; font-weight:800;
+    border-radius:10px; padding:14px 22px; letter-spacing:0.2px; box-shadow:var(--glow-soft); transition:filter .15s ease, opacity .15s ease; }
+  button:hover { filter:brightness(1.06); }
+  button:disabled { opacity:.55; cursor:default; box-shadow:none; }
+  .status { margin-top:16px; font-size:15.5px; min-height:22px; }
+  .status.ok { color:var(--green); font-weight:600; }
+  .status.err { color:#FF453A; font-weight:600; }
+  .hp { position:absolute; left:-9999px; opacity:0; height:0; width:0; }
+  footer { border-top:1px solid var(--line); margin-top:48px; padding-top:20px; color:var(--muted); font-size:14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">SANDBAGR<span class="dot">.</span></div>
+    <h1>Contact Us</h1>
+    <p class="meta">Questions, feedback, or partnership ideas — we read every message.</p>
+  </header>
+
+  <p>Drop us a line using the form below and we'll get back to you as soon as we can. Prefer email? Reach us directly:</p>
+
+  <div class="callout">
+    <strong>Email us</strong>
+    <a href="mailto:team@sandbagrapp.com">team@sandbagrapp.com</a>
+  </div>
+
+  <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+    <!-- Web3Forms access key. Generate a free key for team@sandbagrapp.com at https://web3forms.com and paste it below. -->
+    <input type="hidden" name="access_key" value="27360180-9ab8-4d80-8e57-8bc4d2b6979a">
+    <input type="hidden" name="subject" value="New message from the SANDBAGR Contact page">
+    <input type="hidden" name="from_name" value="SANDBAGR Contact Form">
+    <!-- Honeypot field for spam bots; humans never see it. -->
+    <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+
+    <div class="field">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" autocomplete="name" required>
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" autocomplete="email" required>
+    </div>
+
+    <div class="field">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" required></textarea>
+    </div>
+
+    <button type="submit" id="submit-btn">Send message</button>
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+  </form>
+
+  <footer>
+    <p style="margin:0 0 10px"><a href="/">&larr; Back to SANDBAGR</a> &nbsp;&middot;&nbsp; <a href="/privacypolicy">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms">Terms of Service</a></p>
+    SANDBAGR is operated by SANDBAGR L.L.C.. &copy; 2026 SANDBAGR L.L.C.. All rights reserved.
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var form = document.getElementById('contact-form');
+    var btn = document.getElementById('submit-btn');
+    var status = document.getElementById('status');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      status.className = 'status';
+      status.textContent = '';
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      var data = Object.fromEntries(new FormData(form).entries());
+
+      fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      })
+        .then(function (res) { return res.json().then(function (json) { return { ok: res.ok, json: json }; }); })
+        .then(function (r) {
+          if (r.ok && r.json.success) {
+            form.reset();
+            status.className = 'status ok';
+            status.textContent = 'Thanks — your message is on its way. We’ll be in touch.';
+            btn.textContent = 'Sent';
+          } else {
+            throw new Error(r.json.message || 'Submission failed');
+          }
+        })
+        .catch(function () {
+          status.className = 'status err';
+          status.innerHTML = 'Something went wrong. Please email us directly at <a href="mailto:team@sandbagrapp.com">team@sandbagrapp.com</a>.';
+          btn.disabled = false;
+          btn.textContent = 'Send message';
+        });
+    });
+  })();
+</script>
+</body>
+</html>

@@ -213,6 +213,8 @@
       showError(errId, '');
       if (!name) { showError(errId, 'Add your first name.'); if (nameInput) { nameInput.focus(); } return; }
       if (!Waitlist.validPhone(phone)) { showError(errId, 'Enter a valid phone number.'); input.focus(); return; }
+      var consent = form.querySelector('input[name="smsConsent"]');
+      if (consent && !consent.checked) { showError(errId, 'Please check the box to agree to receive texts.'); consent.focus(); return; }
       var btn = form.querySelector('button'); var label = btn.textContent;
       btn.disabled = true; btn.textContent = 'Locking in…';
       Waitlist.join(phone, name).then(function (res) {
@@ -227,6 +229,15 @@
         showError(errId, 'Something went wrong. Try again.');
       });
     });
+
+    // Gate the submit button on the SMS consent checkbox: stays disabled until ticked.
+    var consentBox = form.querySelector('input[name="smsConsent"]');
+    var submitBtn = form.querySelector('button[type="submit"]');
+    if (consentBox && submitBtn) {
+      var syncConsent = function () { submitBtn.disabled = !consentBox.checked; };
+      consentBox.addEventListener('change', syncConsent);
+      syncConsent();
+    }
   });
 
   // If returning visitor already signed up, restore their position view
