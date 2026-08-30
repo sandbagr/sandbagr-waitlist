@@ -398,3 +398,52 @@
     }, { threshold: 0.35 }).observe(el);
   } else { run(); }
 })();
+
+
+/* ============================================================================
+   HOW IT WORKS — scroll choreography (phones glide in, copy staggers, idle float)
+   ============================================================================ */
+(function flowSequence() {
+  var layers = Array.prototype.slice.call(document.querySelectorAll('.flow .layer'));
+  if (!layers.length) { return; }
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced || !window.gsap || !window.ScrollTrigger) {
+    layers.forEach(function (el) { el.style.opacity = 1; });
+    return;
+  }
+  window.gsap.registerPlugin(window.ScrollTrigger);
+
+  layers.forEach(function (layer, i) {
+    var fromRight = layer.classList.contains('reverse');
+    var shot = layer.querySelector('.shot');
+    var img = shot && shot.querySelector('img');
+    var glow = layer.querySelector('.device-glow');
+    var num = layer.querySelector('.layer-num');
+    var head = layer.querySelector('h3');
+    var bullets = layer.querySelectorAll('.bullets li');
+
+    var tl = window.gsap.timeline({
+      scrollTrigger: { trigger: layer, start: 'top 74%' }
+    });
+    if (shot) {
+      tl.from(shot, {
+        x: fromRight ? 90 : -90, rotate: fromRight ? 4 : -4,
+        scale: 0.92, opacity: 0, duration: 1.05, ease: 'power3.out'
+      }, 0);
+    }
+    if (glow) { tl.from(glow, { opacity: 0, scale: 0.6, duration: 1.5, ease: 'power2.out' }, 0.1); }
+    if (num) { tl.from(num, { opacity: 0, y: 12, letterSpacing: '0.4em', duration: 0.7, ease: 'power2.out' }, 0.15); }
+    if (head) { tl.from(head, { opacity: 0, y: 34, duration: 0.9, ease: 'power3.out' }, 0.25); }
+    if (bullets.length) {
+      tl.from(bullets, { opacity: 0, x: -18, duration: 0.6, ease: 'power2.out', stagger: 0.16 }, 0.45);
+    }
+
+    // idle levitation - phones breathe once they have arrived
+    if (img) {
+      window.gsap.to(img, {
+        y: -9, duration: 3.1 + i * 0.4, repeat: -1, yoyo: true,
+        ease: 'sine.inOut', delay: 1.2 + i * 0.3
+      });
+    }
+  });
+})();
