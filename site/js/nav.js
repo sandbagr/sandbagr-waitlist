@@ -1,5 +1,5 @@
 /* ============================================================================
-   SANDBAGR — header menu (top-right dropdown). Shared by every page.
+   SANDBAGR — header menu on phones (the pills show on wider screens).
    External file because the CSP is script-src 'self' (no inline scripts).
    ============================================================================ */
 (function () {

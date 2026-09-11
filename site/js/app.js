@@ -219,6 +219,7 @@
   var chips = $$('#pr-tees .pr-chip, #pr-formats .pr-chip'), blue = g('pr-blue'), stroke = g('pr-stroke'), prog4 = g('pr-prog4');
   var q2 = g('pr-q2'), hit = g('pr-hit'), hitAv = g('pr-hit-av'), hitN = g('pr-hit-n'), hitS = g('pr-hit-s');
   var newRows = [g('pr-r1'), g('pr-r2'), g('pr-r3')], cnt = g('pr-cnt'), gen = g('pr-gen');
+  var recent = g('pr-recent'), rchips = [g('pr-rc1'), g('pr-rc2')];
   var fill = g('pr-fill'), status = g('pr-status');
   var tabs = $$('#pr-tabs span'), lines = g('pr-lines');
   var pchips = $$('#pr-players .pr-pchip'), pMike = g('pr-pmike'), ltitle = g('pr-ltitle');
@@ -245,6 +246,7 @@
     chips.forEach(function (c) { c.classList.remove('tap', 'sel'); });
     q2.textContent = ''; hit.classList.remove('show', 'tap'); newRows.forEach(function (r) { r.classList.remove('in', 'show'); }); cnt.textContent = '1';
     hide(gen); gen.classList.remove('press');
+    hide(recent); rchips.forEach(function (r) { r.classList.remove('tap', 'gone'); });
     fill.classList.remove('go'); status.textContent = '';
     pchips.forEach(function (p) { p.classList.remove('tap'); }); setPlayer(0);
     hide(logo);
@@ -254,59 +256,61 @@
   var S = [
     function (t) { // 0 · the Hub: tap Start a round
       at(t, function () { show(scenes[0]); });
-      at(t + 1500, function () { start.classList.add('press'); });
-      at(t + 1900, function () { hide(scenes[0]); });
-      return 2200;
+      at(t + 1000, function () { start.classList.add('press'); });
+      at(t + 1350, function () { hide(scenes[0]); });
+      return 1600;
     },
-    function (t) { // 1 · New Round: course, then tees, then the crew, then Generate lines
+    function (t) { // 1 · New Round: course, tees, format, one typed buddy, two from Recent, Generate. Quick.
       at(t, function () { show(scenes[1]); });
-      var e = type(q0, 'Pebble beach', t + 500, 70);
-      at(e + 250, function () { show(chit); });
-      at(e + 900, function () { chit.classList.add('tap'); });
-      at(e + 1100, function () { chit.classList.remove('tap'); hide(chit); cfield.classList.add('gone'); cset.classList.add('in'); prog2.classList.add('on'); });
-      at(e + 1150, function () { show(cset); });
-      at(e + 1900, function () { blue.classList.add('tap'); });
-      at(e + 2100, function () { blue.classList.remove('tap'); blue.classList.add('sel'); prog3.classList.add('on'); });
-      at(e + 2800, function () { stroke.classList.add('tap'); });
-      at(e + 3000, function () { stroke.classList.remove('tap'); stroke.classList.add('sel'); });
-      var cur = e + 3700;
-      crew.forEach(function (p, i) {
-        (function (p, i, t0) {
-          at(t0, function () { q2.textContent = ''; hit.classList.remove('show'); });
-          var e2 = type(q2, p[0], t0, 90);
-          at(e2 + 250, function () { hitAv.textContent = p[1]; hitAv.style.background = p[2]; hitAv.style.color = p[3]; hitN.textContent = p[4]; hitS.textContent = p[5]; show(hit); });
-          at(e2 + 900, function () { hit.classList.add('tap'); });
-          at(e2 + 1100, function () { hit.classList.remove('tap', 'show'); q2.textContent = ''; newRows[i].classList.add('in'); cnt.textContent = String(i + 2); });
-          at(e2 + 1150, function () { show(newRows[i]); });
-        })(p, i, cur);
-        cur += p[0].length * 90 + 1700;
-      });
-      at(cur + 100, function () { show(gen); prog4.classList.add('on'); });
-      at(cur + 900, function () { gen.classList.add('press'); });
-      at(cur + 1300, function () { hide(scenes[1]); });
-      return (cur - t) + 1600;
+      var e = type(q0, 'Pebble', t + 300, 55);
+      at(e + 120, function () { show(chit); });
+      at(e + 480, function () { chit.classList.add('tap'); });
+      at(e + 640, function () { chit.classList.remove('tap'); hide(chit); cfield.classList.add('gone'); cset.classList.add('in'); prog2.classList.add('on'); });
+      at(e + 680, function () { show(cset); });
+      at(e + 1050, function () { blue.classList.add('tap'); });
+      at(e + 1200, function () { blue.classList.remove('tap'); blue.classList.add('sel'); prog3.classList.add('on'); });
+      at(e + 1550, function () { stroke.classList.add('tap'); });
+      at(e + 1700, function () { stroke.classList.remove('tap'); stroke.classList.add('sel'); });
+      // one buddy by search
+      var p = crew[0];
+      var e2 = type(q2, p[0], e + 2050, 70);
+      at(e2 + 120, function () { hitAv.textContent = p[1]; hitAv.style.background = p[2]; hitAv.style.color = p[3]; hitN.textContent = p[4]; hitS.textContent = p[5]; show(hit); });
+      at(e2 + 480, function () { hit.classList.add('tap'); });
+      at(e2 + 640, function () { hit.classList.remove('tap', 'show'); q2.textContent = ''; newRows[0].classList.add('in'); cnt.textContent = '2'; });
+      at(e2 + 680, function () { show(newRows[0]); show(recent); });
+      // the other two from Recent, two quick taps
+      at(e2 + 1050, function () { rchips[0].classList.add('tap'); });
+      at(e2 + 1200, function () { rchips[0].classList.remove('tap'); rchips[0].classList.add('gone'); newRows[1].classList.add('in'); cnt.textContent = '3'; });
+      at(e2 + 1240, function () { show(newRows[1]); });
+      at(e2 + 1500, function () { rchips[1].classList.add('tap'); });
+      at(e2 + 1650, function () { rchips[1].classList.remove('tap'); rchips[1].classList.add('gone'); newRows[2].classList.add('in'); cnt.textContent = '4'; hide(recent); });
+      at(e2 + 1690, function () { show(newRows[2]); });
+      at(e2 + 1800, function () { show(gen); prog4.classList.add('on'); });
+      at(e2 + 2400, function () { gen.classList.add('press'); });
+      at(e2 + 2750, function () { hide(scenes[1]); });
+      return (e2 - t) + 3000;
     },
     function (t) { // 2 · low-key loading
       at(t, function () { show(scenes[2]); });
-      at(t + 150, function () { fill.classList.add('go'); });
-      ['reading the card…', 'running 12,000 rounds…', 'ranking the lines…'].forEach(function (s, i) { at(t + 300 + i * 850, function () { status.textContent = s; }); });
-      at(t + 3000, function () { hide(scenes[2]); });
-      return 3300;
+      at(t + 100, function () { fill.classList.add('go'); });
+      ['running the numbers…', 'setting the lines…'].forEach(function (s, i) { at(t + 200 + i * 600, function () { status.textContent = s; }); });
+      at(t + 1300, function () { hide(scenes[2]); });
+      return 1550;
     },
     function (t) { // 3 · the lines: tap a buddy up top, flip through his categories, then cut
       at(t, function () { show(scenes[3]); setPlayer(0); });
-      at(t + 1500, function () { pMike.classList.add('tap'); });
-      at(t + 1700, function () { pMike.classList.remove('tap'); setPlayer(1); });
-      at(t + 3100, function () { tab(1); }); at(t + 4400, function () { tab(2); });
-      at(t + 6400, function () { hide(scenes[3]); });
-      return 6700;
+      at(t + 1400, function () { pMike.classList.add('tap'); });
+      at(t + 1600, function () { pMike.classList.remove('tap'); setPlayer(1); });
+      at(t + 2800, function () { tab(1); }); at(t + 4000, function () { tab(2); });
+      at(t + 5800, function () { hide(scenes[3]); });
+      return 6100;
     },
     function (t) { // 4 · black, then the mark, then around again
       at(t, function () { show(scenes[4]); });
-      at(t + 900, function () { show(logo); });
-      at(t + 4600, function () { hide(logo); });
-      at(t + 5400, function () { hide(scenes[4]); });
-      return 5600;
+      at(t + 600, function () { show(logo); });
+      at(t + 3400, function () { hide(logo); });
+      at(t + 4100, function () { hide(scenes[4]); });
+      return 4300;
     }
   ];
   function playFrom(k) {
