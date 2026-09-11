@@ -1,4 +1,4 @@
-# Netlify config for the SANDBAGR waitlist (static site).
+# Netlify config for the SANDBAGR site (static).
 # Security headers live in ./_headers. This file forces canonical HTTPS + www→apex.
 
 [build]
@@ -16,4 +16,18 @@
   from = "/backend/*"
   to = "/404.html"
   status = 404
+  force = true
+
+# Short links to the App Store listing (IG bio, QR codes, texts). Re-point here
+# if the listing URL ever changes or an Android build ships.
+[[redirects]]
+  from = "/download"
+  to = "https://apps.apple.com/us/app/sandbagr/id6769903712"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/app"
+  to = "https://apps.apple.com/us/app/sandbagr/id6769903712"
+  status = 302
   force = true

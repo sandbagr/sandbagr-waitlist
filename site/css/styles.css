@@ -1,5 +1,5 @@
 /* ============================================================================
-   SANDBAGR — Waitlist Landing
+   SANDBAGR — Landing
    Dark, cinematic. Money Green #00FF87 on Jet Black #0A0A0A. Apple-level restraint.
    One idea, one line of big type, one visual per section. Mobile-first.
    ============================================================================ */
@@ -838,3 +838,54 @@ section { position: relative; }
 }
 .capture-consent a { color: var(--grey); text-decoration: underline; }
 .capture-consent a:hover { color: var(--green); }
+
+/* ============================================================================
+   LAUNCH — the app is live. App Store CTAs replace the waitlist (Sep 2026).
+   ============================================================================ */
+.hero-cta i, .dl-btn i { font-size: 1.35em; line-height: 1; }
+/* App Store buttons: clean white (Apple-badge feel), no green glow/pulse */
+.hero-cta, .dl-btn {
+  background: #fff; color: var(--black);
+  box-shadow: 0 12px 34px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.4);
+  /* slim: hug the label instead of a full-width slab */
+  width: auto; max-width: none; padding: 11px 22px; font-size: 0.94rem; font-weight: 700; border-radius: 11px;
+}
+.hero-cta:hover, .dl-btn:hover { filter: none; background: #EEF1F5; }
+/* keep the green payoff ("Go bet.") on one line when the title wraps on phones */
+.download .line-title .g { white-space: nowrap; }
+
+.dl-card {
+  margin: 40px auto 0; max-width: 780px;
+  display: grid; grid-template-columns: 1fr; justify-items: center; gap: 18px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--charcoal), var(--black-2));
+  border: 1px solid var(--line); border-radius: 24px; padding: 32px 24px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+/* the icon PNG already has its rounded corners baked in — glow only, no clipping */
+.dl-icon { width: 120px; height: 120px; filter: drop-shadow(0 16px 40px rgba(0,255,135,0.28)); }
+.dl-name { font-size: 1.6rem; font-weight: 900; letter-spacing: -0.02em; line-height: 1.1; }
+.dl-sub { margin-top: 4px; font-size: 1.02rem; color: var(--grey); }
+.dl-facts {
+  margin-top: 10px; display: flex; justify-content: center; gap: 14px;
+  font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey-2);
+}
+.dl-facts span + span::before { content: '\00b7'; margin-right: 14px; }
+.dl-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  margin-top: 20px; text-decoration: none;
+}
+.dl-qr { display: none; }
+
+@media (min-width: 720px) {
+  .dl-card { grid-template-columns: auto 1fr auto; align-items: center; justify-items: start; text-align: left; gap: 28px; padding: 32px 36px; }
+  .dl-icon { width: 144px; height: 144px; }
+  .dl-facts { justify-content: flex-start; }
+  .dl-btn { width: auto; padding: 12px 24px; }
+  .dl-qr {
+    display: flex; flex-direction: column; justify-content: center; align-self: stretch;
+    text-align: center; padding-left: 28px; border-left: 1px solid var(--line);
+  }
+  .dl-qr img { width: 128px; height: 128px; border-radius: 14px; background: #fff; padding: 8px; margin: 0 auto; }
+  .dl-qr span { display: block; margin-top: 10px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey-2); }
+}

@@ -4,19 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>SANDBAGR — Talk Sh*t. Back It Up.</title>
-  <meta name="description" content="Turn every round into live action. Peer-to-peer golf betting with your foursome. Golf apps don't bet. Betting apps don't golf. We do both. Join the waitlist.">
+  <meta name="description" content="Turn every round into live action. Peer-to-peer golf betting with your foursome. Golf apps don't bet. Betting apps don't golf. We do both. Free on the App Store.">
   <meta name="theme-color" content="#0A0A0A">
+  <!-- iOS Safari Smart App Banner: one tap from the site to the App Store listing -->
+  <meta name="apple-itunes-app" content="app-id=6769903712">
   <link rel="canonical" href="https://sandbagrapp.com/">
 
   <!-- Open Graph — most traffic comes from Instagram -->
   <meta property="og:title" content="SANDBAGR — Talk Sh*t. Back It Up.">
-  <meta property="og:description" content="Turn every round into live action. Get in before your foursome does.">
+  <meta property="og:description" content="Turn every round into live action. Now on the App Store — free on iPhone.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://sandbagrapp.com/">
   <meta property="og:image" content="https://sandbagrapp.com/assets/ig-profile.png">
   <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="icon" type="image/png" href="assets/ig-profile.png">
+  <link rel="icon" type="image/png" href="assets/app-icon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -27,13 +30,13 @@
   <div class="scroll-progress" id="scrollProgress"></div>
 
   <!-- Fixed brand header — invisible on load, fades in after the hero. Doubles as the
-       sticky "Get In Line" bar that slides in once you scroll past the hero. -->
+       sticky "Download" bar that slides in once you scroll past the hero. -->
   <header class="brand-header" id="brandHeader">
     <span class="bh-brand">
       <img class="bh-mark" src="assets/mascot-mark.png" alt="" aria-hidden="true">
       <span class="bh-wordmark">SAND<span class="g">BAGR</span></span>
     </span>
-    <a href="#cta" class="bh-cta">Get In Line</a>
+    <a href="https://apps.apple.com/us/app/sandbagr/id6769903712" class="bh-cta" target="_blank" rel="noopener">Download</a>
   </header>
 
   <!-- ==================== 1 · HERO ==================== -->
@@ -50,9 +53,9 @@
       <!-- revealed (and slid up) once the user scrolls -->
       <div class="hero-reveal">
         <p class="hero-headline">Turn every round into <span class="g">live action.</span></p>
-        <!-- signup moved to "The Line"; the hero now just points there -->
-        <a href="#cta" class="capture-btn cta-glow hero-cta">Get In Line <span class="cta-arrow" aria-hidden="true">→</span></a>
-        <p class="qc-trust hero-proof"><span class="live-dot"></span> <span><span id="heroCount">—</span>+ already in line</span></p>
+        <!-- the app is live: every CTA goes straight to the App Store listing -->
+        <a href="https://apps.apple.com/us/app/sandbagr/id6769903712" class="capture-btn hero-cta" target="_blank" rel="noopener"><i class="ti ti-brand-apple" aria-hidden="true"></i> Download on the App Store</a>
+        <p class="qc-trust hero-proof"><span class="live-dot"></span> <span>Live now. Free on iPhone.</span></p>
       </div>
     </div>
 
@@ -273,84 +276,24 @@
     </div>
   </section>
 
-  <!-- ==================== 7 · THE LINE (waitlist + referral) ==================== -->
-  <section class="line" id="cta">
+  <!-- ==================== 7 · DOWNLOAD — the app is live on the App Store ==================== -->
+  <section class="line download" id="cta">
     <div class="wrap">
-      <p class="eyebrow g">The line</p>
-      <h2 class="line-title">Don't wait in line. <span class="g">Cut it.</span></h2>
-      <p class="line-sub">The first ones in never pay. Every friend who joins on your link moves you up.</p>
+      <p class="eyebrow g">Now on the App Store</p>
+      <h2 class="line-title">The wait is over. <span class="g">Game on.</span></h2>
+      <p class="line-sub">SANDBAGR is live and free on iPhone. Grab it before your foursome does.</p>
 
-      <!-- Founder incentives — first 250 signups -->
-      <div class="founders">
-        <span class="founders-badge"><i class="ti ti-flame"></i> First 250 only</span>
-        <p class="founders-title">The first 250 never pay.</p>
-        <p class="founders-sub">Get in before the line fills and lock in founder status for good. Every founding member gets:</p>
-        <ul class="founders-list">
-          <li><i class="ti ti-crown"></i><span><b>Lifetime Pro, on the house.</b> Premium drops soon — founders never pay for it.</span></li>
-          <li><i class="ti ti-rosette"></i><span>A <b>Founding Member badge</b> on your profile, forever.</span></li>
-          <li><i class="ti ti-rocket"></i><span><b>Early access</b> to every new feature before the public.</span></li>
-          <li><i class="ti ti-gift"></i><span>Auto-entry into the <b>launch raffle</b>: SANDBAGR merch and 20 boxes of Titleist Pro V1s.</span></li>
-          <li><i class="ti ti-users"></i><span><b>Extra entries</b> for every friend who joins on your link.</span></li>
-        </ul>
-      </div>
-
-      <!-- STATE A: phone capture -->
-      <div class="queue-card" id="queueCard">
-        <div class="qc-capture" id="qcCapture">
-          <form class="capture stacked" id="lineForm" data-capture="line" novalidate>
-            <input type="text" class="capture-input" name="firstName"
-                   autocomplete="given-name" placeholder="First name" aria-label="First name" required>
-            <input type="tel" class="capture-input" name="phone" inputmode="tel"
-                   autocomplete="tel" placeholder="(555) 123-4567" aria-label="Phone number" required>
-            <input type="text" name="company" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-            <label class="capture-check" for="smsConsent">
-              <input type="checkbox" id="smsConsent" name="smsConsent" required>
-              <span>I agree to receive recurring automated promotional and informational texts from SANDBAGR at the number provided. Consent isn't a condition of purchase. Msg frequency varies; msg &amp; data rates may apply. Reply STOP to opt out, HELP for help.</span>
-            </label>
-            <button type="submit" class="capture-btn">Get In Line</button>
-          </form>
-          <p class="capture-err" id="lineErr" role="alert"></p>
-          <p class="capture-consent">See our <a href="/privacypolicy">Privacy Policy</a> and <a href="/terms">Terms of Service</a>.</p>
-          <p class="qc-trust"><span class="live-dot"></span> <span id="trustCount">0</span> already in line</p>
+      <div class="dl-card">
+        <img src="assets/app-icon.png" alt="SANDBAGR app icon" class="dl-icon" width="512" height="512" loading="lazy">
+        <div class="dl-meta">
+          <p class="dl-name">SANDBAGR</p>
+          <p class="dl-sub">Live action, tee to green</p>
+          <p class="dl-facts"><span>Free</span><span>iPhone</span><span>18+</span></p>
+          <a href="https://apps.apple.com/us/app/sandbagr/id6769903712" class="capture-btn dl-btn" target="_blank" rel="noopener"><i class="ti ti-brand-apple" aria-hidden="true"></i> Download on the App Store</a>
         </div>
-
-        <!-- STATE B: position + referral, revealed after signup -->
-        <div class="qc-position" id="qcPosition" hidden>
-          <div class="mascot-in">
-            <img src="assets/mascot.png" alt="The Sandbagr" class="mascot-img" id="mascotImg">
-          </div>
-          <p class="qc-youre-in">You're in.</p>
-          <p class="qc-pos-label">Your spot in line</p>
-          <div class="qc-pos-num">#<span id="posNum">0</span></div>
-          <p class="qc-pos-move" id="posMove" hidden></p>
-
-          <div class="qc-invite">
-            <p class="qc-invite-h">Cut the line. Bring your foursome.</p>
-
-            <!-- Personal referral link -->
-            <div class="ref-link-row">
-              <input type="text" class="ref-link" id="refLink" readonly aria-label="Your referral link">
-              <button class="ref-copy" id="refCopy" type="button">Copy</button>
-            </div>
-
-            <!-- One-tap share -->
-            <div class="share-row">
-              <a class="share-btn" id="shareText" href="#">Text the group</a>
-              <button class="share-btn" id="shareNative" type="button">↗ Share</button>
-            </div>
-
-            <!-- Your crew — who joined on your link, auto-updating -->
-            <div class="crew" id="crew">
-              <div class="crew-head">
-                <span class="crew-title">Your crew</span>
-                <span class="crew-count" id="refCount">0</span>
-              </div>
-              <div class="crew-list" id="crewList">
-                <p class="crew-empty" id="crewEmpty">No one yet — share your link and watch them stack up.</p>
-              </div>
-              <p class="crew-foot">Each one moves you up the line.</p>
-            </div>
-          </div>
+        <div class="dl-qr">
+          <img src="assets/qr-appstore.png" alt="QR code: scan to open SANDBAGR on the App Store" width="512" height="512" loading="lazy">
+          <span>Scan to download</span>
         </div>
       </div>
     </div>
@@ -365,6 +308,7 @@
         <div class="footer-links">
           <a href="https://sandbagrapp.com">sandbagrapp.com</a>
           <a href="https://instagram.com/sandbagrapp" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://apps.apple.com/us/app/sandbagr/id6769903712" target="_blank" rel="noopener">App Store</a>
           <a href="/contact">Contact</a>
           <a href="/privacypolicy">Privacy Policy</a>
           <a href="/terms">Terms of Service</a>
@@ -376,7 +320,6 @@
 
   <script src="js/vendor/gsap.min.js"></script>
   <script src="js/vendor/ScrollTrigger.min.js"></script>
-  <script src="js/waitlist.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
