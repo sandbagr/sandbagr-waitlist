@@ -37,6 +37,7 @@
       <span class="bh-wordmark">SAND<span class="g">BAGR</span><sup class="tm">&trade;</sup></span>
     </a>
     <nav class="bh-nav" aria-label="Site">
+      <a href="#demo" class="bh-demo" data-demo><i class="ti ti-player-play" aria-hidden="true"></i> Demo</a>
       <a href="/faq.html">FAQ</a>
       <a href="/whynow.html">Why now</a>
       <a href="/#lines">Coming soon</a>
@@ -47,6 +48,7 @@
     <div class="bh-right">
       <button class="bh-menu" id="bhMenu" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="bhDrop">Menu <i class="ti ti-chevron-down" aria-hidden="true"></i></button>
       <div class="bh-drop" id="bhDrop" hidden>
+        <a href="#demo" data-demo>Watch the demo <i class="ti ti-player-play" aria-hidden="true"></i></a>
         <a href="/faq.html">FAQ</a>
         <a href="/whynow.html">Why now</a>
         <a href="/#lines">Coming soon</a>
@@ -74,7 +76,10 @@
       <div class="hero-reveal">
         <p class="hero-headline">Turn every round into <span class="g">live action.</span></p>
         <!-- the app is live: every CTA goes straight to the App Store listing -->
-        <a href="https://apps.apple.com/us/app/sandbagr/id6769903712" class="capture-btn hero-cta" target="_blank" rel="noopener"><i class="ti ti-brand-apple" aria-hidden="true"></i> Download on the App Store</a>
+        <div class="hero-ctas">
+          <a href="https://apps.apple.com/us/app/sandbagr/id6769903712" class="capture-btn hero-cta" target="_blank" rel="noopener"><i class="ti ti-brand-apple" aria-hidden="true"></i> Download on the App Store</a>
+          <a href="#demo" class="hero-demo" data-demo><i class="ti ti-player-play" aria-hidden="true"></i> Watch the demo <span class="hero-demo-len">1:00</span></a>
+        </div>
         <p class="qc-trust hero-proof"><span class="live-dot"></span> <span>Live now. Free on iPhone.</span></p>
       </div>
     </div>
@@ -444,7 +449,10 @@
 
                 <!-- S4 · cut to black, then the mark. The rest is ours. -->
                 <div class="gscene pr-scene pr-mid pr-black" id="pr4">
-                  <img class="pr-logo" id="pr-logo" src="assets/wordmark-tagline.png" alt="SANDBAGR. Talk Sh*t. Back It Up." width="1600" height="465" loading="lazy">
+                  <div class="pr-logo" id="pr-logo">
+                    <img src="assets/logo-tm.png" alt="SANDBAGR" width="640" height="660" loading="lazy">
+                    <span class="pr-logo-word">SAND<span class="g">BAGR</span><sup class="tm">&trade;</sup></span>
+                  </div>
                 </div>
 
               </div>
@@ -565,7 +573,20 @@
 
   <script src="js/vendor/gsap.min.js"></script>
   <script src="js/vendor/ScrollTrigger.min.js"></script>
+  <!-- ==================== DEMO VIDEO (opens from "Watch the demo", the Demo pill, or /#demo) ==================== -->
+  <div class="vmodal" id="demoModal" hidden role="dialog" aria-modal="true" aria-label="How SANDBAGR works">
+    <div class="vmodal-back" data-close></div>
+    <div class="vmodal-box">
+      <button class="vmodal-x" type="button" data-close aria-label="Close"><i class="ti ti-x" aria-hidden="true"></i></button>
+      <video id="demoVideo" playsinline controls preload="none" poster="assets/demo/how-it-works-poster.jpg" width="1080" height="1920">
+        <source src="assets/demo/how-it-works.mp4" type="video/mp4">
+      </video>
+      <p class="vmodal-cap">How SANDBAGR works, in 60 seconds. <a href="https://apps.apple.com/us/app/sandbagr/id6769903712" target="_blank" rel="noopener">Get the app <i class="ti ti-brand-apple" aria-hidden="true"></i></a></p>
+    </div>
+  </div>
+
   <script src="js/nav.js"></script>
+  <script src="js/demo.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

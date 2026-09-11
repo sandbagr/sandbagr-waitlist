@@ -606,6 +606,38 @@ section { position: relative; }
   50%      { box-shadow: 0 0 34px rgba(0,255,135,.62), 0 0 80px rgba(0,255,135,.30); }
 }
 .hero-proof { margin-top: 16px; }
+.hero-ctas { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px; margin-top: 30px; }
+.hero-ctas .hero-cta { margin: 0; }
+.hero-demo {
+  display: inline-flex; align-items: center; gap: 9px; padding: 11px 20px; border-radius: 11px;
+  border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.04); color: #fff; font-weight: 700; font-size: .94rem;
+  transition: border-color .15s ease, background .15s ease, transform .15s ease;
+}
+.hero-demo i { color: var(--green); font-size: 1.15em; line-height: 1; }
+.hero-demo:hover { border-color: var(--green-line); background: var(--green-dim); }
+.hero-demo:active { transform: scale(.97); }
+.hero-demo-len { font-family: var(--mono); font-size: .74rem; color: var(--grey); margin-left: 2px; }
+
+/* ---- demo video modal ---- */
+.vmodal { position: fixed; inset: 0; z-index: 400; display: flex; align-items: center; justify-content: center; padding: 16px; }
+.vmodal[hidden] { display: none; }
+.vmodal-back { position: absolute; inset: 0; background: rgba(0,0,0,.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.vmodal-box { position: relative; width: min(92vw, calc((100vh - 120px) * 9 / 16)); max-width: 460px; }
+.vmodal-box video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; border-radius: 22px; background: #000; border: 1px solid var(--line); box-shadow: 0 40px 100px rgba(0,0,0,.7), var(--glow-soft); }
+.vmodal-x {
+  position: absolute; top: -14px; right: -14px; z-index: 2; width: 40px; height: 40px; border-radius: 50%;
+  background: var(--charcoal-2); border: 1px solid var(--line); color: #fff; font-size: 1.15rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: background .15s ease, border-color .15s ease;
+}
+.vmodal-x:hover { background: var(--green); color: var(--black); border-color: var(--green); }
+.vmodal-cap { margin-top: 14px; text-align: center; color: var(--grey); font-size: .92rem; }
+.vmodal-cap a { color: var(--green); font-weight: 700; }
+body.vmodal-open { overflow: hidden; }
+@media (max-width: 760px) {
+  .vmodal { padding: 12px; }
+  .vmodal-box { width: min(94vw, calc((100svh - 96px) * 9 / 16)); }
+  .vmodal-x { top: -10px; right: -6px; }
+}
 
 /* ---- hero ticker: live ledger, wins green / losses red, scrolling ---- */
 .ticker {
@@ -630,6 +662,8 @@ section { position: relative; }
    3 · THE MAGIC — voice-to-ledger phone animation
    ============================================================================ */
 .magic { padding: clamp(40px, 8vh, 92px) 0 clamp(72px, 12vh, 132px); text-align: center; }
+/* phones: the slide-in screenshots and glows must never widen the page (iOS would zoom the layout viewport out and squash the header) */
+.magic, .flow, .soon, .league, .download { overflow-x: clip; }
 .magic .problem-bridge { margin: 0 auto clamp(36px, 6vh, 64px); }
 .appdemo { position: relative; display: flex; justify-content: center; }
 .appdemo-glow {
@@ -1066,8 +1100,11 @@ section { position: relative; }
 .pr-side.picked em { color: var(--green); }
 
 /* the close: black, then the mark */
-.pr-black { background: #000; }
-.pr-logo { width: 240px; height: auto; opacity: 0; transform: scale(.96); transition: opacity .9s ease, transform .9s ease; }
+.pr-black { background: #0A0A0A; }
+.pr-logo { display: flex; flex-direction: column; align-items: center; gap: 2px; opacity: 0; transform: scale(.96); transition: opacity .9s ease, transform .9s ease; }
+.pr-logo img { width: 190px; height: auto; }
+.pr-logo-word { font-size: 1.35rem; font-weight: 900; letter-spacing: -0.02em; color: #fff; }
+.pr-logo-word .g { text-shadow: var(--glow-soft); }
 .pr-logo.show { opacity: 1; transform: none; }
 
 /* post */
@@ -1130,6 +1167,9 @@ section { position: relative; }
 }
 .bh-nav a:hover { color: #fff; border-color: var(--line); background: rgba(255,255,255,.04); }
 .bh-nav a.on { color: var(--green); border-color: var(--green-line); background: var(--green-dim); }
+.bh-nav a.bh-demo { display: inline-flex; align-items: center; gap: 6px; color: #fff; }
+.bh-nav a.bh-demo i { color: var(--green); font-size: .95em; }
+.bh-drop a i.ti-player-play { color: var(--green); }
 .bh-nav a.bh-ig { padding: 7px 9px; font-size: 1.1rem; line-height: 1; display: inline-flex; }
 .bh-nav a.bh-ig:hover { color: var(--green); }
 /* Social glyphs in their own colors: Instagram gradient, TikTok cyan/red offset */
