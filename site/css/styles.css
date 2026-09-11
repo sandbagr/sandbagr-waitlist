@@ -1331,8 +1331,10 @@ body.page .brand-header { position: sticky; top: 0; }
 .faq-item.open .faq-x::before, .faq-item.open .faq-x::after { background: var(--green); }
 .faq-item.open .faq-x::after { transform: translate(-50%, -50%) rotate(90deg); }
 .faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
-.faq-a-in { padding: 0 4px 26px calc(2.2em + 18px); color: var(--grey); font-size: 1.05rem; line-height: 1.65; max-width: 62ch; }
+.faq-a-in { padding: 0 4px 28px calc(2.2em + 18px); color: var(--grey); font-size: 1.05rem; line-height: 1.7; max-width: 62ch; }
+.faq-a-in p + p { margin-top: 12px; }
 .faq-a-in b { color: #fff; font-weight: 700; }
+.faq-a-in .g, .faq-a-in b.g { color: var(--green); }
 .faq-a-in a { color: var(--green); }
 .faq-a-in a:hover { text-decoration: underline; }
 .faq-cta { text-align: center; padding: clamp(64px, 12vh, 120px) 0; border-top: 1px solid var(--line); }
