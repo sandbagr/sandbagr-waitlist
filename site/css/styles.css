@@ -529,21 +529,28 @@ section { position: relative; }
 /* ============================================================================
    7 · FOOTER
    ============================================================================ */
-.footer { border-top: 1px solid var(--line); padding: 64px 0 40px; background: var(--black-2); }
-.footer-grid { display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; align-items: center; }
+.footer { border-top: 1px solid var(--line); padding: clamp(48px, 8vh, 72px) 0 32px; background: var(--black-2); }
+.ft-top { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 2fr); gap: 40px 56px; align-items: start; }
 .footer-wordmark { font-size: 1.5rem; font-weight: 900; letter-spacing: -0.02em; }
 .footer-tag { margin-top: 6px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--grey); }
-.footer-links { display: flex; flex-direction: column; flex-wrap: wrap; gap: 12px 22px; margin-top: 18px; font-size: 1.02rem; font-weight: 600; }
-.footer-links a { color: var(--grey); transition: color 0.15s ease; }
-.footer-links a:hover { color: var(--green); }
-.footer-qr { text-align: center; }
-.footer-qr img { width: 104px; height: 104px; border-radius: 12px; border: 1px solid var(--line); background: #fff; padding: 6px; }
-.footer-qr span { display: block; margin-top: 8px; font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey-2); }
-.compliance {
-  max-width: 1080px; margin: 48px auto 0; padding: 0 24px;
-  font-size: 0.84rem; line-height: 1.75; color: var(--grey-2); text-align: center;
+.ft-blurb { margin-top: 14px; max-width: 30ch; color: var(--grey-2); font-size: .95rem; line-height: 1.6; }
+.ft-social { display: flex; gap: 10px; margin-top: 18px; }
+.ft-ico { width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--line); background: var(--charcoal); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 1.25rem; transition: color .15s ease, border-color .15s ease, background .15s ease; }
+.ft-ico:hover { color: var(--green); border-color: var(--green-line); background: var(--green-dim); }
+.ft-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.ft-col { display: flex; flex-direction: column; gap: 10px; }
+.ft-col h4 { margin-bottom: 4px; font-size: .74rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--green); }
+.ft-col a { color: var(--grey); font-size: .98rem; font-weight: 600; transition: color .15s ease; width: fit-content; }
+.ft-col a:hover { color: #fff; }
+.ft-bottom { margin-top: clamp(32px, 5vh, 48px); padding-top: 22px; border-top: 1px solid var(--line); }
+.compliance { font-size: 0.82rem; line-height: 1.7; color: var(--grey-2); max-width: 78ch; }
+.ft-copy { margin-top: 12px; font-size: .78rem; color: var(--grey-2); }
+@media (max-width: 760px) {
+  .ft-top { grid-template-columns: 1fr; gap: 32px; }
+  .ft-cols { gap: 16px; }
+  .ft-col a { font-size: .95rem; }
 }
-
+@media (max-width: 380px) { .ft-cols { grid-template-columns: 1fr 1fr; } }
 
 /* ============================================================================
    Scroll-reveal
@@ -555,7 +562,6 @@ section { position: relative; }
    ============================================================================ */
 @media (min-width: 600px) {
   .device { max-width: 320px; }
-  .footer-links { flex-direction: row; }
 }
 @media (min-width: 820px) {
   /* layers alternate sides, copy beside the device */
@@ -1123,6 +1129,8 @@ section { position: relative; }
 }
 .bh-nav a:hover { color: #fff; border-color: var(--line); background: rgba(255,255,255,.04); }
 .bh-nav a.on { color: var(--green); border-color: var(--green-line); background: var(--green-dim); }
+.bh-nav a.bh-ig { padding: 7px 9px; font-size: 1.1rem; line-height: 1; display: inline-flex; }
+.bh-nav a.bh-ig:hover { color: var(--green); }
 .bh-right { display: flex; align-items: center; gap: 10px; position: relative; }
 .bh-cta { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
 .bh-cta i { font-size: 1.05em; line-height: 1; }
