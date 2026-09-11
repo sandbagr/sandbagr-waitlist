@@ -34,7 +34,7 @@
   <header class="brand-header" id="brandHeader">
     <span class="bh-brand">
       <img class="bh-mark" src="assets/mascot-mark.png" alt="" aria-hidden="true">
-      <span class="bh-wordmark">SAND<span class="g">BAGR</span></span>
+      <span class="bh-wordmark">SAND<span class="g">BAGR</span><sup class="tm">&trade;</sup></span>
     </span>
     <a href="https://apps.apple.com/us/app/sandbagr/id6769903712" class="bh-cta" target="_blank" rel="noopener">Download</a>
   </header>
@@ -46,7 +46,7 @@
       <!-- splash lockup: centered on load -->
       <div class="hero-lockup">
         <img class="hero-mark" src="assets/mascot-mark.png" alt="SANDBAGR" width="1238" height="1224">
-        <h1 class="hero-wordmark">SAND<span class="g">BAGR</span></h1>
+        <h1 class="hero-wordmark">SAND<span class="g">BAGR</span><sup class="tm">&trade;</sup></h1>
         <p class="hero-tagline">Talk Sh*t. Back It Up.</p>
       </div>
 
@@ -95,13 +95,16 @@
   <!-- ==================== 2 · THE PROBLEM (compact, one screen) ==================== -->
   <section class="problem problem-compact" id="problem">
     <div class="wrap problem-inner">
-      <p class="big-line problem-headline">Every foursome has the same fight at the 19th hole.</p>
-      <p class="big-line dim problem-subline">Half the bets are forgotten...<br>And someone doesn't wanna pay up.</p>
+      <p class="eyebrow g problem-eyebrow">All round long</p>
+      <!-- the words fill from dim to white as you scroll through them (app.js problemSequence) -->
+      <p class="big-line problem-fill" id="problemFill"><span class="w">Everybody</span> <span class="w">talks.</span><br><span class="w">Nobody</span> <span class="w">backs</span> <span class="w">it</span> <span class="w">up.</span></p>
+      <p class="big-line problem-until" id="problemUntil">Until now.</p>
 
       <div class="chat-mock" id="chatMock" aria-hidden="true">
-        <div class="chat-bubble me">wait who won the front</div>
-        <div class="chat-bubble them">idk Greg Walsh owes someone $20?</div>
-        <div class="chat-bubble me">…did anyone actually pay</div>
+        <div class="chat-bubble them">Greg says he's a 12 now</div>
+        <div class="chat-bubble me">he's a 12 until there's money on it</div>
+        <div class="chat-bubble them">then he's a 7</div>
+        <div class="chat-bubble me">bet him on <b class="wm">SAND<span class="g">BAGR</span></b></div>
       </div>
     </div>
   </section>
@@ -276,7 +279,157 @@
     </div>
   </section>
 
-  <!-- ==================== 7 · DOWNLOAD — the app is live on the App Store ==================== -->
+  <!-- ==================== 7 · COMING SOON — pre-round lines demo (mirrors the app's New Round flow) ==================== -->
+  <section class="league soon" id="lines">
+    <div class="wrap league-grid">
+      <div class="league-copy">
+        <p class="eyebrow g">Coming this fall</p>
+        <h2 class="league-title">A line on every player. <span class="g">Before you tee off.</span></h2>
+        <p class="soon-sub">Pick the course, add your crew, and the engine sets the number on every guy in the group. Post a side or take one. SANDBAGR never holds a position.</p>
+      </div>
+
+      <div class="soon-demo">
+        <div class="appdemo league-phone rv">
+          <div class="appdemo-glow"></div>
+          <div class="phone pr-phone">
+            <div class="stage pr-stage">
+
+              <!-- S0 · find a course (as in the app) -->
+              <div class="gscene pr-scene" id="pr0">
+                <div class="pr-top"><span class="pr-back"><i class="ti ti-arrow-left"></i></span><span class="pr-ttl">New Round</span><span class="pr-sp"></span></div>
+                <div class="pr-prog"><i class="on"></i><i></i><i></i></div>
+                <div class="pr-eye">Find a course</div>
+                <div class="pr-h">Pick the course.</div>
+                <div class="pr-search"><i class="ti ti-search"></i><span class="pr-q" id="pr-q0"></span><span class="pr-cur">|</span><span class="pr-or">or</span><span class="pr-zip">Zip</span></div>
+                <div class="pr-lbl pr-rev" id="pr-nearby">Nearby</div>
+                <div class="pr-list" id="pr-courses">
+                  <div class="pr-card"><span class="pr-ico"><i class="ti ti-map-pin"></i></span><div><div class="pr-n">Pebblewood Country Club</div><div class="pr-s">Bridgman, MI · 9794 Jericho Rd</div></div></div>
+                  <div class="pr-card" id="pr-pebble"><span class="pr-ico"><i class="ti ti-map-pin"></i></span><div><div class="pr-n">Pebble Beach Golf Links</div><div class="pr-s" id="pr-pebble-s">Pebble Beach, CA · 1700 17 Mile Drive</div></div></div>
+                  <div class="pr-card"><span class="pr-ico"><i class="ti ti-map-pin"></i></span><div><div class="pr-n">Pebble Creek Country Club</div><div class="pr-s">College Station, TX · 4500 Pebble Creek Pkwy</div></div></div>
+                </div>
+              </div>
+
+              <!-- S1 · pick the tees -->
+              <div class="gscene pr-scene" id="pr1">
+                <div class="pr-top"><span class="pr-back"><i class="ti ti-arrow-left"></i></span><span class="pr-ttl">New Round</span><span class="pr-sp"></span></div>
+                <div class="pr-prog"><i class="on"></i><i class="on"></i><i></i></div>
+                <div class="pr-eye">Pebble Beach Golf Links</div>
+                <div class="pr-h">Pick the tees.</div>
+                <div class="pr-list" id="pr-tees">
+                  <div class="pr-card"><span class="pr-tee" style="background:#141414;border-color:#555"></span><div><div class="pr-n">Black</div><div class="pr-s">7,041 yds · 75.5 / 145</div></div></div>
+                  <div class="pr-card" id="pr-blue"><span class="pr-tee" style="background:#2F6FD6"></span><div><div class="pr-n">Blue</div><div class="pr-s">6,828 yds · 74.0 / 144</div></div></div>
+                  <div class="pr-card"><span class="pr-tee" style="background:#ECECEC"></span><div><div class="pr-n">White</div><div class="pr-s">6,116 yds · 71.7 / 135</div></div></div>
+                  <div class="pr-card"><span class="pr-tee" style="background:#C9A227"></span><div><div class="pr-n">Gold</div><div class="pr-s">5,614 yds · 69.2 / 128</div></div></div>
+                </div>
+              </div>
+
+              <!-- S2 · add the crew by name; handicap comes with the profile -->
+              <div class="gscene pr-scene" id="pr2">
+                <div class="pr-top"><span class="pr-back"><i class="ti ti-arrow-left"></i></span><span class="pr-ttl">New Round</span><span class="pr-sp"></span></div>
+                <div class="pr-prog"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+                <div class="pr-eye">Players · <span id="pr-cnt">1</span>/4</div>
+                <div class="pr-h">Add your crew.</div>
+                <div class="pr-search"><i class="ti ti-search"></i><span class="pr-q" id="pr-q2"></span><span class="pr-cur">|</span></div>
+                <div class="pr-hitwrap"><div class="pr-hit" id="pr-hit"><span class="pr-av" id="pr-hit-av">DP</span><div><div class="pr-n" id="pr-hit-n">Dexy Payne</div><div class="pr-s" id="pr-hit-s">@dexy · 14.6</div></div><span class="pr-add">Add</span></div></div>
+                <div class="pr-list" id="pr-crew">
+                  <div class="pr-row"><span class="pr-av you">DR</span><span class="pr-n">Drew <small>you</small></span><span class="pr-hcp">9.8</span></div>
+                  <div class="pr-row pr-new" id="pr-r1"><span class="pr-av" style="background:#7F77DD">DP</span><span class="pr-n">Dexy</span><span class="pr-hcp">14.6</span></div>
+                  <div class="pr-row pr-new" id="pr-r2"><span class="pr-av" style="background:#378ADD">CC</span><span class="pr-n">Colin</span><span class="pr-hcp">5.2</span></div>
+                  <div class="pr-row pr-new" id="pr-r3"><span class="pr-av" style="background:#EF9F27;color:#0A0A0A">JR</span><span class="pr-n">Jake</span><span class="pr-hcp">19.3</span></div>
+                </div>
+                <div class="pr-btn greveal" id="pr-gen">Generate lines <i class="ti ti-arrow-right"></i></div>
+              </div>
+
+              <!-- S3 · low-key loading -->
+              <div class="gscene pr-scene pr-mid" id="pr3">
+                <img class="pr-mark" src="assets/mascot-mark.png" alt="" width="1238" height="1224">
+                <div class="pr-bar"><i id="pr-fill"></i></div>
+                <div class="pr-status" id="pr-status"></div>
+              </div>
+
+              <!-- S4 · the other three guys, one tile each -->
+              <div class="gscene pr-scene" id="pr4">
+                <div class="pr-top"><span class="pr-back"><i class="ti ti-arrow-left"></i></span><span class="pr-brand">SAND<span class="g">BAGR</span><sup class="tm">&trade;</sup></span><span class="pr-sp"><i class="ti ti-settings"></i></span></div>
+                <div class="pr-eye">Pre-round · Pebble Beach · Blue</div>
+                <div class="pr-h">Pick your action.</div>
+                <div class="pr-tiles">
+                  <div class="pr-tile"><span class="pr-av big" style="background:#378ADD">CC</span><div class="pr-n">Colin</div><div class="pr-s">5.2</div><span class="pr-badge">25 lines</span></div>
+                  <div class="pr-tile" id="pr-tile-dexy"><span class="pr-av big" style="background:#7F77DD">DP</span><div class="pr-n">Dexy</div><div class="pr-s">14.6</div><span class="pr-badge">25 lines</span></div>
+                  <div class="pr-tile"><span class="pr-av big" style="background:#EF9F27;color:#0A0A0A">JR</span><div class="pr-n">Jake</div><div class="pr-s">19.3</div><span class="pr-badge">25 lines</span></div>
+                </div>
+                <div class="pr-hint">Lines on the other three. Never on yourself.</div>
+              </div>
+
+              <!-- S5 · one player's 25 lines, five categories -->
+              <div class="gscene pr-scene" id="pr5">
+                <div class="pr-top"><span class="pr-back"><i class="ti ti-arrow-left"></i></span><span class="pr-ttl">Dexy · 25 lines</span><span class="pr-sp"></span></div>
+                <div class="pr-tabs" id="pr-tabs"><span class="on">Number</span><span>Card</span><span>Callouts</span><span>Game</span><span>Chips</span></div>
+                <div class="pr-lines" id="pr-lines">
+                  <div class="pr-cat">The Number</div>
+                  <div class="pr-ln"><span class="pr-lt">Gross</span><span class="pr-ll">90.5</span><span class="pr-side" id="pr-over">Over <em>48%</em></span><span class="pr-side">Under <em>52%</em></span></div>
+                  <div class="pr-ln"><span class="pr-lt">Front 9</span><span class="pr-ll">45.5</span><span class="pr-side">Over <em>50%</em></span><span class="pr-side">Under <em>50%</em></span></div>
+                  <div class="pr-ln"><span class="pr-lt">Back 9</span><span class="pr-ll">45.5</span><span class="pr-side">Over <em>49%</em></span><span class="pr-side">Under <em>51%</em></span></div>
+                  <div class="pr-ln"><span class="pr-lt">Breaks 90</span><span class="pr-ll dash">·</span><span class="pr-side">Yes <em>41%</em></span><span class="pr-side">No <em>59%</em></span></div>
+                  <div class="pr-ln"><span class="pr-lt">Plays to his cap</span><span class="pr-ll dash">·</span><span class="pr-side">Yes <em>30%</em></span><span class="pr-side">No <em>70%</em></span></div>
+                  <div class="pr-cat">The Card</div>
+                  <div class="pr-ln"><span class="pr-lt">Makes a birdie</span><span class="pr-ll dash">·</span><span class="pr-side">Yes <em>44%</em></span><span class="pr-side">No <em>56%</em></span></div>
+                  <div class="pr-ln"><span class="pr-lt">Doubles+</span><span class="pr-ll">4.5</span><span class="pr-side">Over <em>47%</em></span><span class="pr-side">Under <em>53%</em></span></div>
+                  <div class="pr-ln"><span class="pr-lt">2 pars in a row</span><span class="pr-ll dash">·</span><span class="pr-side">Yes <em>58%</em></span><span class="pr-side">No <em>42%</em></span></div>
+                  <div class="pr-ln"><span class="pr-lt">Triple or worse</span><span class="pr-ll dash">·</span><span class="pr-side">Yes <em>46%</em></span><span class="pr-side">No <em>54%</em></span></div>
+                  <div class="pr-ln"><span class="pr-lt">Worst hole</span><span class="pr-ll">3.5</span><span class="pr-side">Over <em>52%</em></span><span class="pr-side">Under <em>48%</em></span></div>
+                  <div class="pr-cat">Callouts</div>
+                  <div class="pr-ln"><span class="pr-lt">vs Colin, net</span><span class="pr-ll">10</span><span class="pr-side">Dexy <em>46%</em></span><span class="pr-side">Colin <em>54%</em></span></div>
+                  <div class="pr-ln"><span class="pr-lt">vs Jake, net</span><span class="pr-ll">5</span><span class="pr-side">Dexy <em>55%</em></span><span class="pr-side">Jake <em>45%</em></span></div>
+                  <div class="pr-ln"><span class="pr-lt">Birdies vs Drew</span><span class="pr-ll dash">·</span><span class="pr-side">Yes <em>38%</em></span><span class="pr-side">No <em>62%</em></span></div>
+                  <div class="pr-ln"><span class="pr-lt">Back 9 vs Jake</span><span class="pr-ll dash">·</span><span class="pr-side">Yes <em>57%</em></span><span class="pr-side">No <em>43%</em></span></div>
+                  <div class="pr-ln"><span class="pr-lt">Margin vs Colin</span><span class="pr-ll">10.5</span><span class="pr-side">Over <em>49%</em></span><span class="pr-side">Under <em>51%</em></span></div>
+                  <div class="pr-cat">The Game</div>
+                  <div class="pr-ln"><span class="pr-lt">Low net</span><span class="pr-ll dash">·</span><span class="pr-side">Yes <em>27%</em></span><span class="pr-side">No <em>73%</em></span></div>
+                  <div class="pr-ln"><span class="pr-lt">Wins the front</span><span class="pr-ll dash">·</span><span class="pr-side">Yes <em>24%</em></span><span class="pr-side">No <em>76%</em></span></div>
+                  <div class="pr-ln"><span class="pr-lt">Wins the back</span><span class="pr-ll dash">·</span><span class="pr-side">Yes <em>26%</em></span><span class="pr-side">No <em>74%</em></span></div>
+                  <div class="pr-ln"><span class="pr-lt">Most skins</span><span class="pr-ll dash">·</span><span class="pr-side">Yes <em>22%</em></span><span class="pr-side">No <em>78%</em></span></div>
+                  <div class="pr-ln"><span class="pr-lt">Last, net</span><span class="pr-ll dash">·</span><span class="pr-side">Yes <em>31%</em></span><span class="pr-side">No <em>69%</em></span></div>
+                  <div class="pr-cat">Chips</div>
+                  <div class="pr-ln"><span class="pr-lt">3-putts</span><span class="pr-ll">2.5</span><span class="pr-side">Over <em>47%</em></span><span class="pr-side">Under <em>53%</em></span></div>
+                  <div class="pr-ln"><span class="pr-lt">Fairways hit</span><span class="pr-ll">6.5</span><span class="pr-side">Over <em>51%</em></span><span class="pr-side">Under <em>49%</em></span></div>
+                  <div class="pr-ln"><span class="pr-lt">No 3-putts</span><span class="pr-ll dash">·</span><span class="pr-side">Yes <em>18%</em></span><span class="pr-side">No <em>82%</em></span></div>
+                  <div class="pr-ln"><span class="pr-lt">Sand saves</span><span class="pr-ll">0.5</span><span class="pr-side">Over <em>35%</em></span><span class="pr-side">Under <em>65%</em></span></div>
+                  <div class="pr-ln"><span class="pr-lt">Balls lost</span><span class="pr-ll">1.5</span><span class="pr-side">Over <em>44%</em></span><span class="pr-side">Under <em>56%</em></span></div>
+                </div>
+              </div>
+
+              <!-- S6 · post a side -->
+              <div class="gscene pr-scene pr-mid" id="pr6">
+                <div class="pr-eye">Your post</div>
+                <div class="pr-h pr-center">Dexy gross<br><span class="g">Over 90.5</span></div>
+                <div class="pr-amts"><span>$5</span><span>$10</span><span id="pr-a20">$20</span><span>$50</span></div>
+                <div class="pr-whisper"><b>ENGINE</b>Over is 48%. Fair number. It should get taken.</div>
+                <div class="pr-btn" id="pr-post">Post to the group <i class="ti ti-arrow-right"></i></div>
+              </div>
+
+              <!-- S7 · the group's action: take a side, get taken -->
+              <div class="gscene pr-scene" id="pr7">
+                <div class="pr-toast" id="pr-toast"><i class="ti ti-check"></i> Colin took your Over 90.5 · $20</div>
+                <div class="pr-top"><span class="pr-back"><i class="ti ti-arrow-left"></i></span><span class="pr-brand">SAND<span class="g">BAGR</span><sup class="tm">&trade;</sup></span><span class="pr-sp"><i class="ti ti-settings"></i></span></div>
+                <div class="pr-eye">Action · <span id="pr-open">3 open</span></div>
+                <div class="pr-h">What the group's got.</div>
+                <div class="pr-feed">
+                  <div class="pr-post" id="pr-p0"><div><div class="pr-n">You · Dexy Over 90.5</div><div class="pr-s">$20 · even</div></div><span class="pr-pill" id="pr-pill0">Open</span></div>
+                  <div class="pr-post" id="pr-p1"><div><div class="pr-n">Colin · Jake Under 98.5</div><div class="pr-s">$10 · even</div></div><span class="pr-take" id="pr-take1">Take $10</span></div>
+                  <div class="pr-post" id="pr-p2"><div><div class="pr-n">Jake · Colin beats Drew</div><div class="pr-s">$20 · net match</div></div><span class="pr-take">Take $20</span></div>
+                </div>
+                <div class="pr-sum greveal" id="pr-sum">2 matched · $30 in play · settles from the scorecard</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="pr-dots" id="pr-dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 8 · DOWNLOAD — the app is live on the App Store ==================== -->
   <section class="line download" id="cta">
     <div class="wrap">
       <p class="eyebrow g">Now on the App Store</p>
@@ -286,7 +439,7 @@
       <div class="dl-card">
         <img src="assets/app-icon.png" alt="SANDBAGR app icon" class="dl-icon" width="512" height="512" loading="lazy">
         <div class="dl-meta">
-          <p class="dl-name">SANDBAGR</p>
+          <p class="dl-name">SAND<span class="g">BAGR</span><sup class="tm">&trade;</sup></p>
           <p class="dl-sub">Live action, tee to green</p>
           <p class="dl-facts"><span>Free</span><span>iPhone</span><span>18+</span></p>
           <a href="https://apps.apple.com/us/app/sandbagr/id6769903712" class="capture-btn dl-btn" target="_blank" rel="noopener"><i class="ti ti-brand-apple" aria-hidden="true"></i> Download on the App Store</a>
@@ -299,11 +452,11 @@
     </div>
   </section>
 
-  <!-- ==================== 8 · FOOTER ==================== -->
+  <!-- ==================== 9 · FOOTER ==================== -->
   <footer class="footer">
     <div class="wrap footer-grid">
       <div class="footer-brand">
-        <span class="footer-wordmark">SAND<span class="g">BAGR</span></span>
+        <span class="footer-wordmark">SAND<span class="g">BAGR</span><sup class="tm">&trade;</sup></span>
         <p class="footer-tag">Talk Sh*t. Back It Up.</p>
         <div class="footer-links">
           <a href="https://sandbagrapp.com">sandbagrapp.com</a>
